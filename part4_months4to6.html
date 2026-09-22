@@ -1,0 +1,321 @@
+      <!-- ================= MONTH 04 ================= -->
+      <div class="month-card" id="month4">
+        <div class="month-header m4">
+          <div class="month-num-badge">04</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 04 &bull; Weeks 13&ndash;16</div>
+            <h3>Hierarchical Structures, Top-K Optimization & <em>Prefix Trees</em></h3>
+            <div class="month-tagline">Phase 12: Sorting &bull; Phase 13: Binary Trees & BST &bull; Phase 14: Heaps & PriorityQueue &bull; Phase 15: Tries</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Tree DFS / BFS</span>
+              <span class="skill-chip">Binary Search Tree</span>
+              <span class="skill-chip">Min / Max Heap</span>
+              <span class="skill-chip">Dual Heap Pattern</span>
+              <span class="skill-chip">Trie Prefix Search</span>
+              <span class="skill-chip">Sorting Stability</span>
+              <span class="skill-chip">Custom Comparators</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 13</div>
+                <h4>Sorting Algorithms: Mechanics, Stability & Trade-offs</h4>
+              </div>
+              <ul>
+                <li>Why sorting matters: turning chaotic data into monotonic search spaces.</li>
+                <li>Merge Sort: divide-and-conquer recurrence, stable merging, auxiliary space cost O(N).</li>
+                <li>QuickSort: Lomuto vs Hoare partitioning, pivot selection (median-of-three), worst-case O(N²) avoidance.</li>
+                <li>Why Java uses Dual-Pivot Quicksort for primitives and Timsort for objects (stability).</li>
+                <li>Non-comparison sorts: Counting Sort and Bucket Sort conceptually in O(N + K).</li>
+                <li>Custom sorting in Java: multi-field sorting via <span class="inline-code">Comparator.comparing(...).thenComparing(...)</span>.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 14</div>
+                <h4>Binary Trees & Binary Search Trees (BST)</h4>
+              </div>
+              <ul>
+                <li>Tree anatomy: root, leaf, height, depth, balanced vs skewed tree degenerations.</li>
+                <li>Depth-First Search (DFS): Preorder, Inorder, and Postorder recursion call-stack tracing.</li>
+                <li>Breadth-First Search (BFS): Level-order traversal using <span class="inline-code">ArrayDeque</span> with level-size bounding.</li>
+                <li>Tree metrics: Maximum depth, diameter of binary tree (bottom-up calculation), symmetric tree.</li>
+                <li>Path problems: Path Sum I/II/III, Maximum Path Sum (handling negative node values).</li>
+                <li>BST operations: Search, Insert, Inorder Successor, Delete node (handling 2-child case), Validate BST with bounds.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 15</div>
+                <h4>Heaps & PriorityQueue: Top-K Streaming Optimization</h4>
+              </div>
+              <ul>
+                <li>Complete binary tree representation in an array: parent <span class="inline-code">(i-1)/2</span>, children <span class="inline-code">2i+1, 2i+2</span>.</li>
+                <li>Heapify: sift-up (insert O(log N)) vs sift-down (delete O(log N)). Building a heap in O(N) linear time.</li>
+                <li>Java <span class="inline-code">PriorityQueue</span> API: Min-heap default, custom Max-heap comparator formulations.</li>
+                <li>The Top-K pattern: why maintaining a min-heap of size K yields O(N log K) instead of O(N log N) sort.</li>
+                <li>Top K Frequent Elements, K Closest Points to Origin, Merge K Sorted Lists.</li>
+                <li>The Dual-Heap pattern: Find Median from Data Stream using balanced max-heap and min-heap.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 16</div>
+                <h4>Tries: Prefix Trees & Advanced String Search</h4>
+              </div>
+              <ul>
+                <li>The Trie mental model: multi-way tree structure where edges represent characters.</li>
+                <li>Node representation: <span class="inline-code">TrieNode[] children = new TrieNode[26]</span> vs HashMap for unicode.</li>
+                <li>Implement Trie (Prefix Tree): <span class="inline-code">insert</span>, <span class="inline-code">search</span>, and <span class="inline-code">startsWith</span> in O(L) time where L is word length.</li>
+                <li>Memory trade-offs: why Tries consume more RAM than HashSets, and when prefix-sharing wins.</li>
+                <li>Design Add and Search Words Data Structure (wildcard '.' search via DFS).</li>
+                <li>Trie + Backtracking: Word Search II (matrix grid traversal with prefix pruning).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-intermediate">Milestone Project 4</span>
+              <h4>In-Memory Autocomplete Search Engine & Streaming Median Monitor</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students construct an enterprise search suggestion engine. The system indexes millions of search query strings into a memory-efficient prefix Trie with frequency weights, returning ranked top-10 autocomplete recommendations in sub-millisecond response times. A companion analytics service maintains running 50th, 90th, and 99th percentile metrics on query lengths using a dual-heap architecture.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Prefix Trie with frequency nodes, dual-heap streaming medians, comparator chaining, memory profiling</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Live coding of Validate BST, Top K Frequent Elements, and Word Search II without hints</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 05 ================= -->
+      <div class="month-card" id="month5">
+        <div class="month-header m5">
+          <div class="month-num-badge">05</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 05 &bull; Weeks 17&ndash;20</div>
+            <h3>Graphs, Disjoint Sets, Greedy Proofs & <em>Dynamic Programming</em></h3>
+            <div class="month-tagline">Phase 16: Graphs & DSU &bull; Phase 17: Greedy Paradigm &bull; Phase 18: DP Foundations (Recursion &rarr; Memo &rarr; Tabulation)</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Graph Adjacency List</span>
+              <span class="skill-chip">BFS / DFS Traversals</span>
+              <span class="skill-chip">Topological Sort (Kahn's)</span>
+              <span class="skill-chip">Union-Find / DSU</span>
+              <span class="skill-chip">Dijkstra Shortest Path</span>
+              <span class="skill-chip">Greedy Invariants</span>
+              <span class="skill-chip">1D Dynamic Programming</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 17</div>
+                <h4>Graph Representations & Fundamental Traversals</h4>
+              </div>
+              <ul>
+                <li>Graph modeling: Vertices, edges, directed vs undirected, weighted vs unweighted.</li>
+                <li>Representations in Java: Adjacency Matrix vs <span class="inline-code">List&lt;List&lt;Integer&gt;&gt;</span> vs Map of lists.</li>
+                <li>Graph BFS: shortest path in unweighted networks, level-by-level spreading (Word Ladder).</li>
+                <li>Graph DFS: connected components, Number of Islands, Max Area of Island, Clone Graph.</li>
+                <li>Cycle detection: 3-color state tracking (<span class="inline-code">0 = unvisited, 1 = visiting, 2 = visited</span>) in directed graphs.</li>
+                <li>Bipartite graph validation using 2-coloring via BFS/DFS.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 18</div>
+                <h4>Topological Sort, DSU & Shortest Paths</h4>
+              </div>
+              <ul>
+                <li>Directed Acyclic Graphs (DAG) and dependency resolution ordering.</li>
+                <li>Kahn’s Algorithm: indegree counting array + BFS queue. Course Schedule I & II.</li>
+                <li>Disjoint Set Union (DSU / Union-Find): parent array, find with path compression, union by rank.</li>
+                <li>DSU applications: Redundant Connection, Number of Provinces, dynamic graph connectivity.</li>
+                <li>Dijkstra’s Algorithm: Single-source shortest path with non-negative weights using <span class="inline-code">PriorityQueue&lt;int[]&gt;</span>.</li>
+                <li>Minimum Spanning Tree (MST): Kruskal's algorithm (Sort edges + DSU) vs Prim's algorithm.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 19</div>
+                <h4>The Greedy Paradigm & Proof Intuitions</h4>
+              </div>
+              <ul>
+                <li>When can a locally optimal choice guarantee a global optimum? The "Greedy Stays Ahead" proof.</li>
+                <li>Interval Scheduling: Sorting by end time to maximize non-overlapping events.</li>
+                <li>Merge Intervals: Sorting by start time and maintaining running high-water mark.</li>
+                <li>Non-overlapping Intervals and Minimum Number of Arrows to Burst Balloons.</li>
+                <li>Jump Game I & II: tracking maximum reachable boundary without quadratic backtracking.</li>
+                <li>Gas Station: circular tour greedy invariant and total balance deficit reasoning.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 20</div>
+                <h4>Dynamic Programming Foundations: 1D State Spaces</h4>
+              </div>
+              <ul>
+                <li>Why DP is not magic: it is brute-force recursion with cached overlapping subproblems.</li>
+                <li>The 6-Step DP Protocol: State definition &rarr; Recurrence relation &rarr; Base case &rarr; Order of iteration &rarr; Answer extraction &rarr; Space optimization.</li>
+                <li>Top-Down Memoization (Recursion + array) vs Bottom-Up Tabulation (iterative table).</li>
+                <li>Climbing Stairs and Min Cost Climbing Stairs (reducing space from O(N) to O(1)).</li>
+                <li>House Robber I & II (linear array vs circular array state breakdown).</li>
+                <li>Coin Change (unbounded choice, minimum count) vs Coin Change 2 (combination counting order).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-advanced">Milestone Project 5</span>
+              <h4>Distributed Microservice Dependency Resolver & Network Router</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students architect a distributed build and deployment dependency analyzer. Given thousands of interdependent microservices with compile dependencies and latency weights, the engine detects cyclic dependency deadlocks via 3-color DFS, determines the parallel execution stages using Kahn's topological sort, locates network fault partitions using DSU, and computes optimal request dispatch routes using Dijkstra's algorithm.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Graph adjacency representations, Kahn's TopoSort, DSU path compression, Dijkstra with PriorityQueue</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Solving Course Schedule II, Network Delay Time, and Coin Change under 40 minutes with proof of correctness</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 06 ================= -->
+      <div class="month-card" id="month6">
+        <div class="month-header m6">
+          <div class="month-num-badge">06</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 06 &bull; Weeks 21&ndash;24</div>
+            <h3>Advanced DP, Bitwise Mastery & <em>The Interview Readiness Gauntlet</em></h3>
+            <div class="month-tagline">Phase 18 (Adv): 2D/Knapsack/Subsequence DP &bull; Phase 19: Bit Manipulation &bull; Phase 20: Advanced DS Overview &bull; Mock Gauntlet</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">2D Grid DP</span>
+              <span class="skill-chip">0/1 & Unbounded Knapsack</span>
+              <span class="skill-chip">LCS & Edit Distance</span>
+              <span class="skill-chip">Bit Manipulation & Masks</span>
+              <span class="skill-chip">Timed OA Simulations</span>
+              <span class="skill-chip">8-Round Gauntlet</span>
+              <span class="skill-chip">Technical Storytelling</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 21</div>
+                <h4>2D Grid DP, Knapsack & String Subsequence DP</h4>
+              </div>
+              <ul>
+                <li>Grid DP: Unique Paths I & II, Minimum Path Sum (state transition from top and left).</li>
+                <li>Space optimization on grids: reducing O(M × N) table down to single rolling 1D array O(N).</li>
+                <li>The Classic 0/1 Knapsack: decision of inclusion vs exclusion with capacity constraints.</li>
+                <li>Partition Equal Subset Sum and Target Sum (reducing problems to 0/1 Knapsack variants).</li>
+                <li>Longest Common Subsequence (LCS): match vs mismatch transitions across dual strings.</li>
+                <li>Edit Distance (Levenshtein distance): insert, delete, and replace operational cost analysis.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 22</div>
+                <h4>Advanced DP Patterns & Bit Manipulation</h4>
+              </div>
+              <ul>
+                <li>Longest Increasing Subsequence (LIS): O(N²) DP vs O(N log N) Patience Sorting with Binary Search.</li>
+                <li>Interval DP: Longest Palindromic Subsequence, Matrix Chain Multiplication mindset.</li>
+                <li>Binary representation: AND, OR, XOR, NOT, left shift <span class="inline-code">&lt;&lt;</span>, right shift <span class="inline-code">&gt;&gt;</span>, unsigned shift <span class="inline-code">&gt;&gt;&gt;</span>.</li>
+                <li>Bit manipulation tricks: <span class="inline-code">n &amp; (n-1)</span> to clear lowest set bit, <span class="inline-code">n &amp; (-n)</span> to isolate lowest bit.</li>
+                <li>Single Number I & II (XOR cancellation), Counting Bits, Reverse Bits.</li>
+                <li>State compression: representing subsets of up to 20 elements as single 32-bit integer bitmasks.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 23</div>
+                <h4>Tier-1 Online Assessment (OA) Simulation & Speed Engineering</h4>
+              </div>
+              <ul>
+                <li>Online Assessment environment dynamics: HackerRank, CodeSignal, LeetCode OA mechanics.</li>
+                <li>Handling huge input bounds: reading constraints to immediately determine acceptable Big-O.</li>
+                <li>Fast I/O in Java: <span class="inline-code">BufferedReader</span> and <span class="inline-code">StringTokenizer</span> vs slow <span class="inline-code">Scanner</span>.</li>
+                <li>Time management under pressure: 2 medium problems in 60 minutes; 3 problems in 90 minutes.</li>
+                <li>Decoding hidden problem statements: stripping away fluff narrative to reveal core algorithmic graph/array abstractions.</li>
+                <li>Debugging edge case failures on hidden test cases (32-bit integer overflow, negative coordinates, disconnected graphs).</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 24</div>
+                <h4>The Interview Readiness Gauntlet & Final Placement Sprint</h4>
+              </div>
+              <ul>
+                <li>The 10-Step Interview Communication Protocol practiced live under strict audio recording.</li>
+                <li>How to recover when you get stuck: structured inquiry, asking clarifying questions, reverting to verified invariants.</li>
+                <li>Defending technical trade-offs: why your approach beats the interviewer's suggested alternative.</li>
+                <li>Code Review & Refactoring: writing clean, production-grade variable names and helper methods without IDE autocomplete.</li>
+                <li>Resume engineering for DSA: framing algorithmic projects with concrete metrics and architecture bullets.</li>
+                <li>Completing the 8-Round Interview Readiness Gauntlet and receiving the comprehensive Diagnostic Audit Report.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-capstone">Capstone Project</span>
+              <h4>Production Dynamic Pricing & Multi-Route Optimization Simulator</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                The ultimate capstone merges non-linear algorithmic patterns into an enterprise ride-hailing simulation. Students implement a real-time dispatch engine that solves the Travelling Salesperson-style route planning for 16 delivery nodes via Bitmask DP, determines dynamic surge pricing using 2D Knapsack resource allocations, and executes shortest vehicle path queries on an open street network using A* / Dijkstra search.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Bitmask DP, 2D Knapsack, Dijkstra graph routing, bitwise optimizations, production Java 21 architecture</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Evaluation Gate</div>
+                  <div class="value">Full 8-Round Live Interview Gauntlet defense before Senior Engineering Mentors</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

@@ -1,0 +1,2306 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DSA with Java &mdash; &#8377;30,000-Level Interview Engineering Program | 24-Week Complete Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --teal: #0EA5A4;
+  --teal-dark: #0A7B7A;
+  --teal-light: #E0F5F5;
+  --teal-muted: #B2E4E4;
+  --saffron: #FF9933;
+  --saffron-light: #FFF3E5;
+  --saffron-dark: #CC7A29;
+  --gray-50: #F7F8F9;
+  --gray-100: #EEEFF1;
+  --gray-200: #D8DADF;
+  --gray-400: #9DA3AE;
+  --gray-600: #5A6070;
+  --gray-800: #1E2330;
+  --white: #FFFFFF;
+  --green: #10B981;
+  --green-light: #ECFDF5;
+  --purple: #7C3AED;
+  --purple-light: #EDE9FE;
+  --blue: #3B82F6;
+  --blue-light: #EFF6FF;
+  --red: #EF4444;
+  --red-light: #FEF2F2;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.06);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--gray-50);
+  color: var(--gray-800);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.container--narrow { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+@media print {
+  nav, .toc-sidebar, .back-to-top { display: none !important; }
+  .main-content { margin-left: 0 !important; padding: 0 !important; }
+  body { background: white; }
+  .month-card, .week-card, .project-card { break-inside: avoid; }
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(247,248,249,0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gray-200);
+  transition: box-shadow 0.2s;
+}
+nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 16px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.28rem;
+  color: var(--gray-800);
+}
+.logo-icon {
+  width: 34px; height: 34px;
+  background: var(--teal);
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 18px; font-style: italic;
+  font-family: var(--font-display); font-weight: 600;
+}
+.logo span { color: var(--teal); }
+.nav-doc-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--gray-100);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--teal); color: #fff; padding: 8px 18px; box-shadow: 0 2px 10px rgba(14,165,164,0.25); }
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--gray-800); padding: 7px 16px; border: 1.5px solid var(--gray-200); }
+.btn-outline:hover { background: var(--white); border-color: var(--gray-400); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(155deg, #0A1F2F 0%, #0D2E3A 40%, #0A3D3C 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 84px 0 74px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 900px 600px at 65% 50%, rgba(14,165,164,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,153,51,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 860px; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14,165,164,0.15);
+  border: 1px solid rgba(14,165,164,0.3);
+  color: var(--teal-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4.5vw, 3.3rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.18;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--saffron);
+}
+.hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  max-width: 740px;
+  margin-bottom: 34px;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+.stat-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  backdrop-filter: blur(8px);
+}
+.stat-pill .num {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--teal-muted);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.stat-pill .label {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.68);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* LAYOUT & SIDEBAR */
+.doc-layout {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  min-height: calc(100vh - 64px);
+}
+.toc-sidebar {
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  border-right: 1px solid var(--gray-200);
+  background: var(--white);
+  padding: 28px 0;
+  scrollbar-width: thin;
+}
+.toc-sidebar::-webkit-scrollbar { width: 5px; }
+.toc-sidebar::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
+.toc-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+  padding: 0 20px 12px;
+}
+.toc-section { margin-bottom: 4px; }
+.toc-section-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  padding: 6px 20px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  border-left: 2px solid transparent;
+}
+.toc-section-label:hover, .toc-section-label.active {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border-left-color: var(--teal);
+}
+.toc-sub-item {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--gray-400);
+  padding: 3px 20px 3px 32px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.toc-sub-item:hover { color: var(--teal); }
+.toc-divider {
+  height: 1px;
+  background: var(--gray-100);
+  margin: 10px 20px;
+}
+
+.main-content {
+  padding: 48px 56px 80px;
+  min-width: 0;
+}
+@media (max-width: 960px) {
+  .doc-layout { grid-template-columns: 1fr; }
+  .toc-sidebar { display: none; }
+  .main-content { padding: 32px 20px 60px; }
+}
+
+/* SECTION TYPOGRAPHY */
+.doc-section {
+  margin-bottom: 68px;
+  scroll-margin-top: 80px;
+}
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--teal);
+}
+.doc-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
+  font-weight: 700;
+  color: var(--gray-800);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.doc-section h2 em { font-style: italic; color: var(--teal); }
+.section-intro {
+  font-size: 0.98rem;
+  color: var(--gray-600);
+  max-width: 720px;
+  line-height: 1.72;
+  margin-bottom: 34px;
+}
+
+/* BOXES & CARDS */
+.mentor-note {
+  background: linear-gradient(135deg, var(--teal-light) 0%, rgba(255,153,51,0.08) 100%);
+  border: 1px solid var(--teal-muted);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 24px 0;
+  position: relative;
+}
+.mentor-note::before {
+  content: '\2605   Principal Mentor Note';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+.mentor-note p {
+  font-size: 0.89rem;
+  color: var(--gray-800);
+  line-height: 1.68;
+  font-style: italic;
+}
+
+.warning-note {
+  background: var(--saffron-light);
+  border: 1px solid rgba(255,153,51,0.3);
+  border-left: 4px solid var(--saffron);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 20px 0;
+}
+.warning-note::before {
+  content: '\26A0   Beginner Trap / Common Interview Blunder';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--saffron-dark);
+  margin-bottom: 7px;
+}
+.warning-note p {
+  font-size: 0.875rem;
+  color: var(--gray-800);
+  line-height: 1.65;
+}
+
+.industry-box {
+  background: var(--green-light);
+  border: 1px solid #A7F3D0;
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 18px 0;
+}
+.industry-box::before {
+  content: '\26A1   Production & System Connection';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #065F46;
+  margin-bottom: 8px;
+}
+.industry-box p {
+  font-size: 0.875rem;
+  color: #064E3B;
+  line-height: 1.65;
+}
+
+.incremental-box {
+  background: var(--blue-light);
+  border: 1px solid #BFDBFE;
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  margin: 18px 0;
+}
+.incremental-box::before {
+  content: '\25C6   Why This Order & Why This Invariant Matters';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1D4ED8;
+  margin-bottom: 8px;
+}
+.incremental-box p {
+  font-size: 0.875rem;
+  color: #1e3a5f;
+  line-height: 1.65;
+}
+
+/* TABLES */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  margin: 24px 0;
+}
+.transform-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.transform-table th {
+  background: var(--gray-800);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 18px;
+  text-align: left;
+}
+.transform-table th:first-child { background: #151b27; }
+.transform-table td {
+  padding: 13px 18px;
+  font-size: 0.875rem;
+  color: var(--gray-800);
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--white);
+  vertical-align: top;
+}
+.transform-table tr:last-child td { border-bottom: none; }
+.transform-table tr:hover td { background: var(--gray-50); }
+.transform-table .before-col { color: var(--red); font-weight: 500; }
+.transform-table .after-col { color: var(--green); font-weight: 600; }
+
+/* MONTH CARD */
+.month-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 44px;
+}
+.month-header {
+  padding: 28px 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.month-header::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  opacity: 0.08;
+}
+.month-header.m1 { background: linear-gradient(135deg, #0A1F2F 0%, #0D2E3A 100%); }
+.month-header.m1::after { background: var(--teal); }
+.month-header.m2 { background: linear-gradient(135deg, #1a1040 0%, #2d1b6e 100%); }
+.month-header.m2::after { background: #7C3AED; }
+.month-header.m3 { background: linear-gradient(135deg, #0c2340 0%, #0a3860 100%); }
+.month-header.m3::after { background: var(--blue); }
+.month-header.m4 { background: linear-gradient(135deg, #0a2820 0%, #093d2a 100%); }
+.month-header.m4::after { background: var(--green); }
+.month-header.m5 { background: linear-gradient(135deg, #2d1b00 0%, #4a2e00 100%); }
+.month-header.m5::after { background: var(--saffron); }
+.month-header.m6 { background: linear-gradient(135deg, #1a0a2e 0%, #2e0d4a 100%); }
+.month-header.m6::after { background: #EC4899; }
+
+.month-num-badge {
+  flex-shrink: 0;
+  width: 58px; height: 58px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.22);
+}
+.m1 .month-num-badge { background: rgba(14,165,164,0.32); }
+.m2 .month-num-badge { background: rgba(124,58,237,0.42); }
+.m3 .month-num-badge { background: rgba(59,130,246,0.42); }
+.m4 .month-num-badge { background: rgba(16,185,129,0.42); }
+.m5 .month-num-badge { background: rgba(255,153,51,0.42); }
+.m6 .month-num-badge { background: rgba(236,72,153,0.42); }
+
+.month-header-text { flex: 1; }
+.month-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+}
+.month-header-text h3 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.22;
+  margin-bottom: 6px;
+}
+.month-header-text h3 em { font-style: italic; opacity: 0.88; }
+.month-tagline {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 600px;
+}
+.month-skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+.skill-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.month-body { padding: 30px; }
+
+/* WEEK GRID */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+.week-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+.week-card-header { margin-bottom: 14px; }
+.week-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.week-card h4 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  line-height: 1.35;
+}
+.week-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.week-card li {
+  font-size: 0.84rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  padding-left: 18px;
+  position: relative;
+}
+.week-card li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.week-card li strong { color: var(--gray-800); }
+
+/* PROJECT CARD */
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin: 20px 0 10px;
+}
+.project-card-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--gray-50);
+}
+.project-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.badge-beginner { background: var(--green-light); color: #065F46; }
+.badge-intermediate { background: var(--blue-light); color: #1D4ED8; }
+.badge-advanced { background: var(--purple-light); color: #5B21B6; }
+.badge-capstone { background: linear-gradient(135deg, var(--teal-light), var(--saffron-light)); color: var(--teal-dark); }
+.project-card-header h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+.project-card-body { padding: 20px 24px; }
+.project-card-body p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.project-detail-item .label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--gray-400);
+  margin-bottom: 4px;
+}
+.project-detail-item .value {
+  font-size: 0.84rem;
+  color: var(--gray-800);
+  line-height: 1.55;
+}
+
+/* CODE & TECH GRIDS */
+.inline-code {
+  font-family: var(--font-mono);
+  font-size: 0.81rem;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--teal-dark);
+}
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.tech-item {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 16px 14px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.tech-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.tech-icon { font-size: 1.7rem; margin-bottom: 8px; }
+.tech-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 3px;
+}
+.tech-tag { font-size: 0.7rem; color: var(--gray-400); }
+
+/* SCHEDULE */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin: 20px 0;
+}
+.schedule-time {
+  padding: 12px 18px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--teal-dark);
+  background: var(--teal-light);
+  border-bottom: 1px solid rgba(14,165,164,0.15);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+.schedule-activity {
+  padding: 12px 20px;
+  font-size: 0.875rem;
+  color: var(--gray-800);
+  border-bottom: 1px solid var(--gray-100);
+  border-left: 1px solid rgba(14,165,164,0.15);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.schedule-activity .activity-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.tag-concept { background: var(--teal-light); color: var(--teal-dark); }
+.tag-guided { background: var(--blue-light); color: #1D4ED8; }
+.tag-independent { background: var(--purple-light); color: #5B21B6; }
+.tag-dsa { background: var(--saffron-light); color: var(--saffron-dark); }
+.tag-review { background: var(--green-light); color: #065F46; }
+.tag-error { background: var(--red-light); color: #B91C1C; }
+
+/* EVALUATION TABLE */
+.eval-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.eval-table th {
+  background: var(--gray-800);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 12px 16px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.eval-table td {
+  padding: 12px 16px;
+  font-size: 0.86rem;
+  color: var(--gray-800);
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--white);
+}
+.eval-table tr:hover td { background: var(--gray-50); }
+
+/* MILESTONES */
+.milestone-timeline {
+  position: relative;
+  padding-left: 32px;
+  margin: 28px 0;
+}
+.milestone-timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal), var(--saffron));
+}
+.milestone-item {
+  position: relative;
+  margin-bottom: 22px;
+}
+.milestone-item::before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--teal);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--teal);
+}
+.milestone-item:last-child::before { background: var(--saffron); box-shadow: 0 0 0 2px var(--saffron); }
+.milestone-item h4 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 4px;
+}
+.milestone-item p {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* DSA LEVEL PROGRESSION */
+.dsa-level {
+  display: flex;
+  gap: 18px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  align-items: flex-start;
+}
+.dsa-level-num {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.dsa-level-body h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 6px;
+}
+.dsa-level-body p {
+  font-size: 0.86rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* PATTERN MATRIX */
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+  margin: 20px 0;
+}
+.pattern-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s, border-color 0.15s;
+}
+.pattern-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--teal);
+}
+.pattern-id {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.pattern-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 6px;
+}
+.pattern-signal {
+  font-size: 0.78rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* BACK TO TOP & FOOTER */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: var(--gray-800);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s, background 0.15s;
+  z-index: 50;
+}
+.back-to-top:hover { background: var(--teal); transform: translateY(-2px); }
+
+footer {
+  background: var(--gray-800);
+  padding: 40px 0;
+  text-align: center;
+}
+footer p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+footer .footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+footer .footer-brand span { color: var(--teal); }
+
+.h3-section {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin: 32px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.h3-section::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+</style>
+</head>
+<body id="top">
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#top" class="logo">
+      <div class="logo-icon">P</div>
+      Paadhai<span>DSA</span>
+    </a>
+    <div class="nav-doc-title">&#8377;30,000-Level Interview Engineering Program</div>
+    <div class="nav-right">
+      <a href="#roadmap" class="btn btn-outline">24-Week Roadmap</a>
+      <a href="#patterns" class="btn btn-outline">Pattern Engine</a>
+      <a href="#gauntlet" class="btn btn-primary">Readiness Gauntlet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<header class="hero">
+  <div class="container hero-content">
+    <div class="hero-eyebrow">&#9889; 24 Weeks &bull; 6 Months &bull; Zero-to-Job-Ready Architecture</div>
+    <h1>DSA With Java &mdash; <em>&#8377;30,000-Level</em> Interview Engineering Program</h1>
+    <p class="hero-sub">
+      A systematic transformation engine designed by Principal Software Engineers. Stop memorizing 500 disconnected LeetCode solutions. Learn to decompose unknown problems, identify structural invariants, choose optimal data structures, implement clean idiomatic Java 21, and defend solutions aloud under real interview scrutiny.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-pill">
+        <div class="num">24</div>
+        <div class="label">Structured Weeks</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">40</div>
+        <div class="label">Algorithmic Patterns</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">250+</div>
+        <div class="label">Curated Problems</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">6</div>
+        <div class="label">Milestone Projects</div>
+      </div>
+      <div class="stat-pill">
+        <div class="num">0</div>
+        <div class="label">Rote Memorization</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="doc-layout">
+
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <div class="toc-title">Table of Contents</div>
+    
+    <div class="toc-section">
+      <a href="#philosophy" class="toc-section-label">01. Pedagogical Philosophy</a>
+      <a href="#transformation" class="toc-sub-item">Core Transformation</a>
+      <a href="#stages" class="toc-sub-item">5 Stages of Maturity</a>
+      <a href="#rules" class="toc-sub-item">Anti-Memorization Rules</a>
+    </div>
+
+    <div class="toc-section">
+      <a href="#toolkit" class="toc-section-label">02. Java DSA Toolkit</a>
+      <a href="#collections-engine" class="toc-sub-item">Collections & Internals</a>
+      <a href="#modern-java" class="toc-sub-item">Deque, Heap & Comparators</a>
+      <a href="#memory-model" class="toc-sub-item">Stack, Heap & References</a>
+    </div>
+
+    <div class="toc-divider"></div>
+
+    <div class="toc-section">
+      <a href="#roadmap" class="toc-section-label">03. 24-Week Master Roadmap</a>
+      <a href="#month1" class="toc-sub-item">M1: Foundations & Complexity (W1-4)</a>
+      <a href="#month2" class="toc-sub-item">M2: Linear Patterns & Windows (W5-8)</a>
+      <a href="#month3" class="toc-sub-item">M3: Non-Linear & Search Space (W9-12)</a>
+      <a href="#month4" class="toc-sub-item">M4: Trees, Heaps & Tries (W13-16)</a>
+      <a href="#month5" class="toc-sub-item">M5: Graphs, Greedy & DP (W17-20)</a>
+      <a href="#month6" class="toc-sub-item">M6: Advanced DP & Gauntlet (W21-24)</a>
+    </div>
+
+    <div class="toc-divider"></div>
+
+    <div class="toc-section">
+      <a href="#patterns" class="toc-section-label">04. 40-Pattern Engine</a>
+      <a href="#problem-engine" class="toc-sub-item">14-Step Decomposition</a>
+      <a href="#pattern-matrix" class="toc-sub-item">Pattern Recognition Matrix</a>
+    </div>
+
+    <div class="toc-section">
+      <a href="#learning-systems" class="toc-section-label">05. Learning & Failure Engine</a>
+      <a href="#hint-system" class="toc-sub-item">No-Answer Guided Hints</a>
+      <a href="#error-journal" class="toc-sub-item">Failure Log & Categories</a>
+      <a href="#spaced-repetition" class="toc-sub-item">D0-D60 Spaced Repetition</a>
+    </div>
+
+    <div class="toc-section">
+      <a href="#rhythm-eval" class="toc-section-label">06. Schedules & Evaluation</a>
+      <a href="#daily-rhythm" class="toc-sub-item">2h, 3h, 4h Daily Routines</a>
+      <a href="#eval-gates" class="toc-sub-item">Milestone Diagnostic Gates</a>
+      <a href="#mastery-radar" class="toc-sub-item">10-Dimension Mastery Radar</a>
+      <a href="#gauntlet" class="toc-sub-item">8-Round Readiness Gauntlet</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="main-content">
+
+    <!-- ================= SECTION 01 ================= -->
+    <section class="doc-section" id="philosophy">
+      <div class="section-eyebrow">Section 01</div>
+      <h2>Pedagogical Philosophy & <em>Core Transformation</em></h2>
+      <p class="section-intro">
+        Most DSA courses fail because they treat algorithms as a catalog of trivia to memorize rather than a discipline of mathematical modeling and invariant maintenance. Here is how our &#8377;30,000 professional engineering training system rebuilds your problem-solving cognition from the ground up.
+      </p>
+
+      <div class="mentor-note">
+        <p>
+          "In 20 years of interviewing candidates at Google, Microsoft, and Amazon, the single most lethal failure mode is the candidate who recites a memorized LeetCode template the moment they recognize a keyword. When I tweak a single boundary constraint or invert an objective, their solution collapses like a house of cards. We do not train you to memorize solutions. We train you to derive them from structural invariants."
+        </p>
+      </div>
+
+      <h3 class="h3-section" id="transformation">The 11-Step Cognitive Progression</h3>
+      <p style="margin-bottom: 20px; font-size: 0.9rem; color: var(--gray-600);">
+        Every week, every module, and every problem moves through this immutable mental pipeline:
+      </p>
+
+      <div class="incremental-box">
+        <p>
+          <strong>Zero Programming Confidence</strong> &nbsp;&rarr;&nbsp;
+          <strong>Java 21 Foundations</strong> &nbsp;&rarr;&nbsp;
+          <strong>Problem-Solving Modeling</strong> &nbsp;&rarr;&nbsp;
+          <strong>Data Structure Intuition</strong> &nbsp;&rarr;&nbsp;
+          <strong>Algorithm Invariants</strong> &nbsp;&rarr;&nbsp;
+          <strong>Pattern Recognition</strong> &nbsp;&rarr;&nbsp;
+          <strong>Problem Decomposition</strong> &nbsp;&rarr;&nbsp;
+          <strong>Bottleneck Optimization</strong> &nbsp;&rarr;&nbsp;
+          <strong>Interview Verbalization</strong> &nbsp;&rarr;&nbsp;
+          <strong>Unseen Problem Transfer</strong> &nbsp;&rarr;&nbsp;
+          <strong>Tier-1 Placement Readiness</strong>
+        </p>
+      </div>
+
+      <h3 class="h3-section">The 5-Question Framework for Every Concept</h3>
+      <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--gray-600);">
+        Before writing a single line of Java code, you must be capable of answering these five questions:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 24px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <div style="color: var(--teal); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">1. WHY?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">Why does it exist?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">What physical computing limitation or mathematical bottleneck made previous approaches fail?</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <div style="color: var(--blue); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">2. WHAT?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">What is its structure?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">Formal invariant, internal memory layout, and operational rules governing the structure.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <div style="color: var(--purple); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">3. HOW?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">How does it execute?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">Step-by-step mechanical execution, JVM pointer manipulation, and exact Big-O amortized analysis.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <div style="color: var(--saffron-dark); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">4. WHEN?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">When to trigger it?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">Structural signals and tell-tale clues in constraints and problem statements that demand this tool.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <div style="color: var(--green); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">5. WHY THIS?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">Why not alternatives?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">Defend why this choice strictly dominates rival approaches in cache locality, time, or memory.</div>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="stages">The Five Stages of Algorithmic Maturity</h3>
+      <div class="milestone-timeline">
+        <div class="milestone-item">
+          <h4>Stage 1: Syntax & Memory Novice (Weeks 1&ndash;4)</h4>
+          <p>Overcoming the fear of the compiler. Understanding primitives vs references, the JVM stack frame, array memory layout, and deriving Big-O by counting loop operations instead of guessing.</p>
+        </div>
+        <div class="milestone-item">
+          <h4>Stage 2: Linear & Invariant Practitioner (Weeks 5&ndash;8)</h4>
+          <p>Mastering two pointers, sliding windows, and prefix sums. Moving from nested quadratic loops to maintaining invariants across moving boundaries in linear time.</p>
+        </div>
+        <div class="milestone-item">
+          <h4>Stage 3: Search Space & Recursive Thinker (Weeks 9&ndash;12)</h4>
+          <p>Treating binary search not as array lookup, but as searching over monotonic predicate spaces. Deconstructing recursion trees and state restoration in backtracking.</p>
+        </div>
+        <div class="milestone-item">
+          <h4>Stage 4: Hierarchical & Graph Architect (Weeks 13&ndash;18)</h4>
+          <p>Modeling complex dependencies as directed graphs, trees, or priority queues. Reasoning about topological invariants, cycle detection, and shortest path trade-offs.</p>
+        </div>
+        <div class="milestone-item">
+          <h4>Stage 5: State-Space Optimizer & Unseen Problem Solver (Weeks 19&ndash;24)</h4>
+          <p>Decomposing multi-dimensional dynamic programming from brute-force recurrence down to space-optimized tabulation. Communicating trade-offs and edge cases effortlessly in 45-minute live technical interviews.</p>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="rules">The Anti-Memorization & Anti-Grind Commandments</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0 24px;">
+        <div class="warning-note" style="margin: 0;">
+          <p><strong>The Anti-Memorization Rule:</strong> Never say <em>"This problem uses sliding window because this is the sliding window question."</em> You must say: <em>"The problem asks for an optimal contiguous subarray, and the validity predicate can be maintained incrementally by adding the right element and discarding from the left. That monotonicity is the mathematical signal for sliding window."</em></p>
+        </div>
+        <div class="warning-note" style="margin: 0;">
+          <p><strong>The Anti-LeetCode-Grind Rule:</strong> Solving 500 problems without reflection produces an engineer who fails when an interviewer alters one constraint. A candidate who deeply masters 150 curated problems across 40 patterns and can derive variations will consistently out-interview someone with 600 blind LeetCode badges.</p>
+        </div>
+      </div>
+
+      <h3 class="h3-section">Student Transformation Matrix</h3>
+      <div class="table-wrap">
+        <table class="transform-table">
+          <thead>
+            <tr>
+              <th>Evaluation Dimension</th>
+              <th class="before-col">Day 0 (Unprepared Student)</th>
+              <th class="after-col">Day 180 (Production Interview Engineer)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Unfamiliar Problem Reaction</strong></td>
+              <td class="before-col">Panic; freezes or asks "Which problem that I memorized looks like this?"</td>
+              <td class="after-col">Calculated decomposition: constraints &rarr; brute force &rarr; bottleneck &rarr; invariant &rarr; pattern selection.</td>
+            </tr>
+            <tr>
+              <td><strong>Complexity Analysis</strong></td>
+              <td class="before-col">Guesses O(N log N) or O(N) based on buzzwords without mathematical basis.</td>
+              <td class="after-col">Derives exact Big-O and amortized bounds by inspecting loop mechanics and recursion call stacks.</td>
+            </tr>
+            <tr>
+              <td><strong>Java Implementation</strong></td>
+              <td class="before-col">Uses legacy Stack, raw types, messy loops, frequent NullPointer and IndexOutOfBounds errors.</td>
+              <td class="after-col">Idiomatic Java 21: ArrayDeque, PriorityQueue with custom lambda Comparators, Records, boundary checks.</td>
+            </tr>
+            <tr>
+              <td><strong>Interview Communication</strong></td>
+              <td class="before-col">Codes in complete silence for 25 minutes, then presents buggy unverified code.</td>
+              <td class="after-col">Verbalizes thought process from minute 1: clarifies constraints, states invariants, walks dry run before coding.</td>
+            </tr>
+            <tr>
+              <td><strong>Edge Case Handling</strong></td>
+              <td class="before-col">Waits for LeetCode test cases or interviewer to point out failures.</td>
+              <td class="after-col">Proactively tests null, empty, single element, duplicates, sorted, reverse-sorted, and 32-bit overflow.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 02 ================= -->
+    <section class="doc-section" id="toolkit">
+      <div class="section-eyebrow">Section 02</div>
+      <h2>The Java <em>Interview Toolkit</em> & Internals</h2>
+      <p class="section-intro">
+        Java is not just a language for enterprise Spring backends; it is an exceptionally rigorous, type-safe vehicle for expressing algorithmic invariants. The student must master the Java Collections Framework at an architectural level.
+      </p>
+
+      <h3 class="h3-section" id="collections-engine">Core Data Structures: Internal Mechanics & Decision Matrix</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Data Structure</th>
+              <th>Java 21 Idiomatic Interface / Class</th>
+              <th>Average / Worst-Case</th>
+              <th>Internal Architecture & Pitfalls</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dynamic Array</strong></td>
+              <td><span class="inline-code">ArrayList&lt;T&gt;</span></td>
+              <td>Get: O(1)<br>Add: Amortized O(1), Worst O(N)</td>
+              <td>Contiguous heap array. Resizes by 1.5x (<span class="inline-code">newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1)</span>). Cache friendly. Beware resizing overhead in loops.</td>
+            </tr>
+            <tr>
+              <td><strong>Hash Table</strong></td>
+              <td><span class="inline-code">HashMap&lt;K, V&gt;</span> / <span class="inline-code">HashSet&lt;K&gt;</span></td>
+              <td>Search / Put: O(1) avg<br>Worst: O(log N) treeified</td>
+              <td>Array of Node buckets. Hash collisions resolved via LinkedList; transforms to Red-Black Tree if bucket &gt; 8 and capacity â‰¥ 64. Default load factor 0.75.</td>
+            </tr>
+            <tr>
+              <td><strong>Stack (Modern)</strong></td>
+              <td><span class="inline-code">Deque&lt;T&gt; stack = new ArrayDeque&lt;&gt;();</span></td>
+              <td>Push / Pop: O(1)</td>
+              <td><strong>NEVER use legacy <span class="inline-code">java.util.Stack</span></strong> (synchronized overhead, extends Vector). <span class="inline-code">ArrayDeque</span> provides ring-buffer O(1) performance without locking.</td>
+            </tr>
+            <tr>
+              <td><strong>Queue / BFS FIFO</strong></td>
+              <td><span class="inline-code">Queue&lt;T&gt; q = new ArrayDeque&lt;&gt;();</span></td>
+              <td>Offer / Poll: O(1)</td>
+              <td>Ring buffer on contiguous array. Preferred over <span class="inline-code">LinkedList</span> because it avoids node allocation overhead and maintains CPU cache locality.</td>
+            </tr>
+            <tr>
+              <td><strong>Min / Max Heap</strong></td>
+              <td><span class="inline-code">PriorityQueue&lt;T&gt;</span></td>
+              <td>Insert / Poll: O(log K)<br>Peek: O(1)</td>
+              <td>Complete binary tree stored as contiguous array. <strong>Default is MIN-HEAP</strong>. Max-heap requires <span class="inline-code">Collections.reverseOrder()</span> or custom comparator.</td>
+            </tr>
+            <tr>
+              <td><strong>Balanced BST</strong></td>
+              <td><span class="inline-code">TreeSet&lt;T&gt;</span> / <span class="inline-code">TreeMap&lt;K, V&gt;</span></td>
+              <td>Search / Insert / Delete: O(log N)</td>
+              <td>Navigable Red-Black tree. Provides <span class="inline-code">floor()</span>, <span class="inline-code">ceiling()</span>, <span class="inline-code">higher()</span>, <span class="inline-code">lower()</span>. Crucial for dynamic range lookups.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-note">
+        <p>
+          <strong>Critical Java Interview Trap:</strong> Beginners frequently write <span class="inline-code">PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a);</span> to build a max-heap. <strong>This causes severe integer overflow bugs</strong> when dealing with negative values (e.g., <span class="inline-code">Integer.MIN_VALUE</span>). The correct idiomatic Java formulation is always <span class="inline-code">Integer.compare(b, a)</span> or <span class="inline-code">Collections.reverseOrder()</span>.
+        </p>
+      </div>
+
+      <h3 class="h3-section" id="memory-model">Memory Representation: Stack vs Heap in DSA</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 18px 0;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--teal); margin-bottom: 8px;">Stack Memory Frame</h4>
+          <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.6;">
+            Stores primitive variables (<span class="inline-code">int</span>, <span class="inline-code">boolean</span>, <span class="inline-code">double</span>) and reference pointers to heap objects. Each method invocation allocates an isolated stack frame. In recursion, every level adds a frame; excessive depth leads directly to <span class="inline-code">StackOverflowError</span> (typically around ~10,000 frames).
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--purple); margin-bottom: 8px;">Heap Memory Pool</h4>
+          <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.6;">
+            All Java objects (<span class="inline-code">new int[]</span>, <span class="inline-code">new TreeNode()</span>, <span class="inline-code">HashMap</span>) live on the heap. Passing an object to a method passes the <em>value of the reference</em>. Modifying object fields mutates the underlying heap object, but reassigning the reference does not alter the caller's pointer.
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--saffron-dark); margin-bottom: 8px;">String Pool & Immutability</h4>
+          <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.6;">
+            String concatenation inside a loop (<span class="inline-code">s += str[i]</span>) creates O(NÂ²) quadratic allocations because Java Strings are immutable. In interview DSA, always use <span class="inline-code">StringBuilder</span> or mutable char arrays (<span class="inline-code">char[]</span>) to guarantee O(N) linear performance.
+          </p>
+        </div>
+      </div>
+
+      <div class="industry-box">
+        <p>
+          <strong>Production Engineering Connection:</strong> When designing low-latency trading engines or Kafka consumers, choosing <span class="inline-code">ArrayDeque</span> over <span class="inline-code">LinkedList</span> reduces GC garbage collection pressure by 95% because it avoids allocating individual Node wrapper objects for every single message.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 03: ROADMAP (MONTHS 1 - 3) ================= -->
+    <section class="doc-section" id="roadmap">
+      <div class="section-eyebrow">Section 03</div>
+      <h2>The 24-Week <em>Master Curriculum Roadmap</em></h2>
+      <p class="section-intro">
+        A progressive, no-compromises 6-month engineering curriculum structured across 20 distinct conceptual phases. Designed for learners who demand deep mastery over superficial problem counts.
+      </p>
+
+      <!-- ================= MONTH 01 ================= -->
+      <div class="month-card" id="month1">
+        <div class="month-header m1">
+          <div class="month-num-badge">01</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 01 &bull; Weeks 1&ndash;4</div>
+            <h3>Programming Foundations, Memory & <em>Computational Complexity</em></h3>
+            <div class="month-tagline">Phase 0: Think Like a Programmer &bull; Phase 1: Complexity Analysis &bull; Java Foundations for DSA</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">JVM Architecture</span>
+              <span class="skill-chip">Stack vs Heap</span>
+              <span class="skill-chip">Primitive vs Reference</span>
+              <span class="skill-chip">StringBuilder</span>
+              <span class="skill-chip">Deriving Big-O</span>
+              <span class="skill-chip">Amortized Analysis</span>
+              <span class="skill-chip">Problem Decomposition</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 1</div>
+                <h4>Java Memory Model & Computational Logic</h4>
+              </div>
+              <ul>
+                <li><strong>Mental Model:</strong> How CPU registers, L1/L2 caches, RAM, and JVM stack/heap communicate.</li>
+                <li>Primitive variables (<span class="inline-code">int</span>, <span class="inline-code">long</span>, <span class="inline-code">double</span>) vs reference handles on heap.</li>
+                <li>Control flow branching: if/else, switch expressions, short-circuit evaluation semantics.</li>
+                <li>Loop mechanics: while vs for; boundary condition anatomy (<span class="inline-code">&lt;</span> vs <span class="inline-code">&lt;=</span>).</li>
+                <li><strong>Phase 0 Drill:</strong> Converting English word problems into state variables and loop invariants.</li>
+                <li><strong>Code Lab:</strong> Building an interactive dry-run table tracker in Java 21 console.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 2</div>
+                <h4>Arrays, String Internals & Memory Traversal</h4>
+              </div>
+              <ul>
+                <li>Array layout in memory: contiguous indexing, base address calculation <span class="inline-code">address + (i * size)</span>.</li>
+                <li>Linear scan, single-pass running state, and frequency counting with direct addressing array.</li>
+                <li>String pool mechanics, immutability, and why <span class="inline-code">s += char</span> degrades to O(NÂ²).</li>
+                <li>High-efficiency string manipulation using <span class="inline-code">StringBuilder</span> and <span class="inline-code">char[]</span> buffers.</li>
+                <li>2D Arrays & Matrix traversals: row-major vs column-major cache locality.</li>
+                <li><strong>Classic Problems:</strong> Reverse array in-place, Two Sum (brute-force vs sorted), Valid Anagram.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 3</div>
+                <h4>OOP Essentials for Algorithmic Structures</h4>
+              </div>
+              <ul>
+                <li>Classes, objects, constructors, and encapsulation relevant strictly to DSA.</li>
+                <li>Value semantics vs reference semantics: why passing an array mutates caller state.</li>
+                <li>Writing custom classes for complex state: <span class="inline-code">Pair&lt;K, V&gt;</span>, <span class="inline-code">Node</span>, and Java 17+ <span class="inline-code">record</span>.</li>
+                <li>Generics fundamentals: type erasure and why <span class="inline-code">new T[]</span> is illegal in Java.</li>
+                <li><span class="inline-code">Comparable&lt;T&gt;</span> vs <span class="inline-code">Comparator&lt;T&gt;</span>: modern lambda syntax <span class="inline-code">Comparator.comparingInt(...)</span>.</li>
+                <li><strong>Trap Avoidance:</strong> Overriding <span class="inline-code">equals()</span> and <span class="inline-code">hashCode()</span> for custom hash keys.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 4</div>
+                <h4>Mathematical Complexity & The Complexity Lab</h4>
+              </div>
+              <ul>
+                <li>Big-O (Upper bound), Big-Omega (Lower bound), and Big-Theta (Tight bound) formal definitions.</li>
+                <li>Deriving complexity from code: single loops, nested loops, non-linear step increments (<span class="inline-code">i *= 2</span>).</li>
+                <li>Analyzing logarithmic complexity: why halving search spaces results in <span class="inline-code">O(log N)</span>.</li>
+                <li>Linearithmic <span class="inline-code">O(N log N)</span>, Quadratic <span class="inline-code">O(NÂ²)</span>, and Exponential <span class="inline-code">O(2â¿)</span> bounds.</li>
+                <li>Amortized complexity: deep dive into <span class="inline-code">ArrayList.add()</span> capacity doubling.</li>
+                <li>Space complexity: auxiliary space vs input memory, recursive call stack consumption.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-beginner">Milestone Project 1</span>
+              <h4>Algorithmic Benchmarking Suite & JVM Complexity Profiler</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students engineer a standalone Java tool that executes linear, logarithmic, quadratic, and exponential routines across varying input sizes (N = 10 to 100,000,000). The suite captures nanosecond CPU times and heap memory allocations via <span class="inline-code">Runtime.getRuntime()</span>, automatically outputting Big-O curvature plots and empirical validation tables in console.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Empirical vs theoretical Big-O, garbage collection impact, loop mechanics, Java 21 records</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Deriving complexity on 10 live code snippets, defending space trade-offs, zero compile bugs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 02 ================= -->
+      <div class="month-card" id="month2">
+        <div class="month-header m2">
+          <div class="month-num-badge">02</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 02 &bull; Weeks 5&ndash;8</div>
+            <h3>Core Linear DSA & <em>Invariant-Driven Patterns</em></h3>
+            <div class="month-tagline">Phase 2: In-Place Arrays &bull; Phase 3: Deep Hashing &bull; Phase 4: Two Pointers &bull; Phase 5: Sliding Window &bull; Phase 6: Prefix Sum</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Two Pointers</span>
+              <span class="skill-chip">Sliding Window (Fixed/Dynamic)</span>
+              <span class="skill-chip">HashMap Internals</span>
+              <span class="skill-chip">Prefix Sum</span>
+              <span class="skill-chip">Difference Array</span>
+              <span class="skill-chip">Kadane's Algorithm</span>
+              <span class="skill-chip">Subarray Invariants</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 5</div>
+                <h4>Array In-Place Modifications & Matrix Traversals</h4>
+              </div>
+              <ul>
+                <li>The in-place boundary invariant: dividing an array into [Processed | Unprocessed].</li>
+                <li>Removing duplicates from sorted array without auxiliary allocation in O(1) space.</li>
+                <li>Dutch National Flag algorithm: 3-way partitioning with low, mid, and high pointers.</li>
+                <li>Rotate array: 3-reversal algorithm and cyclic replacements.</li>
+                <li>Matrix patterns: spiral traversal, diagonal walk, 90-degree in-place matrix rotation.</li>
+                <li>Kadane's algorithm: dynamic subproblem observation &mdash; <em>"Should I extend the subarray or start fresh?"</em></li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 6</div>
+                <h4>Hashing Foundations & Lookup Optimization</h4>
+              </div>
+              <ul>
+                <li>The core question: <em>"What repeated O(N) linear search can I reduce to O(1) amortized lookup?"</em></li>
+                <li>HashMap internal deep-dive: hashCode, bucket index bitmask <span class="inline-code">h &amp; (n-1)</span>, collision resolution.</li>
+                <li>Complement lookup pattern: Two Sum, 3-Sum (Hash vs Two-Pointer trade-offs).</li>
+                <li>Frequency mapping and frequency-bucket grouping (Group Anagrams).</li>
+                <li>Set lookups for sequence reconstruction: Longest Consecutive Sequence in O(N) time.</li>
+                <li>Subarray Sum Equals K: combining prefix sum cumulative state with HashMap lookup in a single pass.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 7</div>
+                <h4>Two Pointers: Converging & Fast-Slow Patterns</h4>
+              </div>
+              <ul>
+                <li>Opposite-direction pointers: searching sorted spaces, trapping rain water, container with most water.</li>
+                <li>The elimination invariant: proving mathematically why the discarded element can never be part of a better solution.</li>
+                <li>Same-direction read/write pointers for in-place compaction and partitioning.</li>
+                <li>Fast and slow pointers (Floyd's Tortoise and Hare) conceptually introduced for arrays.</li>
+                <li>Triplets and Quadruplets: sorting + two-pointer reduction with strict duplicate avoidance.</li>
+                <li>Interview execution: verbalizing the monotonicity invariant that allows pointer movement.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 8</div>
+                <h4>Sliding Window & Difference Arrays</h4>
+              </div>
+              <ul>
+                <li>Why brute force enumerates O(NÂ²) subarrays and how sliding window reuses overlapping state.</li>
+                <li><strong>Fixed Window Pattern:</strong> Maximum sum subarray of size K, first negative integer in window.</li>
+                <li><strong>Dynamic Expand-Shrink Pattern:</strong> Longest substring without repeating characters, fruit into baskets.</li>
+                <li><strong>Frequency-Constrained Windows:</strong> Minimum window substring (the ultimate sliding window test).</li>
+                <li>Prefix sums for static O(1) range sum queries; 2D prefix sums for matrix sub-rectangles.</li>
+                <li>Difference arrays: performing range updates <span class="inline-code">[L, R] += val</span> in O(1) time.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-intermediate">Milestone Project 2</span>
+              <h4>High-Throughput Telemetry Sliding Window Aggregator</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students design a real-time event analytics stream engine. The system processes an incoming stream of millions of network timestamp packets, using fixed and variable sliding windows alongside prefix difference arrays to calculate moving percentiles, detect traffic anomalies, and locate anomalous bursts in guaranteed O(1) amortized time per packet without storing the entire event history.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Dynamic sliding window, prefix sums, difference array updates, memory-bounded Java streams</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Live derivation of Minimum Window Substring, Trapping Rain Water, and Subarray Sum Equals K</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 03 ================= -->
+      <div class="month-card" id="month3">
+        <div class="month-header m3">
+          <div class="month-num-badge">03</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 03 &bull; Weeks 9&ndash;12</div>
+            <h3>Non-Linear Structures, Monotonicity & <em>Search Space Decomposition</em></h3>
+            <div class="month-tagline">Phase 7: Linked Lists &bull; Phase 8: Stacks & Queues &bull; Phase 9: Binary Search &bull; Phase 10 & 11: Recursion & Backtracking</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Pointer Manipulation</span>
+              <span class="skill-chip">Monotonic Stack</span>
+              <span class="skill-chip">Monotonic Queue</span>
+              <span class="skill-chip">Binary Search on Answer</span>
+              <span class="skill-chip">Recursion Trees</span>
+              <span class="skill-chip">Backtracking State Undo</span>
+              <span class="skill-chip">Branch Pruning</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 9</div>
+                <h4>Linked Lists: Pointer Mastery & Cycle Invariants</h4>
+              </div>
+              <ul>
+                <li>Node representation and reference pointer manipulation in memory (drawing box diagrams).</li>
+                <li>The Dummy Head Node technique: eliminating edge cases for head insertions and deletions.</li>
+                <li>Singly vs Doubly Linked Lists: internal trade-offs and sentinel nodes.</li>
+                <li>Iterative vs Recursive in-place reversal: reversing a sublist between positions <span class="inline-code">[L, R]</span>.</li>
+                <li>Floyd's Cycle Detection algorithm: proving why slow and fast meet and deriving start-of-cycle node.</li>
+                <li>Merging two sorted lists and reordering list (combining mid-find, reverse, and merge).</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 10</div>
+                <h4>Stacks, Deques & Monotonic Structures</h4>
+              </div>
+              <ul>
+                <li>LIFO and FIFO mechanics implemented via Java's <span class="inline-code">ArrayDeque</span>.</li>
+                <li>Valid Parentheses, evaluating Reverse Polish Notation (RPN), and expression parsing.</li>
+                <li><strong>Monotonic Stack:</strong> What invariant makes it work? Why does it discard non-optimal candidates?</li>
+                <li>Next Greater Element, Daily Temperatures, and Largest Rectangle in Histogram in O(N).</li>
+                <li><strong>Monotonic Queue:</strong> Sliding Window Maximum using deque to maintain decreasing candidates.</li>
+                <li>MinStack design: maintaining min in O(1) using paired values or value-differential encoding.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 11</div>
+                <h4>Binary Search: Searching Monotonic Predicates</h4>
+              </div>
+              <ul>
+                <li>Moving beyond simple array search: viewing binary search as finding a boundary where a condition flips <span class="inline-code">F F F T T T</span>.</li>
+                <li>Lower bound, Upper bound, First Occurrence, and Last Occurrence without off-by-one errors.</li>
+                <li>Search in Rotated Sorted Array: identifying which half remains strictly sorted.</li>
+                <li>Find Peak Element: binary searching in non-sorted arrays using local slope invariants.</li>
+                <li><strong>Binary Search on Answer:</strong> Formulating feasibility functions <span class="inline-code">boolean isValid(mid)</span>.</li>
+                <li>Classic problems: Koko Eating Bananas, Capacity To Ship Packages, Book Allocation Problem.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 12</div>
+                <h4>Recursion Anatomy & Exhaustive Backtracking</h4>
+              </div>
+              <ul>
+                <li>The call stack visualized: activation records, local state, base cases, and return bubbling.</li>
+                <li>Drawing recursion decision trees before writing a single line of Java code.</li>
+                <li>The 4-step Backtracking protocol: <strong>Choice &rarr; Explore &rarr; Undo / Restore State &rarr; Next Choice</strong>.</li>
+                <li>Subsets (Cascading vs Backtracking), Combinations, and Combination Sum variants.</li>
+                <li>Permutations with and without duplicates (in-place swap vs boolean visited array).</li>
+                <li>Branch pruning: recognizing invalid subtrees early to avoid combinatorial explosion (N-Queens, Sudoku Solver).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-intermediate">Milestone Project 3</span>
+              <h4>Production Undo/Redo Engine & Expression Calculator</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students implement a multi-threaded text editing command engine and mathematical formula parser. The system utilizes dual <span class="inline-code">ArrayDeque</span> stacks for O(1) state snapshotting, a monotonic queue to calculate rolling minimum/maximum cursor latency, and a recursive descent compiler capable of evaluating complex nested algebraic expressions with parentheses, operator precedence, and variable substitutions.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">ArrayDeque stacks, monotonic queue, recursive descent parsing, state rollback invariants</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Live coding of Largest Rectangle in Histogram, Rotated Binary Search, and N-Queens</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- ================= MONTH 04 ================= -->
+      <div class="month-card" id="month4">
+        <div class="month-header m4">
+          <div class="month-num-badge">04</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 04 &bull; Weeks 13&ndash;16</div>
+            <h3>Hierarchical Structures, Top-K Optimization & <em>Prefix Trees</em></h3>
+            <div class="month-tagline">Phase 12: Sorting &bull; Phase 13: Binary Trees & BST &bull; Phase 14: Heaps & PriorityQueue &bull; Phase 15: Tries</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Tree DFS / BFS</span>
+              <span class="skill-chip">Binary Search Tree</span>
+              <span class="skill-chip">Min / Max Heap</span>
+              <span class="skill-chip">Dual Heap Pattern</span>
+              <span class="skill-chip">Trie Prefix Search</span>
+              <span class="skill-chip">Sorting Stability</span>
+              <span class="skill-chip">Custom Comparators</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 13</div>
+                <h4>Sorting Algorithms: Mechanics, Stability & Trade-offs</h4>
+              </div>
+              <ul>
+                <li>Why sorting matters: turning chaotic data into monotonic search spaces.</li>
+                <li>Merge Sort: divide-and-conquer recurrence, stable merging, auxiliary space cost O(N).</li>
+                <li>QuickSort: Lomuto vs Hoare partitioning, pivot selection (median-of-three), worst-case O(NÂ²) avoidance.</li>
+                <li>Why Java uses Dual-Pivot Quicksort for primitives and Timsort for objects (stability).</li>
+                <li>Non-comparison sorts: Counting Sort and Bucket Sort conceptually in O(N + K).</li>
+                <li>Custom sorting in Java: multi-field sorting via <span class="inline-code">Comparator.comparing(...).thenComparing(...)</span>.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 14</div>
+                <h4>Binary Trees & Binary Search Trees (BST)</h4>
+              </div>
+              <ul>
+                <li>Tree anatomy: root, leaf, height, depth, balanced vs skewed tree degenerations.</li>
+                <li>Depth-First Search (DFS): Preorder, Inorder, and Postorder recursion call-stack tracing.</li>
+                <li>Breadth-First Search (BFS): Level-order traversal using <span class="inline-code">ArrayDeque</span> with level-size bounding.</li>
+                <li>Tree metrics: Maximum depth, diameter of binary tree (bottom-up calculation), symmetric tree.</li>
+                <li>Path problems: Path Sum I/II/III, Maximum Path Sum (handling negative node values).</li>
+                <li>BST operations: Search, Insert, Inorder Successor, Delete node (handling 2-child case), Validate BST with bounds.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 15</div>
+                <h4>Heaps & PriorityQueue: Top-K Streaming Optimization</h4>
+              </div>
+              <ul>
+                <li>Complete binary tree representation in an array: parent <span class="inline-code">(i-1)/2</span>, children <span class="inline-code">2i+1, 2i+2</span>.</li>
+                <li>Heapify: sift-up (insert O(log N)) vs sift-down (delete O(log N)). Building a heap in O(N) linear time.</li>
+                <li>Java <span class="inline-code">PriorityQueue</span> API: Min-heap default, custom Max-heap comparator formulations.</li>
+                <li>The Top-K pattern: why maintaining a min-heap of size K yields O(N log K) instead of O(N log N) sort.</li>
+                <li>Top K Frequent Elements, K Closest Points to Origin, Merge K Sorted Lists.</li>
+                <li>The Dual-Heap pattern: Find Median from Data Stream using balanced max-heap and min-heap.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 16</div>
+                <h4>Tries: Prefix Trees & Advanced String Search</h4>
+              </div>
+              <ul>
+                <li>The Trie mental model: multi-way tree structure where edges represent characters.</li>
+                <li>Node representation: <span class="inline-code">TrieNode[] children = new TrieNode[26]</span> vs HashMap for unicode.</li>
+                <li>Implement Trie (Prefix Tree): <span class="inline-code">insert</span>, <span class="inline-code">search</span>, and <span class="inline-code">startsWith</span> in O(L) time where L is word length.</li>
+                <li>Memory trade-offs: why Tries consume more RAM than HashSets, and when prefix-sharing wins.</li>
+                <li>Design Add and Search Words Data Structure (wildcard '.' search via DFS).</li>
+                <li>Trie + Backtracking: Word Search II (matrix grid traversal with prefix pruning).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-intermediate">Milestone Project 4</span>
+              <h4>In-Memory Autocomplete Search Engine & Streaming Median Monitor</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students construct an enterprise search suggestion engine. The system indexes millions of search query strings into a memory-efficient prefix Trie with frequency weights, returning ranked top-10 autocomplete recommendations in sub-millisecond response times. A companion analytics service maintains running 50th, 90th, and 99th percentile metrics on query lengths using a dual-heap architecture.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Prefix Trie with frequency nodes, dual-heap streaming medians, comparator chaining, memory profiling</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Live coding of Validate BST, Top K Frequent Elements, and Word Search II without hints</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 05 ================= -->
+      <div class="month-card" id="month5">
+        <div class="month-header m5">
+          <div class="month-num-badge">05</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 05 &bull; Weeks 17&ndash;20</div>
+            <h3>Graphs, Disjoint Sets, Greedy Proofs & <em>Dynamic Programming</em></h3>
+            <div class="month-tagline">Phase 16: Graphs & DSU &bull; Phase 17: Greedy Paradigm &bull; Phase 18: DP Foundations (Recursion &rarr; Memo &rarr; Tabulation)</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Graph Adjacency List</span>
+              <span class="skill-chip">BFS / DFS Traversals</span>
+              <span class="skill-chip">Topological Sort (Kahn's)</span>
+              <span class="skill-chip">Union-Find / DSU</span>
+              <span class="skill-chip">Dijkstra Shortest Path</span>
+              <span class="skill-chip">Greedy Invariants</span>
+              <span class="skill-chip">1D Dynamic Programming</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 17</div>
+                <h4>Graph Representations & Fundamental Traversals</h4>
+              </div>
+              <ul>
+                <li>Graph modeling: Vertices, edges, directed vs undirected, weighted vs unweighted.</li>
+                <li>Representations in Java: Adjacency Matrix vs <span class="inline-code">List&lt;List&lt;Integer&gt;&gt;</span> vs Map of lists.</li>
+                <li>Graph BFS: shortest path in unweighted networks, level-by-level spreading (Word Ladder).</li>
+                <li>Graph DFS: connected components, Number of Islands, Max Area of Island, Clone Graph.</li>
+                <li>Cycle detection: 3-color state tracking (<span class="inline-code">0 = unvisited, 1 = visiting, 2 = visited</span>) in directed graphs.</li>
+                <li>Bipartite graph validation using 2-coloring via BFS/DFS.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 18</div>
+                <h4>Topological Sort, DSU & Shortest Paths</h4>
+              </div>
+              <ul>
+                <li>Directed Acyclic Graphs (DAG) and dependency resolution ordering.</li>
+                <li>Kahnâ€™s Algorithm: indegree counting array + BFS queue. Course Schedule I & II.</li>
+                <li>Disjoint Set Union (DSU / Union-Find): parent array, find with path compression, union by rank.</li>
+                <li>DSU applications: Redundant Connection, Number of Provinces, dynamic graph connectivity.</li>
+                <li>Dijkstraâ€™s Algorithm: Single-source shortest path with non-negative weights using <span class="inline-code">PriorityQueue&lt;int[]&gt;</span>.</li>
+                <li>Minimum Spanning Tree (MST): Kruskal's algorithm (Sort edges + DSU) vs Prim's algorithm.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 19</div>
+                <h4>The Greedy Paradigm & Proof Intuitions</h4>
+              </div>
+              <ul>
+                <li>When can a locally optimal choice guarantee a global optimum? The "Greedy Stays Ahead" proof.</li>
+                <li>Interval Scheduling: Sorting by end time to maximize non-overlapping events.</li>
+                <li>Merge Intervals: Sorting by start time and maintaining running high-water mark.</li>
+                <li>Non-overlapping Intervals and Minimum Number of Arrows to Burst Balloons.</li>
+                <li>Jump Game I & II: tracking maximum reachable boundary without quadratic backtracking.</li>
+                <li>Gas Station: circular tour greedy invariant and total balance deficit reasoning.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 20</div>
+                <h4>Dynamic Programming Foundations: 1D State Spaces</h4>
+              </div>
+              <ul>
+                <li>Why DP is not magic: it is brute-force recursion with cached overlapping subproblems.</li>
+                <li>The 6-Step DP Protocol: State definition &rarr; Recurrence relation &rarr; Base case &rarr; Order of iteration &rarr; Answer extraction &rarr; Space optimization.</li>
+                <li>Top-Down Memoization (Recursion + array) vs Bottom-Up Tabulation (iterative table).</li>
+                <li>Climbing Stairs and Min Cost Climbing Stairs (reducing space from O(N) to O(1)).</li>
+                <li>House Robber I & II (linear array vs circular array state breakdown).</li>
+                <li>Coin Change (unbounded choice, minimum count) vs Coin Change 2 (combination counting order).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-advanced">Milestone Project 5</span>
+              <h4>Distributed Microservice Dependency Resolver & Network Router</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students architect a distributed build and deployment dependency analyzer. Given thousands of interdependent microservices with compile dependencies and latency weights, the engine detects cyclic dependency deadlocks via 3-color DFS, determines the parallel execution stages using Kahn's topological sort, locates network fault partitions using DSU, and computes optimal request dispatch routes using Dijkstra's algorithm.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Graph adjacency representations, Kahn's TopoSort, DSU path compression, Dijkstra with PriorityQueue</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Solving Course Schedule II, Network Delay Time, and Coin Change under 40 minutes with proof of correctness</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 06 ================= -->
+      <div class="month-card" id="month6">
+        <div class="month-header m6">
+          <div class="month-num-badge">06</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 06 &bull; Weeks 21&ndash;24</div>
+            <h3>Advanced DP, Bitwise Mastery & <em>The Interview Readiness Gauntlet</em></h3>
+            <div class="month-tagline">Phase 18 (Adv): 2D/Knapsack/Subsequence DP &bull; Phase 19: Bit Manipulation &bull; Phase 20: Advanced DS Overview &bull; Mock Gauntlet</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">2D Grid DP</span>
+              <span class="skill-chip">0/1 & Unbounded Knapsack</span>
+              <span class="skill-chip">LCS & Edit Distance</span>
+              <span class="skill-chip">Bit Manipulation & Masks</span>
+              <span class="skill-chip">Timed OA Simulations</span>
+              <span class="skill-chip">8-Round Gauntlet</span>
+              <span class="skill-chip">Technical Storytelling</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 21</div>
+                <h4>2D Grid DP, Knapsack & String Subsequence DP</h4>
+              </div>
+              <ul>
+                <li>Grid DP: Unique Paths I & II, Minimum Path Sum (state transition from top and left).</li>
+                <li>Space optimization on grids: reducing O(M Ã— N) table down to single rolling 1D array O(N).</li>
+                <li>The Classic 0/1 Knapsack: decision of inclusion vs exclusion with capacity constraints.</li>
+                <li>Partition Equal Subset Sum and Target Sum (reducing problems to 0/1 Knapsack variants).</li>
+                <li>Longest Common Subsequence (LCS): match vs mismatch transitions across dual strings.</li>
+                <li>Edit Distance (Levenshtein distance): insert, delete, and replace operational cost analysis.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 22</div>
+                <h4>Advanced DP Patterns & Bit Manipulation</h4>
+              </div>
+              <ul>
+                <li>Longest Increasing Subsequence (LIS): O(NÂ²) DP vs O(N log N) Patience Sorting with Binary Search.</li>
+                <li>Interval DP: Longest Palindromic Subsequence, Matrix Chain Multiplication mindset.</li>
+                <li>Binary representation: AND, OR, XOR, NOT, left shift <span class="inline-code">&lt;&lt;</span>, right shift <span class="inline-code">&gt;&gt;</span>, unsigned shift <span class="inline-code">&gt;&gt;&gt;</span>.</li>
+                <li>Bit manipulation tricks: <span class="inline-code">n &amp; (n-1)</span> to clear lowest set bit, <span class="inline-code">n &amp; (-n)</span> to isolate lowest bit.</li>
+                <li>Single Number I & II (XOR cancellation), Counting Bits, Reverse Bits.</li>
+                <li>State compression: representing subsets of up to 20 elements as single 32-bit integer bitmasks.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 23</div>
+                <h4>Tier-1 Online Assessment (OA) Simulation & Speed Engineering</h4>
+              </div>
+              <ul>
+                <li>Online Assessment environment dynamics: HackerRank, CodeSignal, LeetCode OA mechanics.</li>
+                <li>Handling huge input bounds: reading constraints to immediately determine acceptable Big-O.</li>
+                <li>Fast I/O in Java: <span class="inline-code">BufferedReader</span> and <span class="inline-code">StringTokenizer</span> vs slow <span class="inline-code">Scanner</span>.</li>
+                <li>Time management under pressure: 2 medium problems in 60 minutes; 3 problems in 90 minutes.</li>
+                <li>Decoding hidden problem statements: stripping away fluff narrative to reveal core algorithmic graph/array abstractions.</li>
+                <li>Debugging edge case failures on hidden test cases (32-bit integer overflow, negative coordinates, disconnected graphs).</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 24</div>
+                <h4>The Interview Readiness Gauntlet & Final Placement Sprint</h4>
+              </div>
+              <ul>
+                <li>The 10-Step Interview Communication Protocol practiced live under strict audio recording.</li>
+                <li>How to recover when you get stuck: structured inquiry, asking clarifying questions, reverting to verified invariants.</li>
+                <li>Defending technical trade-offs: why your approach beats the interviewer's suggested alternative.</li>
+                <li>Code Review & Refactoring: writing clean, production-grade variable names and helper methods without IDE autocomplete.</li>
+                <li>Resume engineering for DSA: framing algorithmic projects with concrete metrics and architecture bullets.</li>
+                <li>Completing the 8-Round Interview Readiness Gauntlet and receiving the comprehensive Diagnostic Audit Report.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-capstone">Capstone Project</span>
+              <h4>Production Dynamic Pricing & Multi-Route Optimization Simulator</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                The ultimate capstone merges non-linear algorithmic patterns into an enterprise ride-hailing simulation. Students implement a real-time dispatch engine that solves the Travelling Salesperson-style route planning for 16 delivery nodes via Bitmask DP, determines dynamic surge pricing using 2D Knapsack resource allocations, and executes shortest vehicle path queries on an open street network using A* / Dijkstra search.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Bitmask DP, 2D Knapsack, Dijkstra graph routing, bitwise optimizations, production Java 21 architecture</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Evaluation Gate</div>
+                  <div class="value">Full 8-Round Live Interview Gauntlet defense before Senior Engineering Mentors</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 04 ================= -->
+    <section class="doc-section" id="patterns">
+      <div class="section-eyebrow">Section 04</div>
+      <h2>The 40-Pattern <em>Recognition Engine</em> & Problem Protocol</h2>
+      <p class="section-intro">
+        Every interview problem is a combination of known mathematical invariants masked behind an unfamiliar narrative. Master the 14-step decomposition protocol and the 40 foundational algorithmic patterns.
+      </p>
+
+      <h3 class="h3-section" id="problem-engine">The Mandatory 14-Step Problem-Solving Protocol</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Phase Name</th>
+              <th>Concrete Action Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>01</strong></td><td>Read & Extract</td><td>Identify input types, output format, array constraints, and hidden assumptions (e.g. empty, negatives).</td></tr>
+            <tr><td><strong>02</strong></td><td>Restate Aloud</td><td>Explain the problem in your own words in 30 seconds without reading verbatim from the screen.</td></tr>
+            <tr><td><strong>03</strong></td><td>Brute Force</td><td>Formulate the simplest correct solution (usually exhaustive search or nested loops).</td></tr>
+            <tr><td><strong>04</strong></td><td>Brute Force Big-O</td><td>Calculate time and space complexity of the brute force solution (e.g. O(NÂ²), O(2â¿)).</td></tr>
+            <tr><td><strong>05</strong></td><td>Identify Bottleneck</td><td>Locate the precise operation that is wastefully expensive (e.g. repeated linear search in sub-array).</td></tr>
+            <tr><td><strong>06</strong></td><td>Structural Insight</td><td>Discover the invariant, mathematical property, or monotonic behavior that enables pruning.</td></tr>
+            <tr><td><strong>07</strong></td><td>Pattern Mapping</td><td>Match the insight to one of the 40 recognized patterns (e.g. Sliding Window, Monotonic Stack).</td></tr>
+            <tr><td><strong>08</strong></td><td>Data Structure Choice</td><td>Answer: <em>"What minimal information must we maintain as we traverse?"</em></td></tr>
+            <tr><td><strong>09</strong></td><td>Pseudocode / Invariants</td><td>Draft algorithm state transitions and loop invariants before touching the keyboard.</td></tr>
+            <tr><td><strong>10</strong></td><td>Clean Java Implementation</td><td>Write idiomatic Java 21 code with descriptive variable names and zero deprecated APIs.</td></tr>
+            <tr><td><strong>11</strong></td><td>Dry Run with Example</td><td>Trace state variables manually on a real sample input table line by line.</td></tr>
+            <tr><td><strong>12</strong></td><td>Edge Case Audit</td><td>Test null, single element, duplicates, negative values, boundary constraints, and 32-bit overflow.</td></tr>
+            <tr><td><strong>13</strong></td><td>Recalculate Big-O</td><td>Prove the optimal time and auxiliary space bounds mathematically.</td></tr>
+            <tr><td><strong>14</strong></td><td>Interview Verbalization</td><td>Deliver a concise 2-minute verbal summary of intuition, approach, trade-offs, and correctness.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="h3-section" id="pattern-matrix">The 40 Core Algorithmic Patterns</h3>
+      <div class="pattern-grid">
+        <div class="pattern-card"><div class="pattern-id">P01</div><div class="pattern-name">Linear Scan</div><div class="pattern-signal">Single pass, maintain running extrema or cumulative condition.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P02</div><div class="pattern-name">Frequency Map</div><div class="pattern-signal">Counting occurrences, detecting duplicates, anagram validation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P03</div><div class="pattern-name">Hash Lookup</div><div class="pattern-signal">Converting O(N) linear search into O(1) complement matching.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P04</div><div class="pattern-name">Prefix Sum</div><div class="pattern-signal">Static contiguous range sum queries in O(1) time after O(N) preprocessing.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P05</div><div class="pattern-name">Two Pointers (Converging)</div><div class="pattern-signal">Sorted array, finding pair with target sum, trapping water boundaries.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P06</div><div class="pattern-name">Fast & Slow Pointers</div><div class="pattern-signal">Detecting cycles in linked lists, finding middle node, duplicate finding.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P07</div><div class="pattern-name">Sliding Window (Fixed/Var)</div><div class="pattern-signal">Contiguous subarray/substring satisfying monotonic constraint.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P08</div><div class="pattern-name">Binary Search</div><div class="pattern-signal">Sorted space, finding exact element, lower/upper bounds in O(log N).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P09</div><div class="pattern-name">Binary Search on Answer</div><div class="pattern-signal">Minimize maximum / maximize minimum with monotonic feasibility predicate.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P10</div><div class="pattern-name">Merge Intervals</div><div class="pattern-signal">Overlapping time ranges, room scheduling, merging high-water marks.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P11</div><div class="pattern-name">Difference Array</div><div class="pattern-signal">Multiple range update operations [L, R] += K in O(1) time.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P12</div><div class="pattern-name">Stack (LIFO)</div><div class="pattern-signal">Nested structures, parentheses matching, recursive function simulation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P13</div><div class="pattern-name">Monotonic Stack</div><div class="pattern-signal">Next greater / smaller element, largest rectangle in histogram.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P14</div><div class="pattern-name">Queue (FIFO)</div><div class="pattern-signal">Orderly sequential processing, level-order breadth exploration.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P15</div><div class="pattern-name">Monotonic Queue</div><div class="pattern-signal">Sliding window maximum/minimum in amortized O(1) per step.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P16</div><div class="pattern-name">Recursion Trees</div><div class="pattern-signal">Divide and conquer, self-similar subproblem delegation, trees.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P17</div><div class="pattern-name">Backtracking</div><div class="pattern-signal">Exhaustive search of combinations, permutations, subsets with pruning.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P18</div><div class="pattern-name">Divide & Conquer</div><div class="pattern-signal">Break into independent subproblems, solve, combine (Merge Sort).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P19</div><div class="pattern-name">Tree DFS</div><div class="pattern-signal">Path calculations, subtree aggregations, height/diameter calculation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P20</div><div class="pattern-name">Tree BFS</div><div class="pattern-signal">Level-order grouping, zigzag traversal, vertical order printing.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P21</div><div class="pattern-name">Heap / Top-K</div><div class="pattern-signal">Finding K largest/smallest elements in streaming or dynamic datasets.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P22</div><div class="pattern-name">Trie</div><div class="pattern-signal">Prefix matching, autocomplete, dictionary lookup, word boggle.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P23</div><div class="pattern-name">Graph BFS</div><div class="pattern-signal">Shortest path in unweighted graph, flood fill, level propagation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P24</div><div class="pattern-name">Graph DFS</div><div class="pattern-signal">Connected components, cycle detection, path existence check.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P25</div><div class="pattern-name">Topological Sort</div><div class="pattern-signal">Dependency resolution, task scheduling in Directed Acyclic Graphs.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P26</div><div class="pattern-name">Union-Find (DSU)</div><div class="pattern-signal">Dynamic connectivity, redundant connections, Kruskal's MST.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P27</div><div class="pattern-name">Dijkstra Shortest Path</div><div class="pattern-signal">Single-source shortest path with non-negative edge weights.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P28</div><div class="pattern-name">Minimum Spanning Tree</div><div class="pattern-signal">Connecting all nodes with minimum total edge weight (Kruskal/Prim).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P29</div><div class="pattern-name">Greedy Paradigm</div><div class="pattern-signal">Locally optimal choice leads to global optimum (Interval scheduling).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P30</div><div class="pattern-name">1D Dynamic Programming</div><div class="pattern-signal">Subproblem depends on previous 1 or K values (Climbing Stairs, Robber).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P31</div><div class="pattern-name">2D Grid DP</div><div class="pattern-signal">Navigating grids with obstacles, minimum path sum from (0,0) to (M,N).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P32</div><div class="pattern-name">Knapsack (0/1 & Unbound)</div><div class="pattern-signal">Subset selection under capacity constraint (Coin Change, Partition).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P33</div><div class="pattern-name">Subsequence DP</div><div class="pattern-signal">Longest Common Subsequence, Edit Distance across dual strings.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P34</div><div class="pattern-name">Bit Manipulation</div><div class="pattern-signal">O(1) set operations, parity checking, single number duplicates via XOR.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P35</div><div class="pattern-name">State Compression</div><div class="pattern-signal">Using integer bitmasks to represent visited states up to N=20.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P36</div><div class="pattern-name">Interval DP</div><div class="pattern-signal">Merging sub-intervals [i, j] from length 1 to N (Matrix Chain, Palindromes).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P37</div><div class="pattern-name">Prefix + Hashing</div><div class="pattern-signal">Counting subarrays with exact sum K in single pass via hash map.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P38</div><div class="pattern-name">Multi-Source BFS</div><div class="pattern-signal">Simultaneous wavefront expansion from multiple starting nodes (Rotting Oranges).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P39</div><div class="pattern-name">Binary Lifting (Adv)</div><div class="pattern-signal">Lowest Common Ancestor (LCA) in tree in O(log N) after O(N log N) prep.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P40</div><div class="pattern-name">Segment Tree (Adv)</div><div class="pattern-signal">Dynamic range queries and range updates in O(log N) time.</div></div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 05 ================= -->
+    <section class="doc-section" id="learning-systems">
+      <div class="section-eyebrow">Section 05</div>
+      <h2>Learning Engines, <em>Error Journal</em> & Retention</h2>
+      <p class="section-intro">
+        True algorithmic capability is not measured by how many solutions you read. It is forged by how you diagnose failures, retain patterns across 60 days, and think when you are stuck.
+      </p>
+
+      <h3 class="h3-section" id="hint-system">The 7 Progressive Learning Modes</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 24px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--teal); margin-bottom: 6px;">Mode 1: Full Teaching</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Complete deep-dive: WHY, WHAT, HOW, visualization, brute force, bottleneck, and clean Java implementation.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--blue); margin-bottom: 6px;">Mode 2: Guided Inquiry</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">No code given. Only structural clues, invariant hints, and Socratic questions to prompt student derivation.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--purple); margin-bottom: 6px;">Mode 3: Mock Interview</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">The mentor plays a strict Tier-1 interviewer. Zero clues; asks follow-ups, introduces edge cases, challenges complexity.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--red); margin-bottom: 6px;">Mode 4: Bug Lab Debugging</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Given broken, subtle, or crashing Java code. Student must locate off-by-one, overflow, or logic bugs without IDE warnings.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--saffron-dark); margin-bottom: 6px;">Mode 5: Timed Assessment</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Strict 35-minute countdown clock. No external tabs. Simulates real online assessment pressure.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--green); margin-bottom: 6px;">Mode 6: Unseen Transfer</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Novel problem with disguised pattern. Tests whether student can identify invariants without pattern labels.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--gray-800); margin-bottom: 6px;">Mode 7: Teach-Back</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">The student must verbally teach the problem and prove its correctness to the mentor. Ultimate test of mastery.</p>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="error-journal">The 14-Category DSA Failure Log</h3>
+      <p style="margin-bottom: 14px; font-size: 0.88rem; color: var(--gray-600);">
+        Every problem you fail or require a hint on must be logged into one of these 14 categories. The system analyzes your log to generate targeted remediation drills:
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;">
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">1. Concept Gap</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">2. Pattern Gap</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">3. Implementation Bug</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">4. Java Syntax Gap</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">5. DS Selection Error</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">6. Complexity Miscalculation</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">7. Edge Case Failure</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">8. Off-By-One Boundary</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">9. Recursion Base-Case Error</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">10. State Definition Error (DP)</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">11. Overthinking</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">12. Misread Problem Narrative</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">13. Integer Overflow (32-bit)</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">14. Time Management Freeze</span>
+      </div>
+
+      <h3 class="h3-section" id="spaced-repetition">The D0 to D60 Spaced Repetition Engine</h3>
+      <div class="incremental-box">
+        <p>
+          Viewing a solution is NOT mastery. Every problem follows a 7-checkpoint retention schedule:
+          <strong>Day 0 (Initial Solve)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 1 (Independent Re-Code from Blank File)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 3 (Solve Variant Problem)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 7 (Verbalize Invariants Aloud)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 14 (Timed 25-Min Re-solve)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 30 (Solve Disguised Variation)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 60 (Permanent Active Recall Check)</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 06 ================= -->
+    <section class="doc-section" id="rhythm-eval">
+      <div class="section-eyebrow">Section 06</div>
+      <h2>Daily Schedules, <em>Evaluation Gates</em> & Gauntlet</h2>
+      <p class="section-intro">
+        Discipline over motivation. This program is structured to accommodate working professionals and full-time students with clear, non-negotiable daily time blocks.
+      </p>
+
+      <h3 class="h3-section" id="daily-rhythm">The Recommended 3-Hour Daily Routine</h3>
+      <div class="schedule-grid">
+        <div class="schedule-time">00:00 &ndash; 00:30 (30m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-concept">Theory & Invariant</span>
+          Deep conceptual breakdown: WHY this structure exists, memory layout, invariants, Big-O derivation.
+        </div>
+        <div class="schedule-time">00:30 &ndash; 01:15 (45m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-guided">Guided Problem</span>
+          Walkthrough of classic canonical problem: Brute force &rarr; Bottleneck &rarr; Invariant &rarr; Clean Java 21 implementation.
+        </div>
+        <div class="schedule-time">01:15 &ndash; 02:15 (60m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-independent">Independent Solving</span>
+          Two independent problems with strict timer. No looking at solutions. Socratic guided hints only if blocked.
+        </div>
+        <div class="schedule-time">02:15 &ndash; 02:45 (30m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-review">Spaced Repetition</span>
+          Re-solving a problem from Day 3 or Day 14 queue from scratch to enforce long-term memory encoding.
+        </div>
+        <div class="schedule-time">02:45 &ndash; 03:00 (15m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-error">Failure Journal</span>
+          Categorize any errors, bugs, or mental blocks into the 14-category DSA Failure Log with actionable takeaways.
+        </div>
+      </div>
+
+      <h3 class="h3-section">Weekly & Monthly Loop Architecture</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--teal); font-weight: 700; font-size: 0.75rem;">DAY 1</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Concept & Invariant</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--blue); font-weight: 700; font-size: 0.75rem;">DAY 2</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Pattern Mechanics</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--purple); font-weight: 700; font-size: 0.75rem;">DAY 3</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Guided Deep-Dives</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--saffron-dark); font-weight: 700; font-size: 0.75rem;">DAY 4</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Independent Problem</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--green); font-weight: 700; font-size: 0.75rem;">DAY 5</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Mixed Unseen Sets</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--red); font-weight: 700; font-size: 0.75rem;">DAY 6</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Timed Assessment</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--gray-800); font-weight: 700; font-size: 0.75rem;">DAY 7</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Error Audit & Reset</div>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="mastery-radar">The 10-Dimension Mastery Radar</h3>
+      <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--gray-600);">
+        Never settle for "percentage of problems solved". True interview readiness requires balanced maturity across ten distinct engineering dimensions:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 28px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">1. Concept Mastery</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Depth of theoretical memory understanding & internal mechanics.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">2. Pattern Recognition</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Ability to spot structural tell-tale signals within 30 seconds.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">3. Implementation Fluency</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Clean, compilable Java 21 syntax with zero syntax hesitations.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">4. Problem Decomposition</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Breaking complex narratives into structured state invariants.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">5. Complexity Derivation</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Mathematical calculation of exact Big-O and space bounds.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">6. Debugging Acumen</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Locating off-by-one errors and pointer bugs without IDE help.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">7. Spaced Recall</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Reproducing solutions independently after 30 and 60 days.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">8. Interview Communication</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Verbalizing intuition, trade-offs, and invariants clearly.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">9. Execution Speed</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Solving Medium problems in under 25 minutes reliably.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">10. Unseen Problem Transfer</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Deriving approaches for never-before-seen problem formulations.</div>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="gauntlet">The 8-Round Interview Readiness Gauntlet</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>Evaluation Type</th>
+              <th>Format & Conditions</th>
+              <th>Passing Criteria</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Round 1</strong></td><td>Warm-Up Execution</td><td>1 Easy problem, 12 minutes, clean Java code</td><td>100% test pass, zero syntax errors</td></tr>
+            <tr><td><strong>Round 2</strong></td><td>Pattern Recognition</td><td>1 Medium problem, 25 minutes, verbalize pattern signal</td><td>Identify correct pattern within 90 seconds</td></tr>
+            <tr><td><strong>Round 3</strong></td><td>Unseen Problem Transfer</td><td>1 Novel Medium problem disguised in narrative, 30 minutes</td><td>Derive optimal invariant independently</td></tr>
+            <tr><td><strong>Round 4</strong></td><td>Optimization Follow-Up</td><td>Interviewer reduces memory/time limit on previous solution</td><td>Produce optimal trade-off in &lt; 10 minutes</td></tr>
+            <tr><td><strong>Round 5</strong></td><td>Live Bug Lab</td><td>5 broken Java programs with subtle logic/memory bugs</td><td>Diagnose and fix 4 out of 5 programs</td></tr>
+            <tr><td><strong>Round 6</strong></td><td>Complexity Cross-Exam</td><td>Analyze Big-O on 5 complex mixed recursive/iterative routines</td><td>100% mathematical justification accuracy</td></tr>
+            <tr><td><strong>Round 7</strong></td><td>Full 45-Min Mock Interview</td><td>Live video session with Tier-1 mentor, ambiguous requirements</td><td>Score â‰¥ 85% across the 10-Dimension Radar</td></tr>
+            <tr><td><strong>Round 8</strong></td><td>Teach-Back Defense</td><td>Student must teach an advanced topic (e.g. DSU or Edit Distance)</td><td>Mentor signs off on conceptual clarity</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mentor-note">
+        <p>
+          "When you pass all 8 rounds of the Readiness Gauntlet, you stop feeling like a student hoping the interviewer asks a familiar question. You enter the room knowing that whatever they put on the screen, you have a battle-tested protocol to break it down, write clean Java, and defend your decisions with authority."
+        </p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- BACK TO TOP BUTTON -->
+<a href="#top" class="back-to-top" title="Back to top">&uarr;</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Paadhai<span>DSA</span> &mdash; Interview Engineering Architecture</div>
+    <p>Professional &#8377;30,000-Level Curriculum &bull; 24 Weeks &bull; 6 Months &bull; 40 Patterns &bull; Java 21+ &bull; Production Engineering</p>
+    <p style="margin-top:8px; font-size: 0.78rem;">Designed on principles from Google, Microsoft, Amazon, and Tier-1 Tech Hiring Systems</p>
+  </div>
+</footer>
+
+<!-- SCRIPT FOR NAVBAR & TOC INTERSECTION OBSERVER -->
+<script>
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Active TOC highlighting
+const sections = document.querySelectorAll('.doc-section, .month-card');
+const tocLinks = document.querySelectorAll('.toc-section-label, .toc-sub-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      tocLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === '#' + entry.target.id) {
+          link.classList.add('active');
+        } else if (entry.target.id && href && href.includes(entry.target.id)) {
+          link.classList.add('active');
+        } else if (!entry.target.contains(document.querySelector(href))) {
+          link.classList.remove('active');
+        }
+      });
+    }
+  });
+}, { threshold: 0.1, rootMargin: '-70px 0px -50% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
+

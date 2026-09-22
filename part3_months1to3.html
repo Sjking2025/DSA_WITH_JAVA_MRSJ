@@ -1,0 +1,329 @@
+    <!-- ================= SECTION 03: ROADMAP (MONTHS 1 - 3) ================= -->
+    <section class="doc-section" id="roadmap">
+      <div class="section-eyebrow">Section 03</div>
+      <h2>The 24-Week <em>Master Curriculum Roadmap</em></h2>
+      <p class="section-intro">
+        A progressive, no-compromises 6-month engineering curriculum structured across 20 distinct conceptual phases. Designed for learners who demand deep mastery over superficial problem counts.
+      </p>
+
+      <!-- ================= MONTH 01 ================= -->
+      <div class="month-card" id="month1">
+        <div class="month-header m1">
+          <div class="month-num-badge">01</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 01 &bull; Weeks 1&ndash;4</div>
+            <h3>Programming Foundations, Memory & <em>Computational Complexity</em></h3>
+            <div class="month-tagline">Phase 0: Think Like a Programmer &bull; Phase 1: Complexity Analysis &bull; Java Foundations for DSA</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">JVM Architecture</span>
+              <span class="skill-chip">Stack vs Heap</span>
+              <span class="skill-chip">Primitive vs Reference</span>
+              <span class="skill-chip">StringBuilder</span>
+              <span class="skill-chip">Deriving Big-O</span>
+              <span class="skill-chip">Amortized Analysis</span>
+              <span class="skill-chip">Problem Decomposition</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 1</div>
+                <h4>Java Memory Model & Computational Logic</h4>
+              </div>
+              <ul>
+                <li><strong>Mental Model:</strong> How CPU registers, L1/L2 caches, RAM, and JVM stack/heap communicate.</li>
+                <li>Primitive variables (<span class="inline-code">int</span>, <span class="inline-code">long</span>, <span class="inline-code">double</span>) vs reference handles on heap.</li>
+                <li>Control flow branching: if/else, switch expressions, short-circuit evaluation semantics.</li>
+                <li>Loop mechanics: while vs for; boundary condition anatomy (<span class="inline-code">&lt;</span> vs <span class="inline-code">&lt;=</span>).</li>
+                <li><strong>Phase 0 Drill:</strong> Converting English word problems into state variables and loop invariants.</li>
+                <li><strong>Code Lab:</strong> Building an interactive dry-run table tracker in Java 21 console.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 2</div>
+                <h4>Arrays, String Internals & Memory Traversal</h4>
+              </div>
+              <ul>
+                <li>Array layout in memory: contiguous indexing, base address calculation <span class="inline-code">address + (i * size)</span>.</li>
+                <li>Linear scan, single-pass running state, and frequency counting with direct addressing array.</li>
+                <li>String pool mechanics, immutability, and why <span class="inline-code">s += char</span> degrades to O(N²).</li>
+                <li>High-efficiency string manipulation using <span class="inline-code">StringBuilder</span> and <span class="inline-code">char[]</span> buffers.</li>
+                <li>2D Arrays & Matrix traversals: row-major vs column-major cache locality.</li>
+                <li><strong>Classic Problems:</strong> Reverse array in-place, Two Sum (brute-force vs sorted), Valid Anagram.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 3</div>
+                <h4>OOP Essentials for Algorithmic Structures</h4>
+              </div>
+              <ul>
+                <li>Classes, objects, constructors, and encapsulation relevant strictly to DSA.</li>
+                <li>Value semantics vs reference semantics: why passing an array mutates caller state.</li>
+                <li>Writing custom classes for complex state: <span class="inline-code">Pair&lt;K, V&gt;</span>, <span class="inline-code">Node</span>, and Java 17+ <span class="inline-code">record</span>.</li>
+                <li>Generics fundamentals: type erasure and why <span class="inline-code">new T[]</span> is illegal in Java.</li>
+                <li><span class="inline-code">Comparable&lt;T&gt;</span> vs <span class="inline-code">Comparator&lt;T&gt;</span>: modern lambda syntax <span class="inline-code">Comparator.comparingInt(...)</span>.</li>
+                <li><strong>Trap Avoidance:</strong> Overriding <span class="inline-code">equals()</span> and <span class="inline-code">hashCode()</span> for custom hash keys.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 4</div>
+                <h4>Mathematical Complexity & The Complexity Lab</h4>
+              </div>
+              <ul>
+                <li>Big-O (Upper bound), Big-Omega (Lower bound), and Big-Theta (Tight bound) formal definitions.</li>
+                <li>Deriving complexity from code: single loops, nested loops, non-linear step increments (<span class="inline-code">i *= 2</span>).</li>
+                <li>Analyzing logarithmic complexity: why halving search spaces results in <span class="inline-code">O(log N)</span>.</li>
+                <li>Linearithmic <span class="inline-code">O(N log N)</span>, Quadratic <span class="inline-code">O(N²)</span>, and Exponential <span class="inline-code">O(2ⁿ)</span> bounds.</li>
+                <li>Amortized complexity: deep dive into <span class="inline-code">ArrayList.add()</span> capacity doubling.</li>
+                <li>Space complexity: auxiliary space vs input memory, recursive call stack consumption.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-beginner">Milestone Project 1</span>
+              <h4>Algorithmic Benchmarking Suite & JVM Complexity Profiler</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students engineer a standalone Java tool that executes linear, logarithmic, quadratic, and exponential routines across varying input sizes (N = 10 to 100,000,000). The suite captures nanosecond CPU times and heap memory allocations via <span class="inline-code">Runtime.getRuntime()</span>, automatically outputting Big-O curvature plots and empirical validation tables in console.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Empirical vs theoretical Big-O, garbage collection impact, loop mechanics, Java 21 records</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Deriving complexity on 10 live code snippets, defending space trade-offs, zero compile bugs</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 02 ================= -->
+      <div class="month-card" id="month2">
+        <div class="month-header m2">
+          <div class="month-num-badge">02</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 02 &bull; Weeks 5&ndash;8</div>
+            <h3>Core Linear DSA & <em>Invariant-Driven Patterns</em></h3>
+            <div class="month-tagline">Phase 2: In-Place Arrays &bull; Phase 3: Deep Hashing &bull; Phase 4: Two Pointers &bull; Phase 5: Sliding Window &bull; Phase 6: Prefix Sum</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Two Pointers</span>
+              <span class="skill-chip">Sliding Window (Fixed/Dynamic)</span>
+              <span class="skill-chip">HashMap Internals</span>
+              <span class="skill-chip">Prefix Sum</span>
+              <span class="skill-chip">Difference Array</span>
+              <span class="skill-chip">Kadane's Algorithm</span>
+              <span class="skill-chip">Subarray Invariants</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 5</div>
+                <h4>Array In-Place Modifications & Matrix Traversals</h4>
+              </div>
+              <ul>
+                <li>The in-place boundary invariant: dividing an array into [Processed | Unprocessed].</li>
+                <li>Removing duplicates from sorted array without auxiliary allocation in O(1) space.</li>
+                <li>Dutch National Flag algorithm: 3-way partitioning with low, mid, and high pointers.</li>
+                <li>Rotate array: 3-reversal algorithm and cyclic replacements.</li>
+                <li>Matrix patterns: spiral traversal, diagonal walk, 90-degree in-place matrix rotation.</li>
+                <li>Kadane's algorithm: dynamic subproblem observation &mdash; <em>"Should I extend the subarray or start fresh?"</em></li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 6</div>
+                <h4>Hashing Foundations & Lookup Optimization</h4>
+              </div>
+              <ul>
+                <li>The core question: <em>"What repeated O(N) linear search can I reduce to O(1) amortized lookup?"</em></li>
+                <li>HashMap internal deep-dive: hashCode, bucket index bitmask <span class="inline-code">h &amp; (n-1)</span>, collision resolution.</li>
+                <li>Complement lookup pattern: Two Sum, 3-Sum (Hash vs Two-Pointer trade-offs).</li>
+                <li>Frequency mapping and frequency-bucket grouping (Group Anagrams).</li>
+                <li>Set lookups for sequence reconstruction: Longest Consecutive Sequence in O(N) time.</li>
+                <li>Subarray Sum Equals K: combining prefix sum cumulative state with HashMap lookup in a single pass.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 7</div>
+                <h4>Two Pointers: Converging & Fast-Slow Patterns</h4>
+              </div>
+              <ul>
+                <li>Opposite-direction pointers: searching sorted spaces, trapping rain water, container with most water.</li>
+                <li>The elimination invariant: proving mathematically why the discarded element can never be part of a better solution.</li>
+                <li>Same-direction read/write pointers for in-place compaction and partitioning.</li>
+                <li>Fast and slow pointers (Floyd's Tortoise and Hare) conceptually introduced for arrays.</li>
+                <li>Triplets and Quadruplets: sorting + two-pointer reduction with strict duplicate avoidance.</li>
+                <li>Interview execution: verbalizing the monotonicity invariant that allows pointer movement.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 8</div>
+                <h4>Sliding Window & Difference Arrays</h4>
+              </div>
+              <ul>
+                <li>Why brute force enumerates O(N²) subarrays and how sliding window reuses overlapping state.</li>
+                <li><strong>Fixed Window Pattern:</strong> Maximum sum subarray of size K, first negative integer in window.</li>
+                <li><strong>Dynamic Expand-Shrink Pattern:</strong> Longest substring without repeating characters, fruit into baskets.</li>
+                <li><strong>Frequency-Constrained Windows:</strong> Minimum window substring (the ultimate sliding window test).</li>
+                <li>Prefix sums for static O(1) range sum queries; 2D prefix sums for matrix sub-rectangles.</li>
+                <li>Difference arrays: performing range updates <span class="inline-code">[L, R] += val</span> in O(1) time.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-intermediate">Milestone Project 2</span>
+              <h4>High-Throughput Telemetry Sliding Window Aggregator</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students design a real-time event analytics stream engine. The system processes an incoming stream of millions of network timestamp packets, using fixed and variable sliding windows alongside prefix difference arrays to calculate moving percentiles, detect traffic anomalies, and locate anomalous bursts in guaranteed O(1) amortized time per packet without storing the entire event history.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">Dynamic sliding window, prefix sums, difference array updates, memory-bounded Java streams</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Live derivation of Minimum Window Substring, Trapping Rain Water, and Subarray Sum Equals K</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= MONTH 03 ================= -->
+      <div class="month-card" id="month3">
+        <div class="month-header m3">
+          <div class="month-num-badge">03</div>
+          <div class="month-header-text">
+            <div class="month-label">Month 03 &bull; Weeks 9&ndash;12</div>
+            <h3>Non-Linear Structures, Monotonicity & <em>Search Space Decomposition</em></h3>
+            <div class="month-tagline">Phase 7: Linked Lists &bull; Phase 8: Stacks & Queues &bull; Phase 9: Binary Search &bull; Phase 10 & 11: Recursion & Backtracking</div>
+            <div class="month-skills-chips">
+              <span class="skill-chip">Pointer Manipulation</span>
+              <span class="skill-chip">Monotonic Stack</span>
+              <span class="skill-chip">Monotonic Queue</span>
+              <span class="skill-chip">Binary Search on Answer</span>
+              <span class="skill-chip">Recursion Trees</span>
+              <span class="skill-chip">Backtracking State Undo</span>
+              <span class="skill-chip">Branch Pruning</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="month-body">
+          <div class="week-grid">
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 9</div>
+                <h4>Linked Lists: Pointer Mastery & Cycle Invariants</h4>
+              </div>
+              <ul>
+                <li>Node representation and reference pointer manipulation in memory (drawing box diagrams).</li>
+                <li>The Dummy Head Node technique: eliminating edge cases for head insertions and deletions.</li>
+                <li>Singly vs Doubly Linked Lists: internal trade-offs and sentinel nodes.</li>
+                <li>Iterative vs Recursive in-place reversal: reversing a sublist between positions <span class="inline-code">[L, R]</span>.</li>
+                <li>Floyd's Cycle Detection algorithm: proving why slow and fast meet and deriving start-of-cycle node.</li>
+                <li>Merging two sorted lists and reordering list (combining mid-find, reverse, and merge).</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 10</div>
+                <h4>Stacks, Deques & Monotonic Structures</h4>
+              </div>
+              <ul>
+                <li>LIFO and FIFO mechanics implemented via Java's <span class="inline-code">ArrayDeque</span>.</li>
+                <li>Valid Parentheses, evaluating Reverse Polish Notation (RPN), and expression parsing.</li>
+                <li><strong>Monotonic Stack:</strong> What invariant makes it work? Why does it discard non-optimal candidates?</li>
+                <li>Next Greater Element, Daily Temperatures, and Largest Rectangle in Histogram in O(N).</li>
+                <li><strong>Monotonic Queue:</strong> Sliding Window Maximum using deque to maintain decreasing candidates.</li>
+                <li>MinStack design: maintaining min in O(1) using paired values or value-differential encoding.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 11</div>
+                <h4>Binary Search: Searching Monotonic Predicates</h4>
+              </div>
+              <ul>
+                <li>Moving beyond simple array search: viewing binary search as finding a boundary where a condition flips <span class="inline-code">F F F T T T</span>.</li>
+                <li>Lower bound, Upper bound, First Occurrence, and Last Occurrence without off-by-one errors.</li>
+                <li>Search in Rotated Sorted Array: identifying which half remains strictly sorted.</li>
+                <li>Find Peak Element: binary searching in non-sorted arrays using local slope invariants.</li>
+                <li><strong>Binary Search on Answer:</strong> Formulating feasibility functions <span class="inline-code">boolean isValid(mid)</span>.</li>
+                <li>Classic problems: Koko Eating Bananas, Capacity To Ship Packages, Book Allocation Problem.</li>
+              </ul>
+            </div>
+
+            <div class="week-card">
+              <div class="week-card-header">
+                <div class="week-num">Week 12</div>
+                <h4>Recursion Anatomy & Exhaustive Backtracking</h4>
+              </div>
+              <ul>
+                <li>The call stack visualized: activation records, local state, base cases, and return bubbling.</li>
+                <li>Drawing recursion decision trees before writing a single line of Java code.</li>
+                <li>The 4-step Backtracking protocol: <strong>Choice &rarr; Explore &rarr; Undo / Restore State &rarr; Next Choice</strong>.</li>
+                <li>Subsets (Cascading vs Backtracking), Combinations, and Combination Sum variants.</li>
+                <li>Permutations with and without duplicates (in-place swap vs boolean visited array).</li>
+                <li>Branch pruning: recognizing invalid subtrees early to avoid combinatorial explosion (N-Queens, Sudoku Solver).</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-card-header">
+              <span class="project-badge badge-intermediate">Milestone Project 3</span>
+              <h4>Production Undo/Redo Engine & Expression Calculator</h4>
+            </div>
+            <div class="project-card-body">
+              <p>
+                Students implement a multi-threaded text editing command engine and mathematical formula parser. The system utilizes dual <span class="inline-code">ArrayDeque</span> stacks for O(1) state snapshotting, a monotonic queue to calculate rolling minimum/maximum cursor latency, and a recursive descent compiler capable of evaluating complex nested algebraic expressions with parentheses, operator precedence, and variable substitutions.
+              </p>
+              <div class="project-detail-grid">
+                <div class="project-detail-item">
+                  <div class="label">Demonstrates</div>
+                  <div class="value">ArrayDeque stacks, monotonic queue, recursive descent parsing, state rollback invariants</div>
+                </div>
+                <div class="project-detail-item">
+                  <div class="label">Interview Assessment</div>
+                  <div class="value">Live coding of Largest Rectangle in Histogram, Rotated Binary Search, and N-Queens</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

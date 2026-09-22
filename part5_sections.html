@@ -1,0 +1,350 @@
+    <!-- ================= SECTION 04 ================= -->
+    <section class="doc-section" id="patterns">
+      <div class="section-eyebrow">Section 04</div>
+      <h2>The 40-Pattern <em>Recognition Engine</em> & Problem Protocol</h2>
+      <p class="section-intro">
+        Every interview problem is a combination of known mathematical invariants masked behind an unfamiliar narrative. Master the 14-step decomposition protocol and the 40 foundational algorithmic patterns.
+      </p>
+
+      <h3 class="h3-section" id="problem-engine">The Mandatory 14-Step Problem-Solving Protocol</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Phase Name</th>
+              <th>Concrete Action Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>01</strong></td><td>Read & Extract</td><td>Identify input types, output format, array constraints, and hidden assumptions (e.g. empty, negatives).</td></tr>
+            <tr><td><strong>02</strong></td><td>Restate Aloud</td><td>Explain the problem in your own words in 30 seconds without reading verbatim from the screen.</td></tr>
+            <tr><td><strong>03</strong></td><td>Brute Force</td><td>Formulate the simplest correct solution (usually exhaustive search or nested loops).</td></tr>
+            <tr><td><strong>04</strong></td><td>Brute Force Big-O</td><td>Calculate time and space complexity of the brute force solution (e.g. O(N²), O(2ⁿ)).</td></tr>
+            <tr><td><strong>05</strong></td><td>Identify Bottleneck</td><td>Locate the precise operation that is wastefully expensive (e.g. repeated linear search in sub-array).</td></tr>
+            <tr><td><strong>06</strong></td><td>Structural Insight</td><td>Discover the invariant, mathematical property, or monotonic behavior that enables pruning.</td></tr>
+            <tr><td><strong>07</strong></td><td>Pattern Mapping</td><td>Match the insight to one of the 40 recognized patterns (e.g. Sliding Window, Monotonic Stack).</td></tr>
+            <tr><td><strong>08</strong></td><td>Data Structure Choice</td><td>Answer: <em>"What minimal information must we maintain as we traverse?"</em></td></tr>
+            <tr><td><strong>09</strong></td><td>Pseudocode / Invariants</td><td>Draft algorithm state transitions and loop invariants before touching the keyboard.</td></tr>
+            <tr><td><strong>10</strong></td><td>Clean Java Implementation</td><td>Write idiomatic Java 21 code with descriptive variable names and zero deprecated APIs.</td></tr>
+            <tr><td><strong>11</strong></td><td>Dry Run with Example</td><td>Trace state variables manually on a real sample input table line by line.</td></tr>
+            <tr><td><strong>12</strong></td><td>Edge Case Audit</td><td>Test null, single element, duplicates, negative values, boundary constraints, and 32-bit overflow.</td></tr>
+            <tr><td><strong>13</strong></td><td>Recalculate Big-O</td><td>Prove the optimal time and auxiliary space bounds mathematically.</td></tr>
+            <tr><td><strong>14</strong></td><td>Interview Verbalization</td><td>Deliver a concise 2-minute verbal summary of intuition, approach, trade-offs, and correctness.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="h3-section" id="pattern-matrix">The 40 Core Algorithmic Patterns</h3>
+      <div class="pattern-grid">
+        <div class="pattern-card"><div class="pattern-id">P01</div><div class="pattern-name">Linear Scan</div><div class="pattern-signal">Single pass, maintain running extrema or cumulative condition.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P02</div><div class="pattern-name">Frequency Map</div><div class="pattern-signal">Counting occurrences, detecting duplicates, anagram validation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P03</div><div class="pattern-name">Hash Lookup</div><div class="pattern-signal">Converting O(N) linear search into O(1) complement matching.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P04</div><div class="pattern-name">Prefix Sum</div><div class="pattern-signal">Static contiguous range sum queries in O(1) time after O(N) preprocessing.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P05</div><div class="pattern-name">Two Pointers (Converging)</div><div class="pattern-signal">Sorted array, finding pair with target sum, trapping water boundaries.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P06</div><div class="pattern-name">Fast & Slow Pointers</div><div class="pattern-signal">Detecting cycles in linked lists, finding middle node, duplicate finding.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P07</div><div class="pattern-name">Sliding Window (Fixed/Var)</div><div class="pattern-signal">Contiguous subarray/substring satisfying monotonic constraint.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P08</div><div class="pattern-name">Binary Search</div><div class="pattern-signal">Sorted space, finding exact element, lower/upper bounds in O(log N).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P09</div><div class="pattern-name">Binary Search on Answer</div><div class="pattern-signal">Minimize maximum / maximize minimum with monotonic feasibility predicate.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P10</div><div class="pattern-name">Merge Intervals</div><div class="pattern-signal">Overlapping time ranges, room scheduling, merging high-water marks.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P11</div><div class="pattern-name">Difference Array</div><div class="pattern-signal">Multiple range update operations [L, R] += K in O(1) time.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P12</div><div class="pattern-name">Stack (LIFO)</div><div class="pattern-signal">Nested structures, parentheses matching, recursive function simulation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P13</div><div class="pattern-name">Monotonic Stack</div><div class="pattern-signal">Next greater / smaller element, largest rectangle in histogram.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P14</div><div class="pattern-name">Queue (FIFO)</div><div class="pattern-signal">Orderly sequential processing, level-order breadth exploration.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P15</div><div class="pattern-name">Monotonic Queue</div><div class="pattern-signal">Sliding window maximum/minimum in amortized O(1) per step.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P16</div><div class="pattern-name">Recursion Trees</div><div class="pattern-signal">Divide and conquer, self-similar subproblem delegation, trees.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P17</div><div class="pattern-name">Backtracking</div><div class="pattern-signal">Exhaustive search of combinations, permutations, subsets with pruning.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P18</div><div class="pattern-name">Divide & Conquer</div><div class="pattern-signal">Break into independent subproblems, solve, combine (Merge Sort).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P19</div><div class="pattern-name">Tree DFS</div><div class="pattern-signal">Path calculations, subtree aggregations, height/diameter calculation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P20</div><div class="pattern-name">Tree BFS</div><div class="pattern-signal">Level-order grouping, zigzag traversal, vertical order printing.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P21</div><div class="pattern-name">Heap / Top-K</div><div class="pattern-signal">Finding K largest/smallest elements in streaming or dynamic datasets.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P22</div><div class="pattern-name">Trie</div><div class="pattern-signal">Prefix matching, autocomplete, dictionary lookup, word boggle.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P23</div><div class="pattern-name">Graph BFS</div><div class="pattern-signal">Shortest path in unweighted graph, flood fill, level propagation.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P24</div><div class="pattern-name">Graph DFS</div><div class="pattern-signal">Connected components, cycle detection, path existence check.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P25</div><div class="pattern-name">Topological Sort</div><div class="pattern-signal">Dependency resolution, task scheduling in Directed Acyclic Graphs.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P26</div><div class="pattern-name">Union-Find (DSU)</div><div class="pattern-signal">Dynamic connectivity, redundant connections, Kruskal's MST.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P27</div><div class="pattern-name">Dijkstra Shortest Path</div><div class="pattern-signal">Single-source shortest path with non-negative edge weights.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P28</div><div class="pattern-name">Minimum Spanning Tree</div><div class="pattern-signal">Connecting all nodes with minimum total edge weight (Kruskal/Prim).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P29</div><div class="pattern-name">Greedy Paradigm</div><div class="pattern-signal">Locally optimal choice leads to global optimum (Interval scheduling).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P30</div><div class="pattern-name">1D Dynamic Programming</div><div class="pattern-signal">Subproblem depends on previous 1 or K values (Climbing Stairs, Robber).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P31</div><div class="pattern-name">2D Grid DP</div><div class="pattern-signal">Navigating grids with obstacles, minimum path sum from (0,0) to (M,N).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P32</div><div class="pattern-name">Knapsack (0/1 & Unbound)</div><div class="pattern-signal">Subset selection under capacity constraint (Coin Change, Partition).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P33</div><div class="pattern-name">Subsequence DP</div><div class="pattern-signal">Longest Common Subsequence, Edit Distance across dual strings.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P34</div><div class="pattern-name">Bit Manipulation</div><div class="pattern-signal">O(1) set operations, parity checking, single number duplicates via XOR.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P35</div><div class="pattern-name">State Compression</div><div class="pattern-signal">Using integer bitmasks to represent visited states up to N=20.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P36</div><div class="pattern-name">Interval DP</div><div class="pattern-signal">Merging sub-intervals [i, j] from length 1 to N (Matrix Chain, Palindromes).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P37</div><div class="pattern-name">Prefix + Hashing</div><div class="pattern-signal">Counting subarrays with exact sum K in single pass via hash map.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P38</div><div class="pattern-name">Multi-Source BFS</div><div class="pattern-signal">Simultaneous wavefront expansion from multiple starting nodes (Rotting Oranges).</div></div>
+        <div class="pattern-card"><div class="pattern-id">P39</div><div class="pattern-name">Binary Lifting (Adv)</div><div class="pattern-signal">Lowest Common Ancestor (LCA) in tree in O(log N) after O(N log N) prep.</div></div>
+        <div class="pattern-card"><div class="pattern-id">P40</div><div class="pattern-name">Segment Tree (Adv)</div><div class="pattern-signal">Dynamic range queries and range updates in O(log N) time.</div></div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 05 ================= -->
+    <section class="doc-section" id="learning-systems">
+      <div class="section-eyebrow">Section 05</div>
+      <h2>Learning Engines, <em>Error Journal</em> & Retention</h2>
+      <p class="section-intro">
+        True algorithmic capability is not measured by how many solutions you read. It is forged by how you diagnose failures, retain patterns across 60 days, and think when you are stuck.
+      </p>
+
+      <h3 class="h3-section" id="hint-system">The 7 Progressive Learning Modes</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 24px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--teal); margin-bottom: 6px;">Mode 1: Full Teaching</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Complete deep-dive: WHY, WHAT, HOW, visualization, brute force, bottleneck, and clean Java implementation.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--blue); margin-bottom: 6px;">Mode 2: Guided Inquiry</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">No code given. Only structural clues, invariant hints, and Socratic questions to prompt student derivation.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--purple); margin-bottom: 6px;">Mode 3: Mock Interview</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">The mentor plays a strict Tier-1 interviewer. Zero clues; asks follow-ups, introduces edge cases, challenges complexity.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--red); margin-bottom: 6px;">Mode 4: Bug Lab Debugging</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Given broken, subtle, or crashing Java code. Student must locate off-by-one, overflow, or logic bugs without IDE warnings.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--saffron-dark); margin-bottom: 6px;">Mode 5: Timed Assessment</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Strict 35-minute countdown clock. No external tabs. Simulates real online assessment pressure.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--green); margin-bottom: 6px;">Mode 6: Unseen Transfer</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Novel problem with disguised pattern. Tests whether student can identify invariants without pattern labels.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 16px;">
+          <h4 style="color: var(--gray-800); margin-bottom: 6px;">Mode 7: Teach-Back</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">The student must verbally teach the problem and prove its correctness to the mentor. Ultimate test of mastery.</p>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="error-journal">The 14-Category DSA Failure Log</h3>
+      <p style="margin-bottom: 14px; font-size: 0.88rem; color: var(--gray-600);">
+        Every problem you fail or require a hint on must be logged into one of these 14 categories. The system analyzes your log to generate targeted remediation drills:
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px;">
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">1. Concept Gap</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">2. Pattern Gap</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">3. Implementation Bug</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">4. Java Syntax Gap</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">5. DS Selection Error</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">6. Complexity Miscalculation</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">7. Edge Case Failure</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">8. Off-By-One Boundary</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">9. Recursion Base-Case Error</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">10. State Definition Error (DP)</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">11. Overthinking</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">12. Misread Problem Narrative</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">13. Integer Overflow (32-bit)</span>
+        <span class="skill-chip" style="background: var(--red-light); color: var(--red); border-color: rgba(239,68,68,0.3);">14. Time Management Freeze</span>
+      </div>
+
+      <h3 class="h3-section" id="spaced-repetition">The D0 to D60 Spaced Repetition Engine</h3>
+      <div class="incremental-box">
+        <p>
+          Viewing a solution is NOT mastery. Every problem follows a 7-checkpoint retention schedule:
+          <strong>Day 0 (Initial Solve)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 1 (Independent Re-Code from Blank File)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 3 (Solve Variant Problem)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 7 (Verbalize Invariants Aloud)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 14 (Timed 25-Min Re-solve)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 30 (Solve Disguised Variation)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 60 (Permanent Active Recall Check)</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 06 ================= -->
+    <section class="doc-section" id="rhythm-eval">
+      <div class="section-eyebrow">Section 06</div>
+      <h2>Daily Schedules, <em>Evaluation Gates</em> & Gauntlet</h2>
+      <p class="section-intro">
+        Discipline over motivation. This program is structured to accommodate working professionals and full-time students with clear, non-negotiable daily time blocks.
+      </p>
+
+      <h3 class="h3-section" id="daily-rhythm">The Recommended 3-Hour Daily Routine</h3>
+      <div class="schedule-grid">
+        <div class="schedule-time">00:00 &ndash; 00:30 (30m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-concept">Theory & Invariant</span>
+          Deep conceptual breakdown: WHY this structure exists, memory layout, invariants, Big-O derivation.
+        </div>
+        <div class="schedule-time">00:30 &ndash; 01:15 (45m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-guided">Guided Problem</span>
+          Walkthrough of classic canonical problem: Brute force &rarr; Bottleneck &rarr; Invariant &rarr; Clean Java 21 implementation.
+        </div>
+        <div class="schedule-time">01:15 &ndash; 02:15 (60m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-independent">Independent Solving</span>
+          Two independent problems with strict timer. No looking at solutions. Socratic guided hints only if blocked.
+        </div>
+        <div class="schedule-time">02:15 &ndash; 02:45 (30m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-review">Spaced Repetition</span>
+          Re-solving a problem from Day 3 or Day 14 queue from scratch to enforce long-term memory encoding.
+        </div>
+        <div class="schedule-time">02:45 &ndash; 03:00 (15m)</div>
+        <div class="schedule-activity">
+          <span class="activity-tag tag-error">Failure Journal</span>
+          Categorize any errors, bugs, or mental blocks into the 14-category DSA Failure Log with actionable takeaways.
+        </div>
+      </div>
+
+      <h3 class="h3-section">Weekly & Monthly Loop Architecture</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--teal); font-weight: 700; font-size: 0.75rem;">DAY 1</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Concept & Invariant</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--blue); font-weight: 700; font-size: 0.75rem;">DAY 2</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Pattern Mechanics</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--purple); font-weight: 700; font-size: 0.75rem;">DAY 3</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Guided Deep-Dives</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--saffron-dark); font-weight: 700; font-size: 0.75rem;">DAY 4</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Independent Problem</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--green); font-weight: 700; font-size: 0.75rem;">DAY 5</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Mixed Unseen Sets</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--red); font-weight: 700; font-size: 0.75rem;">DAY 6</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Timed Assessment</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="color: var(--gray-800); font-weight: 700; font-size: 0.75rem;">DAY 7</div>
+          <div style="font-weight: 700; color: var(--gray-800); font-size: 0.9rem;">Error Audit & Reset</div>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="mastery-radar">The 10-Dimension Mastery Radar</h3>
+      <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--gray-600);">
+        Never settle for "percentage of problems solved". True interview readiness requires balanced maturity across ten distinct engineering dimensions:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin-bottom: 28px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">1. Concept Mastery</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Depth of theoretical memory understanding & internal mechanics.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">2. Pattern Recognition</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Ability to spot structural tell-tale signals within 30 seconds.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">3. Implementation Fluency</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Clean, compilable Java 21 syntax with zero syntax hesitations.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">4. Problem Decomposition</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Breaking complex narratives into structured state invariants.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">5. Complexity Derivation</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Mathematical calculation of exact Big-O and space bounds.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">6. Debugging Acumen</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Locating off-by-one errors and pointer bugs without IDE help.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">7. Spaced Recall</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Reproducing solutions independently after 30 and 60 days.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">8. Interview Communication</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Verbalizing intuition, trade-offs, and invariants clearly.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">9. Execution Speed</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Solving Medium problems in under 25 minutes reliably.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 14px;">
+          <div style="font-weight: 700; color: var(--teal); font-size: 0.85rem;">10. Unseen Problem Transfer</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Deriving approaches for never-before-seen problem formulations.</div>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="gauntlet">The 8-Round Interview Readiness Gauntlet</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>Evaluation Type</th>
+              <th>Format & Conditions</th>
+              <th>Passing Criteria</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Round 1</strong></td><td>Warm-Up Execution</td><td>1 Easy problem, 12 minutes, clean Java code</td><td>100% test pass, zero syntax errors</td></tr>
+            <tr><td><strong>Round 2</strong></td><td>Pattern Recognition</td><td>1 Medium problem, 25 minutes, verbalize pattern signal</td><td>Identify correct pattern within 90 seconds</td></tr>
+            <tr><td><strong>Round 3</strong></td><td>Unseen Problem Transfer</td><td>1 Novel Medium problem disguised in narrative, 30 minutes</td><td>Derive optimal invariant independently</td></tr>
+            <tr><td><strong>Round 4</strong></td><td>Optimization Follow-Up</td><td>Interviewer reduces memory/time limit on previous solution</td><td>Produce optimal trade-off in &lt; 10 minutes</td></tr>
+            <tr><td><strong>Round 5</strong></td><td>Live Bug Lab</td><td>5 broken Java programs with subtle logic/memory bugs</td><td>Diagnose and fix 4 out of 5 programs</td></tr>
+            <tr><td><strong>Round 6</strong></td><td>Complexity Cross-Exam</td><td>Analyze Big-O on 5 complex mixed recursive/iterative routines</td><td>100% mathematical justification accuracy</td></tr>
+            <tr><td><strong>Round 7</strong></td><td>Full 45-Min Mock Interview</td><td>Live video session with Tier-1 mentor, ambiguous requirements</td><td>Score ≥ 85% across the 10-Dimension Radar</td></tr>
+            <tr><td><strong>Round 8</strong></td><td>Teach-Back Defense</td><td>Student must teach an advanced topic (e.g. DSU or Edit Distance)</td><td>Mentor signs off on conceptual clarity</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mentor-note">
+        <p>
+          "When you pass all 8 rounds of the Readiness Gauntlet, you stop feeling like a student hoping the interviewer asks a familiar question. You enter the room knowing that whatever they put on the screen, you have a battle-tested protocol to break it down, write clean Java, and defend your decisions with authority."
+        </p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- BACK TO TOP BUTTON -->
+<a href="#top" class="back-to-top" title="Back to top">&uarr;</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Paadhai<span>DSA</span> &mdash; Interview Engineering Architecture</div>
+    <p>Professional &#8377;30,000-Level Curriculum &bull; 24 Weeks &bull; 6 Months &bull; 40 Patterns &bull; Java 21+ &bull; Production Engineering</p>
+    <p style="margin-top:8px; font-size: 0.78rem;">Designed on principles from Google, Microsoft, Amazon, and Tier-1 Tech Hiring Systems</p>
+  </div>
+</footer>
+
+<!-- SCRIPT FOR NAVBAR & TOC INTERSECTION OBSERVER -->
+<script>
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Active TOC highlighting
+const sections = document.querySelectorAll('.doc-section, .month-card');
+const tocLinks = document.querySelectorAll('.toc-section-label, .toc-sub-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      tocLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === '#' + entry.target.id) {
+          link.classList.add('active');
+        } else if (entry.target.id && href && href.includes(entry.target.id)) {
+          link.classList.add('active');
+        } else if (!entry.target.contains(document.querySelector(href))) {
+          link.classList.remove('active');
+        }
+      });
+    }
+  });
+}, { threshold: 0.1, rootMargin: '-70px 0px -50% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
