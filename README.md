@@ -6,7 +6,7 @@
 
 ## 🎯 Program Vision & Core Transformation
 
-This repository contains the architecture, roadmap, and training materials for a professional ₹30,000-level engineering program. Rather than memorizing 500 disconnected LeetCode problems, this curriculum trains engineers to:
+This repository houses the full curriculum, pattern library, and training systems for a professional ₹30,000-level engineering mentorship program. Rather than memorizing disconnected LeetCode solutions, candidates master:
 
 ```text
 Understand Problem → Model Invariant → Identify Pattern → Select Data Structure →
@@ -16,23 +16,24 @@ Audit Edge Cases → Explain Under Interview Scrutiny → Solve Unseen Variation
 
 ---
 
-## 📂 Repository Contents
+## 📂 Master Deliverables
 
 | File | Description |
 |---|---|
-| **[`dsa-with-java-6month-roadmap.html`](./dsa-with-java-6month-roadmap.html)** | **Master Interactive Roadmap** — Complete unified 24-week curriculum, 40 patterns, toolkit, and gauntlet |
-| **[`core-java-6month-roadmap.html`](./core-java-6month-roadmap.html)** | Baseline Core Java engineering reference roadmap |
-| `part1_head.html` | Modular Component: HTML Head, Typography, Design System & Hero |
-| `part2_philosophy.html` | Modular Component: Table of Contents, Pedagogical Philosophy, Java Toolkit |
-| `part3_months1to3.html` | Modular Component: Months 1–3 Roadmap (Weeks 1–12, Projects 1–3) |
-| `part4_months4to6.html` | Modular Component: Months 4–6 Roadmap (Weeks 13–24, Projects 4–6) |
-| `part5_sections.html` | Modular Component: 40-Pattern Matrix, Failure Log, Schedules & JS |
+| **[`dsa-engineering-masterprogram.html`](./dsa-engineering-masterprogram.html)** | 👑 **The Master Single HTML Artifact** &mdash; Full ₹30,000-level program: 24 weeks, 20 phases, 40 complete pattern cards with Java 21 code, interactive search/filter engine, interactive Complexity Lab, Java Bug Lab, and 8-Round Interview Readiness Gauntlet. |
+| **[`dsa-with-java-6month-roadmap.html`](./dsa-with-java-6month-roadmap.html)** | Master 24-Week Roadmap & Pattern matrix view. |
+| `module1_foundations.html` | Modular Module 1: Philosophy, Transformation & Java Toolkit |
+| `module2_phases_roadmap.html` | Modular Module 2: 20 Conceptual Phases & 24 Weeks Syllabus |
+| `module3_patterns.html` | Modular Module 3: 40 Pattern Cards with Code Templates |
+| `module4_protocols_learning.html` | Modular Module 4: 14-Step Protocol, Learning Modes & Error Journal |
+| `module5_labs_gauntlet.html` | Modular Module 5: Complexity Lab, Bug Lab & 8-Round Gauntlet |
+| `module6_js_footer.html` | Modular Module 6: Interactive Search Engine & Footer |
 
 ---
 
-## 🏛️ Program Architecture At A Glance
+## 🏛️ Comprehensive Architecture
 
-### 1. The 6-Month / 24-Week Progression
+### 1. The 24-Week Detailed Syllabus & 20 Phases
 - **Month 01 (Weeks 1–4):** Programming Foundations, JVM Memory (Stack vs Heap), and Computational Complexity Lab. *(Project: Algorithmic Benchmarking Suite)*
 - **Month 02 (Weeks 5–8):** Core Linear Patterns: In-Place Arrays, Deep Hashing, Two Pointers, Sliding Window, Prefix Sum. *(Project: High-Throughput Stream Aggregator)*
 - **Month 03 (Weeks 9–12):** Non-Linear Structures: Linked Lists, Monotonic Stacks & Queues, Binary Search on Answer, Recursion & Backtracking. *(Project: Production Undo/Redo Engine)*
@@ -40,25 +41,36 @@ Audit Edge Cases → Explain Under Interview Scrutiny → Solve Unseen Variation
 - **Month 05 (Weeks 17–20):** Graphs, Disjoint Set Union (DSU), Dijkstra Shortest Path, Greedy Proofs, and 1D Dynamic Programming. *(Project: Distributed Dependency Resolver)*
 - **Month 06 (Weeks 21–24):** Advanced DP (2D, Knapsack, Subsequence), Bit Manipulation, Online Assessment (OA) Simulations, and the 8-Round Interview Readiness Gauntlet. *(Capstone: Dynamic Pricing & Multi-Route Optimizer)*
 
-### 2. The 40-Pattern Recognition Engine
-Covers all canonical interview patterns from `P01 Linear Scan` to `P40 Segment Tree`, each equipped with structural tell-tale signals, 10-second triggers, and clean Java 21 templates.
+### 2. The 40-Pattern Recognition Engine (P01 – P40)
+Every pattern card includes:
+- Structural Problem Signals ("The Tell")
+- Core Mathematical Invariant
+- Idiomatic Java 21 Implementation Template
+- Time & Space Complexity Derivation
+- Common Implementation Bugs & Traps
+- Canonical Problems (Beginner, Intermediate, Interview Hard)
 
-### 3. The 14-Step Problem-Solving Protocol
-An unshakeable framework that guarantees structured inquiry and prevents blank-screen paralysis under live interview pressure.
+### 3. Interactive Labs & Evaluation
+- **Interactive Complexity Lab:** Derive Big-O from non-linear, logarithmic, and recursive Java snippets.
+- **Java Bug Lab:** Real interview bugs (Integer overflow, ConcurrentModificationException, Integer wrapper equality).
+- **14-Category DSA Failure Log:** Diagnosing root causes (Concept, Syntax, Boundary, Overflow).
+- **The 8-Round Readiness Gauntlet:** Strict placement validation covering live coding, unseen transfer, and teach-back defense.
 
 ---
 
-## 🚀 Viewing the Interactive Roadmap
+## 🚀 Viewing the Interactive Master Artifact
 
-Simply clone this repository and open `dsa-with-java-6month-roadmap.html` in any modern web browser:
+Clone the repository and open `dsa-engineering-masterprogram.html` in any web browser:
 
 ```bash
 git clone https://github.com/Sjking2025/DSA_WITH_JAVA_MRSJ.git
 cd DSA_WITH_JAVA_MRSJ
-start dsa-with-java-6month-roadmap.html
+start dsa-engineering-masterprogram.html
 ```
 
 ---
 
-## 📜 License & Standards
-Built with Java 21+, strict UTF-8 standards, and modern responsive CSS design.
+## 📜 Standards & Design
+- **Language Level:** Java 21+
+- **Encoding:** Strict UTF-8 with zero mojibake
+- **Design System:** Responsive CSS Custom Properties, Fraunces editorial serif typography, DM Sans, and JetBrains Mono.

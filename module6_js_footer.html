@@ -1,0 +1,91 @@
+  </main>
+</div>
+
+<!-- BACK TO TOP BUTTON -->
+<a href="#top" class="back-to-top" title="Back to top">&uarr;</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Paadhai<span>DSA</span> &mdash; &#8377;30,000-Level Interview Engineering Program</div>
+    <p>24 Weeks &bull; 20 Conceptual Phases &bull; 40 Core Algorithmic Patterns &bull; 250+ Curated Problems &bull; Java 21+ Production Standards</p>
+    <p style="margin-top:8px; font-size: 0.78rem;">Architected on Principles from Google, Microsoft, Amazon, and Tier-1 Engineering Hiring Systems</p>
+  </div>
+</footer>
+
+<!-- INTERACTIVE SCRIPTS -->
+<script>
+// 1. NAVBAR SCROLL EFFECT
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// 2. ACTIVE TOC INTERSECTION OBSERVER
+const sections = document.querySelectorAll('.doc-section, .month-card');
+const tocLinks = document.querySelectorAll('.toc-section-label, .toc-sub-item');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      tocLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === '#' + entry.target.id) {
+          link.classList.add('active');
+        } else if (entry.target.id && href && href.includes(entry.target.id)) {
+          link.classList.add('active');
+        } else if (!entry.target.contains(document.querySelector(href))) {
+          link.classList.remove('active');
+        }
+      });
+    }
+  });
+}, { threshold: 0.1, rootMargin: '-70px 0px -50% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// 3. LAB SOLUTION TOGGLE FUNCTION
+function toggleSolution(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.classList.toggle('open');
+  }
+}
+
+// 4. PATTERN SEARCH & FILTER ENGINE
+const searchInput = document.getElementById('patternSearchInput');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const patternCards = document.querySelectorAll('.pattern-card-full');
+
+let currentFilter = 'all';
+
+function filterPatterns() {
+  const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+  patternCards.forEach(card => {
+    const category = card.getAttribute('data-category');
+    const text = card.innerText.toLowerCase();
+    
+    const matchesFilter = (currentFilter === 'all') || (category === currentFilter);
+    const matchesQuery = query === '' || text.includes(query);
+    
+    if (matchesFilter && matchesQuery) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+if (searchInput) {
+  searchInput.addEventListener('input', filterPatterns);
+}
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.getAttribute('data-filter');
+    filterPatterns();
+  });
+});
+</script>
+</body>
+</html>

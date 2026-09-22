@@ -1,0 +1,1644 @@
+    <!-- ================= SECTION 04: 40-PATTERN ENGINE ================= -->
+    <section class="doc-section" id="patterns">
+      <div class="section-eyebrow">Section 04</div>
+      <h2>The 40-Pattern <em>Recognition Engine</em> & Problem Protocol</h2>
+      <p class="section-intro">
+        Every technical interview problem is a combination of known mathematical invariants masked behind an unfamiliar narrative. Master the 14-step decomposition protocol and the 40 foundational algorithmic patterns with structural "tells" and idiomatic Java 21 templates.
+      </p>
+
+      <h3 class="h3-section" id="protocol">The Mandatory 14-Step Problem-Solving Protocol</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Phase Name</th>
+              <th>Concrete Action Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>01</strong></td><td>Read &amp; Extract</td><td>Identify input types, output format, array constraints, and hidden assumptions (e.g. empty, negatives, sorted).</td></tr>
+            <tr><td><strong>02</strong></td><td>Restate Aloud</td><td>Explain the problem in your own words in 30 seconds without reading verbatim from the screen.</td></tr>
+            <tr><td><strong>03</strong></td><td>Brute Force</td><td>Formulate the simplest correct solution (usually exhaustive search or nested loops).</td></tr>
+            <tr><td><strong>04</strong></td><td>Brute Force Big-O</td><td>Calculate time and space complexity of the brute force solution (e.g. O(N²), O(2ⁿ)).</td></tr>
+            <tr><td><strong>05</strong></td><td>Identify Bottleneck</td><td>Locate the precise operation that is wastefully expensive (e.g. repeated linear search in sub-array).</td></tr>
+            <tr><td><strong>06</strong></td><td>Structural Insight</td><td>Discover the invariant, mathematical property, or monotonic behavior that enables pruning.</td></tr>
+            <tr><td><strong>07</strong></td><td>Pattern Mapping</td><td>Match the insight to one of the 40 recognized patterns (e.g. Sliding Window, Monotonic Stack).</td></tr>
+            <tr><td><strong>08</strong></td><td>Data Structure Choice</td><td>Answer: <em>"What minimal information must we maintain as we traverse?"</em></td></tr>
+            <tr><td><strong>09</strong></td><td>Pseudocode / Invariants</td><td>Draft algorithm state transitions and loop invariants before touching the keyboard.</td></tr>
+            <tr><td><strong>10</strong></td><td>Clean Java Implementation</td><td>Write idiomatic Java 21 code with descriptive variable names and zero deprecated APIs.</td></tr>
+            <tr><td><strong>11</strong></td><td>Dry Run with Example</td><td>Trace state variables manually on a real sample input table line by line.</td></tr>
+            <tr><td><strong>12</strong></td><td>Edge Case Audit</td><td>Test null, single element, duplicates, negative values, boundary constraints, and 32-bit overflow.</td></tr>
+            <tr><td><strong>13</strong></td><td>Recalculate Big-O</td><td>Prove the optimal time and auxiliary space bounds mathematically.</td></tr>
+            <tr><td><strong>14</strong></td><td>Interview Verbalization</td><td>Deliver a concise 2-minute verbal summary of intuition, approach, trade-offs, and correctness.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SEARCH & FILTER TOOLBAR -->
+      <h3 class="h3-section" id="pattern-catalog">The 40 Core Algorithmic Pattern Cards</h3>
+      <div class="search-container">
+        <div class="search-input-wrap">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" id="patternSearchInput" class="search-input" placeholder="Search patterns by name, keyword, or problem signal (e.g., 'window', 'cycle', 'tree', 'subarray')..."/>
+        </div>
+        <div class="pattern-filter-chips">
+          <button class="filter-btn active" data-filter="all">All (40)</button>
+          <button class="filter-btn" data-filter="linear">Linear &amp; Arrays (P01–P06)</button>
+          <button class="filter-btn" data-filter="windows">Windows &amp; Pointers (P07–P12)</button>
+          <button class="filter-btn" data-filter="stacks">Stacks &amp; Queues (P13–P16)</button>
+          <button class="filter-btn" data-filter="search">Search &amp; Recursion (P17–P21)</button>
+          <button class="filter-btn" data-filter="trees">Trees &amp; Heaps (P22–P25)</button>
+          <button class="filter-btn" data-filter="graphs">Graphs &amp; DSU (P26–P30)</button>
+          <button class="filter-btn" data-filter="dp">Dynamic Programming (P31–P37)</button>
+          <button class="filter-btn" data-filter="bits">Bit &amp; Math (P38–P40)</button>
+        </div>
+      </div>
+
+      <!-- PATTERN CARDS CONTAINER -->
+      <div id="patternsContainer">
+
+        <!-- P01 -->
+        <div class="pattern-card-full" data-category="linear">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P01</span>
+              <h3>Linear Scan &amp; Running State</h3>
+            </div>
+            <span class="pattern-category-tag">Linear &amp; Arrays</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Single sequence, find maximum/minimum, running sum, or first violation without sorting.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">At step <code>i</code>, the running variable holds the optimal answer for sub-array <code>[0...i-1]</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) single pass &bull; Space: O(1) auxiliary variables.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Best Time to Buy and Sell Stock I, Running Sum of 1D Array, Maximum Subarray (Kadane).</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> minPrice = <span class="type">Integer</span>.MAX_VALUE, maxProfit = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> price : prices) {
+    minPrice = <span class="type">Math</span>.<span class="method">min</span>(minPrice, price);
+    maxProfit = <span class="type">Math</span>.<span class="method">max</span>(maxProfit, price - minPrice);
+}
+<span class="keyword">return</span> maxProfit;
+          </div>
+        </div>
+
+        <!-- P02 -->
+        <div class="pattern-card-full" data-category="linear">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P02</span>
+              <h3>Frequency Map &amp; Direct Addressing</h3>
+            </div>
+            <span class="pattern-category-tag">Linear &amp; Arrays</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Counting character occurrences, anagram checks, finding first non-repeating element.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Frequency count can be resolved in O(1) by using fixed-size direct addressing array <code>int[26]</code> or HashMap.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) &bull; Space: O(1) for fixed alphabet / O(K) for arbitrary keys.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Valid Anagram, First Unique Character in a String, Ransom Note, Group Anagrams.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] freq = <span class="keyword">new int</span>[26];
+<span class="keyword">for</span> (<span class="keyword">char</span> c : s.<span class="method">toCharArray</span>()) freq[c - <span class="string">'a'</span>]++;
+<span class="keyword">for</span> (<span class="keyword">char</span> c : t.<span class="method">toCharArray</span>()) {
+    <span class="keyword">if</span> (--freq[c - <span class="string">'a'</span>] &lt; 0) <span class="keyword">return false</span>;
+}
+<span class="keyword">return true</span>;
+          </div>
+        </div>
+
+        <!-- P03 -->
+        <div class="pattern-card-full" data-category="linear">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P03</span>
+              <h3>Hash Lookup (Complement Matching)</h3>
+            </div>
+            <span class="pattern-category-tag">Linear &amp; Arrays</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Find a pair/tuple summing to target in unsorted array without modifying original indices.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Transform O(N) repeated search into O(1) amortized complement check: <code>target - current</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) single pass &bull; Space: O(N) for hash map storage.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Two Sum, 4Sum II, Longest Consecutive Sequence, Pairs with Given Difference.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Map</span>&lt;<span class="type">Integer</span>, <span class="type">Integer</span>&gt; seen = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; nums.length; i++) {
+    <span class="keyword">int</span> complement = target - nums[i];
+    <span class="keyword">if</span> (seen.<span class="method">containsKey</span>(complement)) <span class="keyword">return new int</span>[]{seen.<span class="method">get</span>(complement), i};
+    seen.<span class="method">put</span>(nums[i], i);
+}
+          </div>
+        </div>
+
+        <!-- P04 -->
+        <div class="pattern-card-full" data-category="linear">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P04</span>
+              <h3>Prefix Sum &amp; Cumulative State</h3>
+            </div>
+            <span class="pattern-category-tag">Linear &amp; Arrays</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Multiple range sum queries <code>sum(L...R)</code> on immutable array in O(1) time.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value"><code>sum(L...R) = prefix[R + 1] - prefix[L]</code>. Preprocessing turns repeated calculation into subtraction.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Preprocessing: O(N) &bull; Query: O(1) &bull; Space: O(N) or in-place.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Range Sum Query Immutable, Find Pivot Index, Continuous Subarray Sum.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] prefix = <span class="keyword">new int</span>[n + 1];
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) prefix[i + 1] = prefix[i] + nums[i];
+<span class="comment">// Range sum [L, R] inclusive:</span>
+<span class="keyword">int</span> rangeSum = prefix[R + 1] - prefix[L];
+          </div>
+        </div>
+
+        <!-- P05 -->
+        <div class="pattern-card-full" data-category="linear">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P05</span>
+              <h3>Two Pointers (Converging Opposite Direction)</h3>
+            </div>
+            <span class="pattern-category-tag">Linear &amp; Arrays</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Sorted array, find pair matching condition, palindromes, container boundaries.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Monotonicity allows discarding an entire row/column of search space by moving <code>left++</code> or <code>right--</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) after O(N log N) sort &bull; Space: O(1) auxiliary pointers.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Two Sum II (Sorted), 3Sum, Container With Most Water, Trapping Rain Water.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> left = 0, right = nums.length - 1;
+<span class="keyword">while</span> (left &lt; right) {
+    <span class="keyword">int</span> sum = nums[left] + nums[right];
+    <span class="keyword">if</span> (sum == target) <span class="keyword">return true</span>;
+    <span class="keyword">else if</span> (sum &lt; target) left++;
+    <span class="keyword">else</span> right--;
+}
+          </div>
+        </div>
+
+        <!-- P06 -->
+        <div class="pattern-card-full" data-category="linear">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P06</span>
+              <h3>Fast &amp; Slow Pointers (Floyd's Tortoise &amp; Hare)</h3>
+            </div>
+            <span class="pattern-category-tag">Linear &amp; Arrays</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Cycle detection in linked list, middle of linked list, duplicate number in constrained array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">If a cycle of length <code>C</code> exists, the distance between pointers decreases by 1 each step modulo <code>C</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) &bull; Space: O(1) no hash set allocation required.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Linked List Cycle I &amp; II, Middle of the Linked List, Happy Number, Find the Duplicate Number.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">ListNode</span> slow = head, fast = head;
+<span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) {
+    slow = slow.next;
+    fast = fast.next.next;
+    <span class="keyword">if</span> (slow == fast) <span class="keyword">return true</span>; <span class="comment">// Cycle confirmed</span>
+}
+<span class="keyword">return false</span>;
+          </div>
+        </div>
+
+        <!-- P07 -->
+        <div class="pattern-card-full" data-category="windows">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P07</span>
+              <h3>Sliding Window (Fixed Size K)</h3>
+            </div>
+            <span class="pattern-category-tag">Windows &amp; Pointers</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Calculate metric on every contiguous subarray of exact size <code>K</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Maintain state of size K by adding <code>arr[right]</code> and discarding <code>arr[right - K]</code> in O(1).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) single scan &bull; Space: O(1) auxiliary running window.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Maximum Average Subarray I, First Negative in Every Window of Size K, Diet Plan Performance.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> windowSum = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; k; i++) windowSum += nums[i];
+<span class="keyword">int</span> maxSum = windowSum;
+<span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.length; i++) {
+    windowSum += nums[i] - nums[i - k];
+    maxSum = <span class="type">Math</span>.<span class="method">max</span>(maxSum, windowSum);
+}
+          </div>
+        </div>
+
+        <!-- P08 -->
+        <div class="pattern-card-full" data-category="windows">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P08</span>
+              <h3>Sliding Window (Dynamic Expand &amp; Contract)</h3>
+            </div>
+            <span class="pattern-category-tag">Windows &amp; Pointers</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Find longest/shortest contiguous substring/subarray meeting a constraint predicate.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Expand <code>right</code> to maintain feasibility; contract <code>left</code> only when constraint is violated.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) amortized (each element touched at most twice) &bull; Space: O(K) for window hash map.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Longest Substring Without Repeating Characters, Minimum Window Substring, Fruit Into Baskets.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> left = 0, maxLen = 0;
+<span class="type">Map</span>&lt;<span class="type">Character</span>, <span class="type">Integer</span>&gt; map = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">int</span> right = 0; right &lt; s.<span class="method">length</span>(); right++) {
+    <span class="keyword">char</span> c = s.<span class="method">charAt</span>(right);
+    <span class="keyword">if</span> (map.<span class="method">containsKey</span>(c)) left = <span class="type">Math</span>.<span class="method">max</span>(left, map.<span class="method">get</span>(c) + 1);
+    map.<span class="method">put</span>(c, right);
+    maxLen = <span class="type">Math</span>.<span class="method">max</span>(maxLen, right - left + 1);
+}
+          </div>
+        </div>
+
+        <!-- P09 -->
+        <div class="pattern-card-full" data-category="windows">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P09</span>
+              <h3>Binary Search (Boundary &amp; Rotated Space)</h3>
+            </div>
+            <span class="pattern-category-tag">Windows &amp; Pointers</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Sorted array, find first/last occurrence, or search in array rotated at unknown pivot.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">At least one half <code>[left...mid]</code> or <code>[mid...right]</code> remains strictly sorted.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(log N) &bull; Space: O(1) iterative boundary contraction.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Search in Rotated Sorted Array, Find First and Last Position of Element, Find Minimum in Rotated Array.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> left = 0, right = nums.length - 1;
+<span class="keyword">while</span> (left &lt;= right) {
+    <span class="keyword">int</span> mid = left + (right - left) / 2;
+    <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;
+    <span class="keyword">if</span> (nums[left] &lt;= nums[mid]) { <span class="comment">// Left half is sorted</span>
+        <span class="keyword">if</span> (nums[left] &lt;= target &amp;&amp; target &lt; nums[mid]) right = mid - 1;
+        <span class="keyword">else</span> left = mid + 1;
+    } <span class="keyword">else</span> { <span class="comment">// Right half is sorted</span>
+        <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[right]) left = mid + 1;
+        <span class="keyword">else</span> right = mid - 1;
+    }
+}
+          </div>
+        </div>
+
+        <!-- P10 -->
+        <div class="pattern-card-full" data-category="windows">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P10</span>
+              <h3>Binary Search on Answer (Feasibility Predicate)</h3>
+            </div>
+            <span class="pattern-category-tag">Windows &amp; Pointers</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">"Minimize the maximum" or "maximize the minimum" where feasibility function is monotonic.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">If <code>feasible(k)</code> is true, all <code>x &gt;= k</code> are true. Binary search over the answer range <code>[min...max]</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N log(Range)) &bull; Space: O(1) auxiliary variables.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Koko Eating Bananas, Capacity To Ship Packages, Split Array Largest Sum, Aggressive Cows.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> low = 1, high = maxPile, ans = high;
+<span class="keyword">while</span> (low &lt;= high) {
+    <span class="keyword">int</span> mid = low + (high - low) / 2;
+    <span class="keyword">if</span> (<span class="method">canFinish</span>(piles, mid, h)) {
+        ans = mid;
+        high = mid - 1; <span class="comment">// Try finding a smaller feasible rate</span>
+    } <span class="keyword">else</span> {
+        low = mid + 1;
+    }
+}
+          </div>
+        </div>
+
+        <!-- P11 -->
+        <div class="pattern-card-full" data-category="windows">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P11</span>
+              <h3>Merge Intervals (High-Water Mark)</h3>
+            </div>
+            <span class="pattern-category-tag">Windows &amp; Pointers</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Set of overlapping ranges <code>[start, end]</code>, calendar meetings, interval insertions.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Sort by start time. Two intervals overlap if and only if <code>curr.start &lt;= prev.end</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N log N) for sort &bull; Space: O(N) output storage.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Merge Intervals, Insert Interval, Non-overlapping Intervals, Meeting Rooms II.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Arrays</span>.<span class="method">sort</span>(intervals, <span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[0]));
+<span class="type">List</span>&lt;<span class="keyword">int</span>[]&gt; merged = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+<span class="keyword">int</span>[] curr = intervals[0];
+merged.<span class="method">add</span>(curr);
+<span class="keyword">for</span> (<span class="keyword">int</span>[] next : intervals) {
+    <span class="keyword">if</span> (next[0] &lt;= curr[1]) curr[1] = <span class="type">Math</span>.<span class="method">max</span>(curr[1], next[1]);
+    <span class="keyword">else</span> { curr = next; merged.<span class="method">add</span>(curr); }
+}
+          </div>
+        </div>
+
+        <!-- P12 -->
+        <div class="pattern-card-full" data-category="windows">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P12</span>
+              <h3>Difference Array &amp; Range Updates</h3>
+            </div>
+            <span class="pattern-category-tag">Windows &amp; Pointers</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Perform multiple range updates <code>[L, R] += val</code> without taking O(N) per update.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value"><code>diff[L] += val</code>, <code>diff[R+1] -= val</code>. Prefix sum of difference array yields final values in single pass.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Update: O(1) &bull; Final Reconstruct: O(N) &bull; Space: O(N).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Corporate Flight Bookings, Range Addition, Car Pooling, Shifting Letters II.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] diff = <span class="keyword">new int</span>[n + 1];
+<span class="keyword">for</span> (<span class="keyword">int</span>[] booking : bookings) {
+    <span class="keyword">int</span> l = booking[0] - 1, r = booking[1] - 1, seats = booking[2];
+    diff[l] += seats;
+    diff[r + 1] -= seats;
+}
+<span class="keyword">int</span>[] ans = <span class="keyword">new int</span>[n];
+ans[0] = diff[0];
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt; n; i++) ans[i] = ans[i - 1] + diff[i];
+          </div>
+        </div>
+
+        <!-- P13 -->
+        <div class="pattern-card-full" data-category="stacks">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P13</span>
+              <h3>Stack &amp; Parentheses Matching</h3>
+            </div>
+            <span class="pattern-category-tag">Stacks &amp; Queues</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Nested delimiters, reverse Polish notation, tracking recent open context.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">The most recently opened delimiter must be the first closed (LIFO).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) &bull; Space: O(N) ArrayDeque stack.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Valid Parentheses, Evaluate Reverse Polish Notation, Basic Calculator, Simplify Path.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Deque</span>&lt;<span class="type">Character</span>&gt; stack = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">char</span> c : s.<span class="method">toCharArray</span>()) {
+    <span class="keyword">if</span> (c == <span class="string">'('</span>) stack.<span class="method">push</span>(<span class="string">')'</span>);
+    <span class="keyword">else if</span> (c == <span class="string">'{'</span>) stack.<span class="method">push</span>(<span class="string">'}'</span>);
+    <span class="keyword">else if</span> (c == <span class="string">'['</span>) stack.<span class="method">push</span>(<span class="string">']'</span>);
+    <span class="keyword">else if</span> (stack.<span class="method">isEmpty</span>() || stack.<span class="method">pop</span>() != c) <span class="keyword">return false</span>;
+}
+<span class="keyword">return</span> stack.<span class="method">isEmpty</span>();
+          </div>
+        </div>
+
+        <!-- P14 -->
+        <div class="pattern-card-full" data-category="stacks">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P14</span>
+              <h3>Monotonic Stack (Next Greater Element)</h3>
+            </div>
+            <span class="pattern-category-tag">Stacks &amp; Queues</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Find the next greater/smaller element for every element in an array, histogram areas.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Stack maintains strictly increasing or decreasing indices; pop when invariant violated.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) amortized (each index pushed and popped once) &bull; Space: O(N).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Next Greater Element I &amp; II, Daily Temperatures, Largest Rectangle in Histogram, Online Stock Span.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] result = <span class="keyword">new int</span>[n];
+<span class="type">Deque</span>&lt;<span class="type">Integer</span>&gt; stack = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) {
+    <span class="keyword">while</span> (!stack.<span class="method">isEmpty</span>() &amp;&amp; temperatures[i] &gt; temperatures[stack.<span class="method">peek</span>()]) {
+        <span class="keyword">int</span> prevIdx = stack.<span class="method">pop</span>();
+        result[prevIdx] = i - prevIdx;
+    }
+    stack.<span class="method">push</span>(i);
+}
+          </div>
+        </div>
+
+        <!-- P15 -->
+        <div class="pattern-card-full" data-category="stacks">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P15</span>
+              <h3>Queue (FIFO &amp; Level-Order Traversal)</h3>
+            </div>
+            <span class="pattern-category-tag">Stacks &amp; Queues</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Sequential processing, tree level-by-level traversal, shortest path in unweighted graphs.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">First-in, First-out processing guarantees all nodes at depth <code>D</code> are processed before depth <code>D+1</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(V + E) or O(N) &bull; Space: O(W) where W is maximum level width.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Binary Tree Level Order Traversal, Zigzag Level Order, Walls and Gates, Open the Lock.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Queue</span>&lt;<span class="type">TreeNode</span>&gt; queue = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+queue.<span class="method">offer</span>(root);
+<span class="keyword">while</span> (!queue.<span class="method">isEmpty</span>()) {
+    <span class="keyword">int</span> levelSize = queue.<span class="method">size</span>();
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; levelSize; i++) {
+        <span class="type">TreeNode</span> curr = queue.<span class="method">poll</span>();
+        <span class="keyword">if</span> (curr.left != <span class="keyword">null</span>) queue.<span class="method">offer</span>(curr.left);
+        <span class="keyword">if</span> (curr.right != <span class="keyword">null</span>) queue.<span class="method">offer</span>(curr.right);
+    }
+}
+          </div>
+        </div>
+
+        <!-- P16 -->
+        <div class="pattern-card-full" data-category="stacks">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P16</span>
+              <h3>Monotonic Queue (Sliding Window Extremum)</h3>
+            </div>
+            <span class="pattern-category-tag">Stacks &amp; Queues</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Calculate maximum/minimum of moving sliding window in amortized O(1) per step.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Deque maintains decreasing candidates. Discard smaller elements from back when new element arrives.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) overall &bull; Space: O(K) Deque of indices.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Sliding Window Maximum, Shortest Subarray with Sum at Least K, Jump Game VI.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Deque</span>&lt;<span class="type">Integer</span>&gt; deque = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; nums.length; i++) {
+    <span class="keyword">if</span> (!deque.<span class="method">isEmpty</span>() &amp;&amp; deque.<span class="method">peekFirst</span>() &lt;= i - k) deque.<span class="method">pollFirst</span>();
+    <span class="keyword">while</span> (!deque.<span class="method">isEmpty</span>() &amp;&amp; nums[deque.<span class="method">peekLast</span>()] &lt; nums[i]) deque.<span class="method">pollLast</span>();
+    deque.<span class="method">offerLast</span>(i);
+    <span class="keyword">if</span> (i &gt;= k - 1) result[i - k + 1] = nums[deque.<span class="method">peekFirst</span>()];
+}
+          </div>
+        </div>
+
+        <!-- P17 -->
+        <div class="pattern-card-full" data-category="search">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P17</span>
+              <h3>Recursion Trees &amp; Divide-and-Conquer</h3>
+            </div>
+            <span class="pattern-category-tag">Search &amp; Recursion</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Problem can be broken into non-overlapping subproblems of smaller size (e.g. merge sort, binary tree).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Solve base cases directly; delegate subproblems to recursive calls; combine returned sub-solutions.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: Master Theorem T(N) = aT(N/b) + O(N^d) &bull; Space: O(Depth) call stack.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Merge Sort, Pow(x, n), Kth Symbol in Grammar, Validate Binary Search Tree.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">public double</span> <span class="method">myPow</span>(<span class="keyword">double</span> x, <span class="keyword">long</span> n) {
+    <span class="keyword">if</span> (n == 0) <span class="keyword">return</span> 1.0;
+    <span class="keyword">if</span> (n &lt; 0) <span class="keyword">return</span> 1.0 / <span class="method">myPow</span>(x, -n);
+    <span class="keyword">double</span> half = <span class="method">myPow</span>(x, n / 2);
+    <span class="keyword">return</span> (n % 2 == 0) ? half * half : half * half * x;
+}
+          </div>
+        </div>
+
+        <!-- P18 -->
+        <div class="pattern-card-full" data-category="search">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P18</span>
+              <h3>Backtracking: Choice &rarr; Explore &rarr; Undo</h3>
+            </div>
+            <span class="pattern-category-tag">Search &amp; Recursion</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Generate all subsets, permutations, combinations, or solve puzzle constraints (N-Queens).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">State must be completely restored when returning from recursion so sibling branches remain unaffected.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(2ⁿ) or O(N!) factorial &bull; Space: O(N) recursion depth + current state buffer.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Subsets, Permutations, Combination Sum, Word Search, N-Queens, Sudoku Solver.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">void</span> <span class="method">backtrack</span>(<span class="keyword">int</span> start, <span class="type">List</span>&lt;<span class="type">Integer</span>&gt; path, <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">Integer</span>&gt;&gt; result) {
+    result.<span class="method">add</span>(<span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;(path));
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; nums.length; i++) {
+        path.<span class="method">add</span>(nums[i]);            <span class="comment">// 1. Choose</span>
+        <span class="method">backtrack</span>(i + 1, path, result); <span class="comment">// 2. Explore</span>
+        path.<span class="method">remove</span>(path.<span class="method">size</span>() - 1);  <span class="comment">// 3. Undo / Restore State</span>
+    }
+}
+          </div>
+        </div>
+
+        <!-- P19 -->
+        <div class="pattern-card-full" data-category="search">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P19</span>
+              <h3>Tree DFS &amp; Subtree Aggregation</h3>
+            </div>
+            <span class="pattern-category-tag">Search &amp; Recursion</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Calculate tree height, diameter, maximum path sum, lowest common ancestor.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Bottom-up recursion: compute left and right subtree states, update global metric, return local metric.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) visits every node once &bull; Space: O(Height) call stack.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Diameter of Binary Tree, Maximum Depth, Binary Tree Maximum Path Sum, Lowest Common Ancestor.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> maxDiameter = 0;
+<span class="keyword">int</span> <span class="method">maxDepth</span>(<span class="type">TreeNode</span> root) {
+    <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> 0;
+    <span class="keyword">int</span> left = <span class="method">maxDepth</span>(root.left);
+    <span class="keyword">int</span> right = <span class="method">maxDepth</span>(root.right);
+    maxDiameter = <span class="type">Math</span>.<span class="method">max</span>(maxDiameter, left + right);
+    <span class="keyword">return</span> 1 + <span class="type">Math</span>.<span class="method">max</span>(left, right);
+}
+          </div>
+        </div>
+
+        <!-- P20 -->
+        <div class="pattern-card-full" data-category="trees">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P20</span>
+              <h3>Binary Search Tree (BST Validation &amp; Inorder)</h3>
+            </div>
+            <span class="pattern-category-tag">Trees &amp; Heaps</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Search/Insert/Delete in sorted tree, Kth smallest element, validate BST invariant.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">For every node: <code>all left &lt; node.val &lt; all right</code>. Inorder traversal produces strictly ascending values.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(H) average / O(N) worst &bull; Space: O(H) recursion stack.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Validate Binary Search Tree, Kth Smallest Element in BST, Inorder Successor, Delete Node in BST.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">boolean</span> <span class="method">isValidBST</span>(<span class="type">TreeNode</span> root, <span class="type">Long</span> min, <span class="type">Long</span> max) {
+    <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return true</span>;
+    <span class="keyword">if</span> ((min != <span class="keyword">null</span> &amp;&amp; root.val &lt;= min) || (max != <span class="keyword">null</span> &amp;&amp; root.val &gt;= max)) <span class="keyword">return false</span>;
+    <span class="keyword">return</span> <span class="method">isValidBST</span>(root.left, min, (<span class="keyword">long</span>)root.val) &amp;&amp; <span class="method">isValidBST</span>(root.right, (<span class="keyword">long</span>)root.val, max);
+}
+          </div>
+        </div>
+
+        <!-- P21 -->
+        <div class="pattern-card-full" data-category="trees">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P21</span>
+              <h3>Heap / PriorityQueue (Top-K Streaming)</h3>
+            </div>
+            <span class="pattern-category-tag">Trees &amp; Heaps</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Find top K largest/smallest elements, streaming median, merge K sorted streams.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Maintaining a min-heap of size K guarantees root is always the Kth largest candidate seen so far.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N log K) beats O(N log N) full sort &bull; Space: O(K) heap size.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Kth Largest Element in an Array, Top K Frequent Elements, Merge k Sorted Lists, Find Median from Data Stream.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">PriorityQueue</span>&lt;<span class="type">Integer</span>&gt; minHeap = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
+    minHeap.<span class="method">offer</span>(num);
+    <span class="keyword">if</span> (minHeap.<span class="method">size</span>() &gt; k) minHeap.<span class="method">poll</span>();
+}
+<span class="keyword">return</span> minHeap.<span class="method">peek</span>();
+          </div>
+        </div>
+
+        <!-- P22 -->
+        <div class="pattern-card-full" data-category="trees">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P22</span>
+              <h3>Trie (Prefix Tree)</h3>
+            </div>
+            <span class="pattern-category-tag">Trees &amp; Heaps</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Autocomplete, dictionary prefix validation, word search in grid with shared prefixes.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Every edge represents a character; common prefixes share nodes, enabling O(L) search where L is word length.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Insert / Search: O(L) &bull; Space: O(N &times; L &times; AlphabetSize).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Implement Trie (Prefix Tree), Design Add and Search Words, Word Search II, Maximum XOR of Two Numbers.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">class</span> <span class="type">TrieNode</span> {
+    <span class="type">TrieNode</span>[] children = <span class="keyword">new</span> <span class="type">TrieNode</span>[26];
+    <span class="keyword">boolean</span> isEndOfWord;
+}
+<span class="keyword">void</span> <span class="method">insert</span>(<span class="type">String</span> word) {
+    <span class="type">TrieNode</span> curr = root;
+    <span class="keyword">for</span> (<span class="keyword">char</span> c : word.<span class="method">toCharArray</span>()) {
+        <span class="keyword">int</span> idx = c - <span class="string">'a'</span>;
+        <span class="keyword">if</span> (curr.children[idx] == <span class="keyword">null</span>) curr.children[idx] = <span class="keyword">new</span> <span class="type">TrieNode</span>();
+        curr = curr.children[idx];
+    }
+    curr.isEndOfWord = <span class="keyword">true</span>;
+}
+          </div>
+        </div>
+
+        <!-- P23 -->
+        <div class="pattern-card-full" data-category="graphs">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P23</span>
+              <h3>Graph BFS (Shortest Path in Unweighted Graph)</h3>
+            </div>
+            <span class="pattern-category-tag">Graphs &amp; DSU</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Shortest distance / minimum transformations in unweighted graph or grid.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">First time a target node is visited via BFS queue is guaranteed to be its shortest distance.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(V + E) &bull; Space: O(V) visited set + queue.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Word Ladder, Shortest Path in Binary Matrix, Rotting Oranges, 01 Matrix.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Queue</span>&lt;<span class="keyword">int</span>[]&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+q.<span class="method">offer</span>(<span class="keyword">new int</span>[]{startRow, startCol, 0});
+visited[startRow][startCol] = <span class="keyword">true</span>;
+<span class="keyword">while</span> (!q.<span class="method">isEmpty</span>()) {
+    <span class="keyword">int</span>[] curr = q.<span class="method">poll</span>();
+    <span class="keyword">if</span> (curr[0] == destR &amp;&amp; curr[1] == destC) <span class="keyword">return</span> curr[2];
+    <span class="keyword">for</span> (<span class="keyword">int</span>[] dir : DIRS) {
+        <span class="keyword">int</span> nr = curr[0] + dir[0], nc = curr[1] + dir[1];
+        <span class="keyword">if</span> (<span class="method">isValid</span>(nr, nc) &amp;&amp; !visited[nr][nc]) {
+            visited[nr][nc] = <span class="keyword">true</span>;
+            q.<span class="method">offer</span>(<span class="keyword">new int</span>[]{nr, nc, curr[2] + 1});
+        }
+    }
+}
+          </div>
+        </div>
+
+        <!-- P24 -->
+        <div class="pattern-card-full" data-category="graphs">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P24</span>
+              <h3>Graph DFS &amp; Connected Components</h3>
+            </div>
+            <span class="pattern-category-tag">Graphs &amp; DSU</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Flood fill, counting connected islands, cycle detection in directed graphs (3-color state).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Explore deep into unvisited paths; mark visited to prevent cycles; backtrack when path completes.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(V + E) or O(M &times; N) &bull; Space: O(V) recursion call stack.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Number of Islands, Max Area of Island, Clone Graph, Surrounding Regions.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">void</span> <span class="method">dfs</span>(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c) {
+    <span class="keyword">if</span> (r &lt; 0 || r &gt;= grid.length || c &lt; 0 || c &gt;= grid[0].length || grid[r][c] != <span class="string">'1'</span>) <span class="keyword">return</span>;
+    grid[r][c] = <span class="string">'0'</span>; <span class="comment">// Mark visited in-place</span>
+    <span class="method">dfs</span>(grid, r + 1, c);
+    <span class="method">dfs</span>(grid, r - 1, c);
+    <span class="method">dfs</span>(grid, r, c + 1);
+    <span class="method">dfs</span>(grid, r, c - 1);
+}
+          </div>
+        </div>
+
+        <!-- P25 -->
+        <div class="pattern-card-full" data-category="graphs">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P25</span>
+              <h3>Topological Sort (Kahn's In-Degree Algorithm)</h3>
+            </div>
+            <span class="pattern-category-tag">Graphs &amp; DSU</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Dependency ordering, compile prerequisites, task scheduling in Directed Acyclic Graphs (DAG).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Nodes with in-degree 0 have no prerequisites and can be executed; decrement neighbor in-degrees on completion.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(V + E) &bull; Space: O(V + E) adjacency list + in-degree array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Course Schedule I &amp; II, Alien Dictionary, Sequence Reconstruction, Minimum Height Trees.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] indegree = <span class="keyword">new int</span>[numCourses];
+<span class="keyword">for</span> (<span class="keyword">int</span>[] edge : prerequisites) indegree[edge[0]]++;
+<span class="type">Queue</span>&lt;<span class="type">Integer</span>&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; numCourses; i++) <span class="keyword">if</span> (indegree[i] == 0) q.<span class="method">offer</span>(i);
+<span class="keyword">int</span> processed = 0;
+<span class="keyword">while</span> (!q.<span class="method">isEmpty</span>()) {
+    <span class="keyword">int</span> curr = q.<span class="method">poll</span>();
+    processed++;
+    <span class="keyword">for</span> (<span class="keyword">int</span> next : adj.<span class="method">get</span>(curr)) {
+        <span class="keyword">if</span> (--indegree[next] == 0) q.<span class="method">offer</span>(next);
+    }
+}
+<span class="keyword">return</span> processed == numCourses;
+          </div>
+        </div>
+
+        <!-- P26 -->
+        <div class="pattern-card-full" data-category="graphs">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P26</span>
+              <h3>Disjoint Set Union (DSU / Union-Find)</h3>
+            </div>
+            <span class="pattern-category-tag">Graphs &amp; DSU</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Dynamic connectivity, redundant edge detection, finding number of connected components.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Path compression flattens tree; Union-by-Rank attaches smaller tree under larger root: &alpha;(N) &asymp; O(1).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Find / Union: O(&alpha;(N)) amortized nearly O(1) &bull; Space: O(N) parent and rank arrays.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Number of Provinces, Redundant Connection, Accounts Merge, Graph Valid Tree, Kruskal's MST.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">class</span> <span class="type">DSU</span> {
+    <span class="keyword">int</span>[] parent, rank;
+    <span class="keyword">public</span> <span class="type">DSU</span>(<span class="keyword">int</span> n) {
+        parent = <span class="keyword">new int</span>[n]; rank = <span class="keyword">new int</span>[n];
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) parent[i] = i;
+    }
+    <span class="keyword">public int</span> <span class="method">find</span>(<span class="keyword">int</span> i) {
+        <span class="keyword">if</span> (parent[i] == i) <span class="keyword">return</span> i;
+        <span class="keyword">return</span> parent[i] = <span class="method">find</span>(parent[i]); <span class="comment">// Path compression</span>
+    }
+    <span class="keyword">public boolean</span> <span class="method">union</span>(<span class="keyword">int</span> x, <span class="keyword">int</span> y) {
+        <span class="keyword">int</span> rootX = <span class="method">find</span>(x), rootY = <span class="method">find</span>(y);
+        <span class="keyword">if</span> (rootX == rootY) <span class="keyword">return false</span>; <span class="comment">// Cycle detected</span>
+        <span class="keyword">if</span> (rank[rootX] &lt; rank[rootY]) parent[rootX] = rootY;
+        <span class="keyword">else if</span> (rank[rootX] &gt; rank[rootY]) parent[rootY] = rootX;
+        <span class="keyword">else</span> { parent[rootY] = rootX; rank[rootX]++; }
+        <span class="keyword">return true</span>;
+    }
+}
+          </div>
+        </div>
+
+        <!-- P27 -->
+        <div class="pattern-card-full" data-category="graphs">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P27</span>
+              <h3>Dijkstra's Shortest Path Algorithm</h3>
+            </div>
+            <span class="pattern-category-tag">Graphs &amp; DSU</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Single-source shortest path on weighted graph with strictly non-negative edge weights.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Greedy expansion via Min-Heap: the vertex with minimum tentative distance is settled and final.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O((V + E) log V) with PriorityQueue &bull; Space: O(V) distances array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Network Delay Time, Path with Minimum Effort, Cheapest Flights Within K Stops, Minimum Cost to Reach Destination.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">PriorityQueue</span>&lt;<span class="keyword">int</span>[]&gt; pq = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;(<span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[1]));
+<span class="keyword">int</span>[] dist = <span class="keyword">new int</span>[n + 1];
+<span class="type">Arrays</span>.<span class="method">fill</span>(dist, <span class="type">Integer</span>.MAX_VALUE);
+dist[k] = 0;
+pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{k, 0});
+<span class="keyword">while</span> (!pq.<span class="method">isEmpty</span>()) {
+    <span class="keyword">int</span>[] curr = pq.<span class="method">poll</span>();
+    <span class="keyword">int</span> u = curr[0], d = curr[1];
+    <span class="keyword">if</span> (d &gt; dist[u]) <span class="keyword">continue</span>;
+    <span class="keyword">for</span> (<span class="keyword">int</span>[] neighbor : adj.<span class="method">get</span>(u)) {
+        <span class="keyword">int</span> v = neighbor[0], weight = neighbor[1];
+        <span class="keyword">if</span> (dist[u] + weight &lt; dist[v]) {
+            dist[v] = dist[u] + weight;
+            pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{v, dist[v]});
+        }
+    }
+}
+          </div>
+        </div>
+
+        <!-- P28 -->
+        <div class="pattern-card-full" data-category="graphs">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P28</span>
+              <h3>Minimum Spanning Tree (Kruskal's &amp; Prim's)</h3>
+            </div>
+            <span class="pattern-category-tag">Graphs &amp; DSU</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Connect all nodes with minimum total cable/cost, build water supply network.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Kruskal: Sort edges by weight; include edge if endpoints belong to different DSU sets.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(E log E) for edge sort &bull; Space: O(V) for DSU.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Min Cost to Connect All Points, Connecting Cities With Minimum Cost, Optimize Water Distribution.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Arrays</span>.<span class="method">sort</span>(edges, <span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[2]));
+<span class="type">DSU</span> dsu = <span class="keyword">new</span> <span class="type">DSU</span>(n);
+<span class="keyword">int</span> totalCost = 0, edgesCount = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span>[] e : edges) {
+    <span class="keyword">if</span> (dsu.<span class="method">union</span>(e[0], e[1])) {
+        totalCost += e[2];
+        <span class="keyword">if</span> (++edgesCount == n - 1) <span class="keyword">break</span>;
+    }
+}
+          </div>
+        </div>
+
+        <!-- P29 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P29</span>
+              <h3>1D Dynamic Programming (State Reduction)</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Optimal choice at step <code>i</code> depends only on previous 1 or K values.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value"><code>dp[i] = f(dp[i-1], dp[i-2])</code>. Since state depth is bounded, space can be reduced to O(1) variables.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) &bull; Space: O(1) rolling variables.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Climbing Stairs, House Robber I &amp; II, Decode Ways, Min Cost Climbing Stairs.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> prev2 = 0, prev1 = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
+    <span class="keyword">int</span> curr = <span class="type">Math</span>.<span class="method">max</span>(prev1, prev2 + num);
+    prev2 = prev1;
+    prev1 = curr;
+}
+<span class="keyword">return</span> prev1;
+          </div>
+        </div>
+
+        <!-- P30 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P30</span>
+              <h3>2D Grid Dynamic Programming</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Grid path optimization moving only Right and Down; minimum cost route from (0,0) to (M-1, N-1).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value"><code>dp[r][c] = cost[r][c] + min(dp[r-1][c], dp[r][c-1])</code>. Rolling row reduces space from O(M &times; N) to O(N).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(M &times; N) &bull; Space: O(N) single 1D rolling array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Unique Paths I &amp; II, Minimum Path Sum, Dungeon Game, Cherry Pickup.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] dp = <span class="keyword">new int</span>[cols];
+<span class="type">Arrays</span>.<span class="method">fill</span>(dp, <span class="type">Integer</span>.MAX_VALUE);
+dp[0] = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> r = 0; r &lt; rows; r++) {
+    dp[0] += grid[r][0];
+    <span class="keyword">for</span> (<span class="keyword">int</span> c = 1; c &lt; cols; c++) {
+        dp[c] = grid[r][c] + <span class="type">Math</span>.<span class="method">min</span>(dp[c], dp[c - 1]);
+    }
+}
+<span class="keyword">return</span> dp[cols - 1];
+          </div>
+        </div>
+
+        <!-- P31 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P31</span>
+              <h3>0/1 Knapsack (Subset Invariant)</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Select subset of items each used at most once to maximize value within capacity limit.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Loop backwards over capacity <code>w</code> from <code>W</code> down to <code>weight[i]</code> to guarantee item is picked once.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N &times; W) &bull; Space: O(W) 1D array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Partition Equal Subset Sum, Target Sum, Ones and Zeroes, Last Stone Weight II.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">boolean</span>[] dp = <span class="keyword">new boolean</span>[target + 1];
+dp[0] = <span class="keyword">true</span>;
+<span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> j = target; j &gt;= num; j--) {
+        dp[j] = dp[j] || dp[j - num];
+    }
+}
+<span class="keyword">return</span> dp[target];
+          </div>
+        </div>
+
+        <!-- P32 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P32</span>
+              <h3>Unbounded Knapsack (Coin Change)</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Items can be reused unlimited times to achieve target sum.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Loop forward over capacity <code>w</code> from <code>weight[i]</code> up to <code>W</code> to permit reusing the same item.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N &times; W) &bull; Space: O(W) array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Coin Change I (Min Coins), Coin Change II (Total Combinations), Integer Break, Perfect Squares.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] dp = <span class="keyword">new int</span>[amount + 1];
+<span class="type">Arrays</span>.<span class="method">fill</span>(dp, amount + 1);
+dp[0] = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> coin : coins) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = coin; i &lt;= amount; i++) {
+        dp[i] = <span class="type">Math</span>.<span class="method">min</span>(dp[i], dp[i - coin] + 1);
+    }
+}
+<span class="keyword">return</span> dp[amount] &gt; amount ? -1 : dp[amount];
+          </div>
+        </div>
+
+        <!-- P33 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P33</span>
+              <h3>Subsequence DP (LCS &amp; Edit Distance)</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Compare dual strings for longest common characters or minimum edits (insert, delete, replace).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">If characters match: <code>1 + dp[i-1][j-1]</code>; if mismatch: <code>max(dp[i-1][j], dp[i][j-1])</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(M &times; N) &bull; Space: O(N) rolling row.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Longest Common Subsequence, Edit Distance, Delete Operation for Two Strings, Distinct Subsequences.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[][] dp = <span class="keyword">new int</span>[m + 1][n + 1];
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt;= m; i++) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> j = 1; j &lt;= n; j++) {
+        <span class="keyword">if</span> (text1.<span class="method">charAt</span>(i - 1) == text2.<span class="method">charAt</span>(j - 1)) dp[i][j] = 1 + dp[i - 1][j - 1];
+        <span class="keyword">else</span> dp[i][j] = <span class="type">Math</span>.<span class="method">max</span>(dp[i - 1][j], dp[i][j - 1]);
+    }
+}
+<span class="keyword">return</span> dp[m][n];
+          </div>
+        </div>
+
+        <!-- P34 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P34</span>
+              <h3>Longest Increasing Subsequence (Patience Sorting)</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Find length of strictly increasing subsequence in unsorted array in O(N log N) time.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value"><code>tails[i]</code> stores smallest tail of all increasing subsequences of length <code>i+1</code>. Binary search updates tails.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N log N) &bull; Space: O(N) tails array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Longest Increasing Subsequence, Russian Doll Envelopes, Maximum Length of Pair Chain.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span>[] tails = <span class="keyword">new int</span>[nums.length];
+<span class="keyword">int</span> size = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> x : nums) {
+    <span class="keyword">int</span> i = 0, j = size;
+    <span class="keyword">while</span> (i != j) {
+        <span class="keyword">int</span> mid = (i + j) / 2;
+        <span class="keyword">if</span> (tails[mid] &lt; x) i = mid + 1;
+        <span class="keyword">else</span> j = mid;
+    }
+    tails[i] = x;
+    <span class="keyword">if</span> (i == size) size++;
+}
+<span class="keyword">return</span> size;
+          </div>
+        </div>
+
+        <!-- P35 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P35</span>
+              <h3>Interval Dynamic Programming</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Optimal cost of merging or splitting ranges <code>[i, j]</code> (e.g. palindromic partitions, bursting balloons).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Iterate by window length <code>len</code> from 1 to N; optimal sub-interval <code>dp[i][k] + dp[k+1][j]</code> is precomputed.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N³) &bull; Space: O(N²) 2D table.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Burst Balloons, Minimum Cost to Cut a Stick, Matrix Chain Multiplication, Longest Palindromic Subsequence.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">for</span> (<span class="keyword">int</span> len = 2; len &lt;= n; len++) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt;= n - len; i++) {
+        <span class="keyword">int</span> j = i + len - 1;
+        <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt; j; k++) {
+            dp[i][j] = <span class="type">Math</span>.<span class="method">min</span>(dp[i][j], dp[i][k] + dp[k + 1][j] + cost(i, k, j));
+        }
+    }
+}
+          </div>
+        </div>
+
+        <!-- P36 -->
+        <div class="pattern-card-full" data-category="dp">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P36</span>
+              <h3>Prefix Sum + Hash Map (Subarray Sum K)</h3>
+            </div>
+            <span class="pattern-category-tag">Dynamic Programming</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Count number of contiguous subarrays with exact sum K in array containing positive and negative values.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">If <code>currPrefix - target = pastPrefix</code>, then the range between those prefixes sums exactly to <code>K</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(N) single pass &bull; Space: O(N) hash map.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Subarray Sum Equals K, Contiguous Array (Equal 0s and 1s), Subarray Sums Divisible by K.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Map</span>&lt;<span class="type">Integer</span>, <span class="type">Integer</span>&gt; prefixCount = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
+prefixCount.<span class="method">put</span>(0, 1);
+<span class="keyword">int</span> sum = 0, count = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
+    sum += num;
+    count += prefixCount.<span class="method">getOrDefault</span>(sum - k, 0);
+    prefixCount.<span class="method">put</span>(sum, prefixCount.<span class="method">getOrDefault</span>(sum, 0) + 1);
+}
+<span class="keyword">return</span> count;
+          </div>
+        </div>
+
+        <!-- P37 -->
+        <div class="pattern-card-full" data-category="bits">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P37</span>
+              <h3>Bit Manipulation (Bitwise Set Operations)</h3>
+            </div>
+            <span class="pattern-category-tag">Bit &amp; Math</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">O(1) auxiliary space requirement, duplicate matching with XOR, parity and power of two checks.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value"><code>x ^ x = 0</code> and <code>x ^ 0 = x</code>. <code>n &amp; (n-1)</code> clears lowest set bit; <code>n &amp; (-n)</code> isolates lowest set bit.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(1) bitwise CPU ops &bull; Space: O(1) in-place registers.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Single Number I &amp; II, Number of 1 Bits, Power of Two, Counting Bits, Reverse Bits.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> unique = 0;
+<span class="keyword">for</span> (<span class="keyword">int</span> num : nums) unique ^= num;
+<span class="keyword">return</span> unique;
+          </div>
+        </div>
+
+        <!-- P38 -->
+        <div class="pattern-card-full" data-category="bits">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P38</span>
+              <h3>State Compression &amp; Bitmask DP</h3>
+            </div>
+            <span class="pattern-category-tag">Bit &amp; Math</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Small input size <code>N &lt;= 20</code>; track visited subsets or permutations in dynamic programming.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">A 32-bit integer acts as a boolean array where bit <code>i</code> is 1 if item <code>i</code> is in the current subset.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(2ⁿ &times; N) &bull; Space: O(2ⁿ &times; N) array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Shortest Path Visiting All Nodes, Smallest Sufficient Team, Matchsticks to Square, Travelling Salesperson.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">int</span> targetMask = (1 &lt;&lt; n) - 1;
+<span class="keyword">int</span>[][] dp = <span class="keyword">new int</span>[1 &lt;&lt; n][n];
+<span class="comment">// Query if item i is in mask: ((mask &gt;&gt; i) &amp; 1) == 1</span>
+<span class="comment">// Add item i to mask: mask | (1 &lt;&lt; i)</span>
+          </div>
+        </div>
+
+        <!-- P39 -->
+        <div class="pattern-card-full" data-category="graphs">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P39</span>
+              <h3>Multi-Source Breadth-First Search</h3>
+            </div>
+            <span class="pattern-category-tag">Graphs &amp; DSU</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Multiple starting points simultaneously expanding outward in a grid or network (fire spreading, viral infection).</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Initialize queue with all sources at distance 0. BFS level wavefront guarantees optimal shortest distance from closest source.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Time: O(M &times; N) &bull; Space: O(M &times; N) queue.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Rotting Oranges, 01 Matrix, As Far from Land as Possible, Map of Highest Peak.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="type">Queue</span>&lt;<span class="keyword">int</span>[]&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+<span class="keyword">for</span> (<span class="keyword">int</span> r = 0; r &lt; m; r++) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> c = 0; c &lt; n; c++) {
+        <span class="keyword">if</span> (grid[r][c] == 2) q.<span class="method">offer</span>(<span class="keyword">new int</span>[]{r, c}); <span class="comment">// Enqueue all sources</span>
+    }
+}
+          </div>
+        </div>
+
+        <!-- P40 -->
+        <div class="pattern-card-full" data-category="trees">
+          <div class="pattern-header">
+            <div class="pattern-title-wrap">
+              <span class="pattern-badge-id">P40</span>
+              <h3>Segment Tree &amp; Range Updates (Advanced)</h3>
+            </div>
+            <span class="pattern-category-tag">Trees &amp; Heaps</span>
+          </div>
+          <div class="pattern-fields-grid">
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Problem Signal ("The Tell")</div>
+              <div class="pattern-field-value">Array undergoing dynamic single-element or range updates with frequent range min/max/sum queries.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Core Invariant</div>
+              <div class="pattern-field-value">Tree node at index <code>i</code> aggregates segment <code>[L, R]</code>; left child is <code>2i</code>, right child is <code>2i+1</code>.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Time &amp; Auxiliary Space</div>
+              <div class="pattern-field-value">Query: O(log N) &bull; Update: O(log N) &bull; Space: O(4N) array.</div>
+            </div>
+            <div class="pattern-field-item">
+              <div class="pattern-field-label">Canonical Problems</div>
+              <div class="pattern-field-value">Range Sum Query Mutable, Count of Smaller Numbers After Self, Falling Squares.</div>
+            </div>
+          </div>
+          <div class="code-block">
+<span class="keyword">void</span> <span class="method">update</span>(<span class="keyword">int</span> node, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span> idx, <span class="keyword">int</span> val) {
+    <span class="keyword">if</span> (start == end) { tree[node] = val; <span class="keyword">return</span>; }
+    <span class="keyword">int</span> mid = (start + end) / 2;
+    <span class="keyword">if</span> (idx &lt;= mid) <span class="method">update</span>(2 * node, start, mid, idx, val);
+    <span class="keyword">else</span> <span class="method">update</span>(2 * node + 1, mid + 1, end, idx, val);
+    tree[node] = tree[2 * node] + tree[2 * node + 1];
+}
+          </div>
+        </div>
+
+      </div>
+    </section>

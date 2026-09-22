@@ -1,0 +1,138 @@
+    <!-- ================= SECTION 05: LEARNING & FAILURE ENGINE ================= -->
+    <section class="doc-section" id="learning-systems">
+      <div class="section-eyebrow">Section 05</div>
+      <h2>Learning Engines, <em>Error Journal</em> & Retention Architecture</h2>
+      <p class="section-intro">
+        True algorithmic capability is not measured by how many solutions you read. It is forged by how you diagnose failures, retain patterns across 60 days, and think when you are stuck.
+      </p>
+
+      <!-- 7 LEARNING MODES -->
+      <h3 class="h3-section" id="learning-modes">The 7 Progressive Learning Modes</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin: 18px 0 34px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--teal); margin-bottom: 6px;">Mode 1: Full Teaching</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Complete deep-dive: WHY, WHAT, HOW, visualization, brute force, bottleneck, and clean Java implementation.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--blue); margin-bottom: 6px;">Mode 2: Guided Inquiry</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">No code given. Only structural clues, invariant hints, and Socratic questions to prompt student derivation.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--purple); margin-bottom: 6px;">Mode 3: Mock Interview</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">The mentor plays a strict Tier-1 interviewer. Zero clues; asks follow-ups, introduces edge cases, challenges complexity.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--red); margin-bottom: 6px;">Mode 4: Bug Lab Debugging</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Given broken, subtle, or crashing Java code. Student must locate off-by-one, overflow, or logic bugs without IDE warnings.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--saffron-dark); margin-bottom: 6px;">Mode 5: Timed Assessment</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Strict 35-minute countdown clock. No external tabs. Simulates real online assessment pressure.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--green); margin-bottom: 6px;">Mode 6: Unseen Transfer</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">Novel problem with disguised pattern. Tests whether student can identify invariants without pattern labels.</p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--gray-800); margin-bottom: 6px;">Mode 7: Teach-Back</h4>
+          <p style="font-size: 0.83rem; color: var(--gray-600); line-height: 1.55;">The student must verbally teach the problem and prove its correctness to the mentor. Ultimate test of mastery.</p>
+        </div>
+      </div>
+
+      <!-- 14-CATEGORY FAILURE LOG -->
+      <h3 class="h3-section" id="failure-log">The 14-Category DSA Failure Log</h3>
+      <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--gray-600);">
+        Whenever you fail a problem, get stuck, or require a hint, it is categorized into one of these 14 failure modes. The recommendation engine parses this log to assign targeted drills:
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 30px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">1. Concept Gap</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Didn't understand the underlying mathematics or data structure invariants.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">2. Pattern Gap</div>
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">2. Pattern Gap</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Failed to recognize the structural "tell" (e.g. missed sliding window signal).</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">3. Implementation Bug</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Correct algorithm derived, but pointer mutation or array swap had typos.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">4. Java Syntax Gap</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Hesitated on Collections methods, generic types, or lambda comparator syntax.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">5. DS Selection Error</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Used ArrayList instead of ArrayDeque, or sorting instead of PriorityQueue.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">6. Complexity Miscalculation</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Produced O(N²) or O(2ⁿ) solution because constraints were not inspected first.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">7. Edge Case Failure</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Failed on empty array, null input, duplicate elements, or single node.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">8. Off-By-One Boundary</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Loop boundary <code>&lt;</code> vs <code>&lt;=</code>, or wrong midpoint split in binary search.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">9. Recursion Base-Case Error</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Infinite call stack recursion or incorrect return value on leaf node.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">10. DP State Definition Error</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Unclear definition of what <code>dp[i]</code> represents, leading to invalid transitions.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">11. Overthinking</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Attempted advanced DP or segment tree when a simple Two Pointers worked.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">12. Misread Narrative</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Missed a critical sentence in problem description (e.g. "strictly increasing").</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">13. Integer Overflow</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Sum exceeded 32-bit signed integer capacity <code>2^31 - 1</code>; didn't use <code>long</code>.</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-left: 3px solid var(--red); border-radius: var(--radius-sm); padding: 14px;">
+          <div style="font-weight: 700; color: var(--gray-900); font-size: 0.86rem;">14. Time Management Freeze</div>
+          <div style="font-size: 0.78rem; color: var(--gray-600); margin-top: 3px;">Spent 30 minutes on brute force without writing code; panicked under the clock.</div>
+        </div>
+      </div>
+
+      <!-- SPACED REPETITION ENGINE -->
+      <h3 class="h3-section" id="spaced-rep">The D0–D60 Spaced Repetition Engine</h3>
+      <div class="incremental-box">
+        <p>
+          Viewing a solution is NOT mastery. Every problem follows a 7-checkpoint retention schedule:
+          <strong>Day 0 (Initial Solve)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 1 (Independent Re-Code from Blank Screen)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 3 (Solve Sibling Variation)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 7 (Verbalize Invariants Aloud to Mentor)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 14 (Timed 25-Min Re-solve Under Pressure)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 30 (Solve Disguised Unseen Problem)</strong> &nbsp;&rarr;&nbsp;
+          <strong>Day 60 (Permanent Active Recall Mastery Check)</strong>.
+        </p>
+      </div>
+
+      <!-- PROBLEM DATABASE SCHEMA -->
+      <h3 class="h3-section">Problem Database Architecture: 250+ Curated Problem Schema</h3>
+      <div class="code-block">
+{
+  <span class="string">"id"</span>: <span class="string">"LC-0076"</span>,
+  <span class="string">"title"</span>: <span class="string">"Minimum Window Substring"</span>,
+  <span class="string">"difficulty"</span>: <span class="string">"Hard"</span>,
+  <span class="string">"pattern"</span>: <span class="string">"P08_DYNAMIC_SLIDING_WINDOW"</span>,
+  <span class="string">"prerequisites"</span>: [<span class="string">"LC-0003"</span>, <span class="string">"LC-0242"</span>],
+  <span class="string">"estimatedTimeMinutes"</span>: 35,
+  <span class="string">"keyInvariant"</span>: <span class="string">"Window contracts from left while frequency match count == required"</span>,
+  <span class="string">"commonMistakes"</span>: [<span class="string">"String concatenation in loop"</span>, <span class="string">"Character object comparison via =="</span>],
+  <span class="string">"complexityTarget"</span>: { <span class="string">"time"</span>: <span class="string">"O(S + T)"</span>, <span class="string">"space"</span>: <span class="string">"O(1) alphabet"</span> },
+  <span class="string">"interviewFrequency"</span>: <span class="string">"High"</span>
+}
+      </div>
+    </section>

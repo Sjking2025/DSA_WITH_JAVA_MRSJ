@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DSA with Java — &#8377;30,000-Level Interview Engineering Program | Master Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --teal: #0EA5A4;
+  --teal-dark: #0A7B7A;
+  --teal-light: #E0F5F5;
+  --teal-muted: #B2E4E4;
+  --saffron: #FF9933;
+  --saffron-light: #FFF3E5;
+  --saffron-dark: #CC7A29;
+  --gray-50: #F7F8F9;
+  --gray-100: #EEEFF1;
+  --gray-200: #D8DADF;
+  --gray-300: #B8BCC6;
+  --gray-400: #9DA3AE;
+  --gray-600: #5A6070;
+  --gray-800: #1E2330;
+  --gray-900: #0E131F;
+  --white: #FFFFFF;
+  --green: #10B981;
+  --green-light: #ECFDF5;
+  --green-dark: #065F46;
+  --purple: #7C3AED;
+  --purple-light: #EDE9FE;
+  --blue: #3B82F6;
+  --blue-light: #EFF6FF;
+  --red: #EF4444;
+  --red-light: #FEF2F2;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.06);
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.06);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--gray-50);
+  color: var(--gray-800);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container--narrow { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+@media print {
+  nav, .toc-sidebar, .back-to-top, .search-container { display: none !important; }
+  .main-content { margin-left: 0 !important; padding: 0 !important; width: 100% !important; }
+  body { background: white; }
+  .month-card, .pattern-card-full, .lab-box { break-inside: avoid; }
+}
+
+/* NAVBAR */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(247,248,249,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gray-200);
+  transition: box-shadow 0.2s;
+}
+nav.scrolled { box-shadow: var(--shadow-sm); }
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  gap: 16px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.28rem;
+  color: var(--gray-800);
+}
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--teal);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 19px; font-style: italic;
+  font-family: var(--font-display); font-weight: 600;
+}
+.logo span { color: var(--teal); }
+.nav-doc-badge {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--teal-dark);
+  background: var(--teal-light);
+  border: 1px solid var(--teal-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.84rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--teal); color: #fff; padding: 8px 18px; box-shadow: 0 2px 10px rgba(14,165,164,0.25); }
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--gray-800); padding: 7px 16px; border: 1.5px solid var(--gray-200); }
+.btn-outline:hover { background: var(--white); border-color: var(--gray-400); }
+
+/* HERO */
+.hero {
+  background: linear-gradient(155deg, #071724 0%, #0A2433 45%, #083433 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 88px 0 76px;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 950px 650px at 65% 50%, rgba(14,165,164,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14,165,164,0.18);
+  border: 1px solid rgba(14,165,164,0.35);
+  color: var(--teal-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.8vw, 3.4rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.16;
+  margin-bottom: 18px;
+  letter-spacing: -0.015em;
+}
+.hero h1 em { font-style: italic; color: var(--saffron); }
+.hero-sub {
+  font-size: 1.08rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.72;
+  max-width: 780px;
+  margin-bottom: 36px;
+}
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+.stat-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  backdrop-filter: blur(8px);
+}
+.stat-pill .num {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--teal-muted);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.stat-pill .label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+/* LAYOUT & SIDEBAR */
+.doc-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: calc(100vh - 64px);
+}
+.toc-sidebar {
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+  border-right: 1px solid var(--gray-200);
+  background: var(--white);
+  padding: 24px 0 60px;
+  scrollbar-width: thin;
+}
+.toc-sidebar::-webkit-scrollbar { width: 5px; }
+.toc-sidebar::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
+.toc-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+  padding: 0 20px 10px;
+}
+.toc-section { margin-bottom: 3px; }
+.toc-section-label {
+  display: block;
+  font-size: 0.79rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  padding: 7px 20px;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  border-left: 3px solid transparent;
+}
+.toc-section-label:hover, .toc-section-label.active {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border-left-color: var(--teal);
+}
+.toc-sub-item {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--gray-600);
+  padding: 3px 20px 3px 32px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.toc-sub-item:hover { color: var(--teal); }
+.toc-divider {
+  height: 1px;
+  background: var(--gray-100);
+  margin: 12px 20px;
+}
+
+.main-content {
+  padding: 50px 60px 100px;
+  min-width: 0;
+}
+@media (max-width: 980px) {
+  .doc-layout { grid-template-columns: 1fr; }
+  .toc-sidebar { display: none; }
+  .main-content { padding: 32px 20px 70px; }
+}
+
+/* SECTION STYLES */
+.doc-section {
+  margin-bottom: 74px;
+  scroll-margin-top: 80px;
+}
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--teal);
+}
+.doc-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.2vw, 2.35rem);
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.24;
+  margin-bottom: 10px;
+}
+.doc-section h2 em { font-style: italic; color: var(--teal); }
+.section-intro {
+  font-size: 1rem;
+  color: var(--gray-600);
+  max-width: 760px;
+  line-height: 1.72;
+  margin-bottom: 34px;
+}
+
+/* CARDS & BOXES */
+.mentor-note {
+  background: linear-gradient(135deg, var(--teal-light) 0%, rgba(255,153,51,0.09) 100%);
+  border: 1px solid var(--teal-muted);
+  border-left: 4px solid var(--teal);
+  border-radius: var(--radius-md);
+  padding: 22px 26px;
+  margin: 24px 0;
+}
+.mentor-note::before {
+  content: '\2605   Principal Mentor Note';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+.mentor-note p {
+  font-size: 0.9rem;
+  color: var(--gray-800);
+  line-height: 1.68;
+  font-style: italic;
+}
+
+.warning-note {
+  background: var(--saffron-light);
+  border: 1px solid rgba(255,153,51,0.3);
+  border-left: 4px solid var(--saffron);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 22px 0;
+}
+.warning-note::before {
+  content: '\26A0   Beginner Trap / Common Interview Blunder';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--saffron-dark);
+  margin-bottom: 7px;
+}
+.warning-note p {
+  font-size: 0.88rem;
+  color: var(--gray-800);
+  line-height: 1.65;
+}
+
+.industry-box {
+  background: var(--green-light);
+  border: 1px solid #A7F3D0;
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.industry-box::before {
+  content: '\26A1   Production & System Connection';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green-dark);
+  margin-bottom: 8px;
+}
+.industry-box p {
+  font-size: 0.88rem;
+  color: #064E3B;
+  line-height: 1.65;
+}
+
+.incremental-box {
+  background: var(--blue-light);
+  border: 1px solid #BFDBFE;
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+.incremental-box::before {
+  content: '\25C6   Why This Order & Why This Invariant Matters';
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1D4ED8;
+  margin-bottom: 8px;
+}
+.incremental-box p {
+  font-size: 0.88rem;
+  color: #1e3a5f;
+  line-height: 1.65;
+}
+
+/* CODE BLOCKS */
+.inline-code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--teal-dark);
+}
+.code-block {
+  background: #0E131F;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  margin: 18px 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  color: #E2E8F0;
+  line-height: 1.6;
+}
+.code-block .keyword { color: #F472B6; font-weight: 600; }
+.code-block .type { color: #38BDF8; }
+.code-block .method { color: #FBBF24; }
+.code-block .comment { color: #64748B; font-style: italic; }
+.code-block .string { color: #4ADE80; }
+
+/* TABLES */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  margin: 24px 0;
+}
+.transform-table, .eval-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.transform-table th, .eval-table th {
+  background: var(--gray-900);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 14px 18px;
+  text-align: left;
+}
+.transform-table td, .eval-table td {
+  padding: 13px 18px;
+  font-size: 0.875rem;
+  color: var(--gray-800);
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--white);
+  vertical-align: top;
+}
+.transform-table tr:hover td, .eval-table tr:hover td { background: var(--gray-50); }
+.transform-table .before-col { color: var(--red); font-weight: 500; }
+.transform-table .after-col { color: var(--green); font-weight: 600; }
+
+/* MONTH CARDS */
+.month-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 46px;
+}
+.month-header {
+  padding: 30px 34px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.month-header::after {
+  content: '';
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  opacity: 0.08;
+}
+.month-header.m1 { background: linear-gradient(135deg, #0A1F2F 0%, #0D2E3A 100%); }
+.month-header.m1::after { background: var(--teal); }
+.month-header.m2 { background: linear-gradient(135deg, #1a1040 0%, #2d1b6e 100%); }
+.month-header.m2::after { background: #7C3AED; }
+.month-header.m3 { background: linear-gradient(135deg, #0c2340 0%, #0a3860 100%); }
+.month-header.m3::after { background: var(--blue); }
+.month-header.m4 { background: linear-gradient(135deg, #0a2820 0%, #093d2a 100%); }
+.month-header.m4::after { background: var(--green); }
+.month-header.m5 { background: linear-gradient(135deg, #2d1b00 0%, #4a2e00 100%); }
+.month-header.m5::after { background: var(--saffron); }
+.month-header.m6 { background: linear-gradient(135deg, #1a0a2e 0%, #2e0d4a 100%); }
+.month-header.m6::after { background: #EC4899; }
+
+.month-num-badge {
+  flex-shrink: 0;
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  border: 2px solid rgba(255,255,255,0.22);
+}
+.m1 .month-num-badge { background: rgba(14,165,164,0.32); }
+.m2 .month-num-badge { background: rgba(124,58,237,0.42); }
+.m3 .month-num-badge { background: rgba(59,130,246,0.42); }
+.m4 .month-num-badge { background: rgba(16,185,129,0.42); }
+.m5 .month-num-badge { background: rgba(255,153,51,0.42); }
+.m6 .month-num-badge { background: rgba(236,72,153,0.42); }
+
+.month-header-text { flex: 1; }
+.month-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+}
+.month-header-text h3 {
+  font-family: var(--font-display);
+  font-size: 1.58rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.22;
+  margin-bottom: 6px;
+}
+.month-header-text h3 em { font-style: italic; opacity: 0.88; }
+.month-tagline {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.72);
+  max-width: 620px;
+}
+.month-skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+.skill-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.month-body { padding: 32px; }
+
+/* WEEK CARDS WITH CLEAN GEOMETRIC DOTS */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.week-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+.week-card-header { margin-bottom: 14px; }
+.week-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.week-card h4 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  line-height: 1.35;
+}
+.week-card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.week-card li {
+  font-size: 0.84rem;
+  color: var(--gray-600);
+  line-height: 1.55;
+  padding-left: 18px;
+  position: relative;
+}
+.week-card li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+}
+.week-card li strong { color: var(--gray-800); }
+
+/* MILESTONE PROJECT CARDS */
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin: 20px 0 10px;
+}
+.project-card-header {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--gray-100);
+  background: var(--gray-50);
+}
+.project-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.badge-beginner { background: var(--green-light); color: #065F46; }
+.badge-intermediate { background: var(--blue-light); color: #1D4ED8; }
+.badge-advanced { background: var(--purple-light); color: #5B21B6; }
+.badge-capstone { background: linear-gradient(135deg, var(--teal-light), var(--saffron-light)); color: var(--teal-dark); }
+.project-card-header h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+.project-card-body { padding: 22px 24px; }
+.project-card-body p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+.project-detail-item .label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--gray-400);
+  margin-bottom: 4px;
+}
+.project-detail-item .value {
+  font-size: 0.84rem;
+  color: var(--gray-800);
+  line-height: 1.55;
+}
+
+/* PATTERN CATALOG & SEARCH */
+.search-container {
+  margin: 20px 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.search-input-wrap {
+  position: relative;
+  max-width: 600px;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 18px 12px 42px;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  outline: none;
+  background: var(--white);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search-input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(14,165,164,0.12);
+}
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-400);
+  font-size: 1rem;
+}
+.pattern-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filter-btn {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: 100px;
+  cursor: pointer;
+  color: var(--gray-600);
+  transition: all 0.15s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--teal);
+  color: #fff;
+  border-color: var(--teal);
+}
+
+.pattern-card-full {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 26px 30px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s, border-color 0.15s;
+}
+.pattern-card-full:hover {
+  border-color: var(--teal);
+}
+.pattern-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.pattern-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pattern-badge-id {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+.pattern-card-full h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+.pattern-category-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--gray-100);
+  color: var(--gray-600);
+}
+
+.pattern-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+.pattern-field-item {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+}
+.pattern-field-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-dark);
+  margin-bottom: 4px;
+}
+.pattern-field-value {
+  font-size: 0.84rem;
+  color: var(--gray-800);
+  line-height: 1.55;
+}
+
+/* LABS & GAUNTLET */
+.lab-box {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin: 20px 0;
+  box-shadow: var(--shadow-sm);
+}
+.lab-toggle-btn {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border: 1px solid var(--teal-muted);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+  transition: all 0.15s;
+}
+.lab-toggle-btn:hover { background: var(--teal); color: #fff; }
+.lab-solution {
+  display: none;
+  margin-top: 14px;
+  padding: 16px;
+  background: var(--gray-50);
+  border-left: 3px solid var(--teal);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+.lab-solution.open { display: block; }
+
+/* GAUNTLET ROUNDS */
+.gauntlet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.gauntlet-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.gauntlet-round-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.gauntlet-card h4 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+}
+.gauntlet-card p {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* BACK TO TOP & FOOTER */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: var(--gray-900);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.15s, background 0.15s;
+  z-index: 500;
+}
+.back-to-top:hover { background: var(--teal); transform: translateY(-2px); }
+
+footer {
+  background: var(--gray-900);
+  padding: 44px 0;
+  text-align: center;
+}
+footer p { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+footer .footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+footer .footer-brand span { color: var(--teal); }
+
+.h3-section {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin: 34px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.h3-section::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+</style>
+</head>
+<body id="top">
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#top" class="logo">
+      <div class="logo-icon">P</div>
+      Paadhai<span>DSA</span>
+    </a>
+    <div class="nav-doc-badge">&#8377;30,000-Level Interview Engineering Program</div>
+    <div class="nav-right">
+      <a href="#philosophy" class="btn btn-outline">Philosophy</a>
+      <a href="#toolkit" class="btn btn-outline">Java Toolkit</a>
+      <a href="#curriculum" class="btn btn-outline">24-Week Curriculum</a>
+      <a href="#patterns" class="btn btn-outline">40 Patterns</a>
+      <a href="#labs" class="btn btn-outline">Labs & Simulator</a>
+      <a href="#gauntlet" class="btn btn-primary">Readiness Gauntlet</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-content">
+    <div class="hero-eyebrow">&#9889; 24 Weeks &bull; 20 Conceptual Phases &bull; 40 Patterns &bull; Zero Rote Memorization</div>
+    <h1>DSA With Java &mdash; <em>&#8377;30,000-Level</em> Interview Engineering Program</h1>
+    <p class="hero-sub">
+      A comprehensive engineering training system architected by Principal Engineers. Transform from zero programming confidence into a candidate who can decompose unseen algorithmic challenges, identify structural invariants, choose optimal data structures, write clean Java 21, prove mathematical complexity, and defend technical trade-offs aloud under live Tier-1 interview scrutiny.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-pill"><div class="num">24</div><div class="label">Structured Weeks</div></div>
+      <div class="stat-pill"><div class="num">20</div><div class="label">Conceptual Phases</div></div>
+      <div class="stat-pill"><div class="num">40</div><div class="label">Pattern Cards</div></div>
+      <div class="stat-pill"><div class="num">250+</div><div class="label">Curated Problems</div></div>
+      <div class="stat-pill"><div class="num">6</div><div class="label">Milestone Projects</div></div>
+      <div class="stat-pill"><div class="num">8</div><div class="label">Gauntlet Rounds</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="doc-layout">
+  <!-- TOC SIDEBAR -->
+  <aside class="toc-sidebar">
+    <div class="toc-title">Table of Contents</div>
+    
+    <div class="toc-section">
+      <a href="#philosophy" class="toc-section-label">01. Core Philosophy</a>
+      <a href="#progression" class="toc-sub-item">11-Step Cognitive Progression</a>
+      <a href="#pedagogy" class="toc-sub-item">5-Question Framework</a>
+      <a href="#rules" class="toc-sub-item">Anti-Memorization Rules</a>
+      <a href="#transformation" class="toc-sub-item">Transformation Matrix</a>
+    </div>
+
+    <div class="toc-section">
+      <a href="#toolkit" class="toc-section-label">02. Java DSA Toolkit</a>
+      <a href="#memory-layout" class="toc-sub-item">Stack, Heap & References</a>
+      <a href="#collections-deep" class="toc-sub-item">Collections Framework Decision Tree</a>
+      <a href="#deque-priority" class="toc-sub-item">ArrayDeque vs Stack & PQ Mechanics</a>
+      <a href="#comparators-records" class="toc-sub-item">Comparators & Records</a>
+    </div>
+
+    <div class="toc-divider"></div>
+
+    <div class="toc-section">
+      <a href="#curriculum" class="toc-section-label">03. 24-Week Curriculum</a>
+      <a href="#phase-overview" class="toc-sub-item">The 20 Conceptual Phases</a>
+      <a href="#month1" class="toc-sub-item">Month 1: Foundations & Complexity (W1–4)</a>
+      <a href="#month2" class="toc-sub-item">Month 2: Linear Patterns & Windows (W5–8)</a>
+      <a href="#month3" class="toc-sub-item">Month 3: Non-Linear & Search Space (W9–12)</a>
+      <a href="#month4" class="toc-sub-item">Month 4: Trees, Heaps & Tries (W13–16)</a>
+      <a href="#month5" class="toc-sub-item">Month 5: Graphs, Greedy & DP (W17–20)</a>
+      <a href="#month6" class="toc-sub-item">Month 6: Advanced DP & Gauntlet (W21–24)</a>
+    </div>
+
+    <div class="toc-divider"></div>
+
+    <div class="toc-section">
+      <a href="#patterns" class="toc-section-label">04. 40-Pattern Engine</a>
+      <a href="#protocol" class="toc-sub-item">14-Step Decomposition Protocol</a>
+      <a href="#pattern-catalog" class="toc-sub-item">Complete Pattern Catalog (P01–P40)</a>
+    </div>
+
+    <div class="toc-section">
+      <a href="#learning-systems" class="toc-section-label">05. Learning & Failure Engine</a>
+      <a href="#learning-modes" class="toc-sub-item">7 Progressive Learning Modes</a>
+      <a href="#failure-log" class="toc-sub-item">14-Category DSA Failure Log</a>
+      <a href="#spaced-rep" class="toc-sub-item">D0–D60 Spaced Repetition</a>
+    </div>
+
+    <div class="toc-section">
+      <a href="#labs" class="toc-section-label">06. Interactive Labs & Tracks</a>
+      <a href="#complexity-lab" class="toc-sub-item">Interactive Complexity Lab</a>
+      <a href="#bug-lab" class="toc-sub-item">Java Bug Lab (5 Subtle Bugs)</a>
+      <a href="#company-tracks" class="toc-sub-item">5 Interview Preparation Tracks</a>
+      <a href="#interview-sim" class="toc-sub-item">Interview Simulator Framework</a>
+      <a href="#gauntlet" class="toc-sub-item">8-Round Readiness Gauntlet</a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ================= SECTION 01: PHILOSOPHY ================= -->
+    <section class="doc-section" id="philosophy">
+      <div class="section-eyebrow">Section 01</div>
+      <h2>Core Transformation & <em>Pedagogical Philosophy</em></h2>
+      <p class="section-intro">
+        Most candidates fail technical rounds not because they lack intelligence, but because they have been trained to memorize answers. When an interviewer changes an array boundary, introduces negative values, or shifts constraints from offline to streaming, memorization collapses. Here is how our engineering training system rebuilds your algorithmic cognition.
+      </p>
+
+      <div class="mentor-note">
+        <p>
+          "In 20 years of evaluating engineers at Google, Microsoft, and Amazon, the single biggest differentiator between an offer and a rejection is whether a candidate relies on recall or derivation. When presented with an unfamiliar problem, an untrained candidate tries to match it against problems they solved on LeetCode. An engineer trained in invariants calmly analyzes the constraints, establishes the brute-force baseline, identifies the computational bottleneck, and determines what minimal information must be maintained to reach optimal efficiency."
+        </p>
+      </div>
+
+      <h3 class="h3-section" id="progression">The 11-Step Cognitive Progression</h3>
+      <div class="incremental-box">
+        <p>
+          <strong>Zero Programming Confidence</strong> &nbsp;&rarr;&nbsp;
+          <strong>Java 21 Foundations</strong> &nbsp;&rarr;&nbsp;
+          <strong>Problem-Solving Modeling</strong> &nbsp;&rarr;&nbsp;
+          <strong>Data Structure Intuition</strong> &nbsp;&rarr;&nbsp;
+          <strong>Algorithm Invariants</strong> &nbsp;&rarr;&nbsp;
+          <strong>Pattern Recognition</strong> &nbsp;&rarr;&nbsp;
+          <strong>Problem Decomposition</strong> &nbsp;&rarr;&nbsp;
+          <strong>Bottleneck Optimization</strong> &nbsp;&rarr;&nbsp;
+          <strong>Interview Verbalization</strong> &nbsp;&rarr;&nbsp;
+          <strong>Unseen Problem Transfer</strong> &nbsp;&rarr;&nbsp;
+          <strong>Tier-1 Placement Readiness</strong>
+        </p>
+      </div>
+
+      <h3 class="h3-section" id="pedagogy">The 5-Question Framework for Every Algorithmic Concept</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 24px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 18px;">
+          <div style="color: var(--teal); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">1. WHY?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">Why does it exist?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">What physical computer limitation or algorithmic bottleneck forced computer scientists to invent this data structure?</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 18px;">
+          <div style="color: var(--blue); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">2. WHAT?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">What is its structure?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">What are the structural invariants, memory layouts, and axiomatic constraints that govern it?</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 18px;">
+          <div style="color: var(--purple); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">3. HOW?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">How does it execute?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">How do JVM memory pointers mutate during operations? What is the amortized cost across operations?</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 18px;">
+          <div style="color: var(--saffron-dark); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">4. WHEN?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">When should you trigger it?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">What exact signals in constraints, input types, and problem descriptions signal that this structure is required?</div>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 18px;">
+          <div style="color: var(--green); font-weight: 700; font-size: 0.8rem; text-transform: uppercase;">5. WHY THIS?</div>
+          <div style="font-weight: 700; color: var(--gray-800); margin: 4px 0 6px;">Why not alternatives?</div>
+          <div style="font-size: 0.82rem; color: var(--gray-600);">Why does this approach strictly beat competing data structures in cache locality, time, or auxiliary space?</div>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="rules">The Anti-Memorization & Anti-Grind Rules</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0 24px;">
+        <div class="warning-note" style="margin: 0;">
+          <p><strong>The Anti-Memorization Rule:</strong> Never say <em>"This is sliding window because this is the Longest Substring problem."</em> You must articulate: <em>"The problem requires finding an optimal contiguous range where the validity condition can be updated incrementally by expanding the right pointer and contracting the left pointer. Because the validity predicate is monotonic with window size, sliding window guarantees linear O(N) evaluation."</em></p>
+        </div>
+        <div class="warning-note" style="margin: 0;">
+          <p><strong>The Anti-LeetCode-Grind Rule:</strong> Memorizing 600 problems creates a fragile candidate who stumbles when an interviewer changes one constraint. A candidate who masters 150 curated problems across 40 structural patterns and can systematically dry-run invariants will reliably outperform candidates with twice their problem count.</p>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="transformation">Transformation Matrix: Day 0 vs Day 180</h3>
+      <div class="table-wrap">
+        <table class="transform-table">
+          <thead>
+            <tr>
+              <th>Assessment Dimension</th>
+              <th class="before-col">Day 0 (Untrained Candidate)</th>
+              <th class="after-col">Day 180 (Production Interview Engineer)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Unfamiliar Problem</strong></td>
+              <td class="before-col">Stares silently at the problem; asks "Have I seen this before?" Panic when keywords don't match.</td>
+              <td class="after-col">Follows the 14-step protocol: extracts constraints, establishes brute-force baseline, identifies bottleneck, maps invariants.</td>
+            </tr>
+            <tr>
+              <td><strong>Complexity Analysis</strong></td>
+              <td class="before-col">Guesses O(N) or O(N log N) based on intuition or buzzwords. Fails to derive space complexity.</td>
+              <td class="after-col">Calculates exact Big-O and auxiliary bounds by analyzing loop step increments, recursion trees, and heap allocations.</td>
+            </tr>
+            <tr>
+              <td><strong>Java Implementation</strong></td>
+              <td class="before-col">Uses legacy Stack, raw types, string concatenation inside loops, and trips over NullPointer and IndexOutOfBounds bugs.</td>
+              <td class="after-col">Writes modern Java 21: ArrayDeque, PriorityQueue with safe comparators, Records, StringBuilder, and clean boundary checks.</td>
+            </tr>
+            <tr>
+              <td><strong>Interview Communication</strong></td>
+              <td class="before-col">Codes in complete silence for 30 minutes, then asks "Is this right?" when done.</td>
+              <td class="after-col">Verbalizes thought process from minute 1: discusses trade-offs, states invariants, and conducts manual dry-run before writing code.</td>
+            </tr>
+            <tr>
+              <td><strong>Edge Cases</strong></td>
+              <td class="before-col">Discovered only when unit tests fail or the interviewer points them out.</td>
+              <td class="after-col">Proactively audits null, empty input, single element, duplicates, negative values, and 32-bit integer overflow before declaring solution complete.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 02: JAVA TOOLKIT ================= -->
+    <section class="doc-section" id="toolkit">
+      <div class="section-eyebrow">Section 02</div>
+      <h2>The Java <em>Interview Toolkit</em> & Memory Model</h2>
+      <p class="section-intro">
+        In Tier-1 technical interviews, Java is not just a language; it is the formal mathematical notation used to express algorithmic invariants. You must master the Java Collections Framework at an architectural level and understand how the JVM manages memory during algorithm execution.
+      </p>
+
+      <h3 class="h3-section" id="memory-layout">JVM Memory Architecture: Stack vs Heap in DSA</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 18px 0;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--teal); margin-bottom: 8px;">Stack Memory & Stack Frames</h4>
+          <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.6;">
+            Every method invocation allocates an isolated stack frame holding local primitive variables (<span class="inline-code">int</span>, <span class="inline-code">long</span>, <span class="inline-code">boolean</span>) and reference handles to heap objects. In recursive algorithms, each call pushes a new frame. Exceeding ~10,000 frames triggers <span class="inline-code">StackOverflowError</span>.
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--purple); margin-bottom: 8px;">Heap Memory Pool</h4>
+          <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.6;">
+            All Java objects (<span class="inline-code">int[]</span>, <span class="inline-code">TreeNode</span>, <span class="inline-code">HashMap</span>) reside in the heap. In Java, method arguments are passed strictly by value. When passing an object reference, the <em>reference address</em> is copied; modifying object fields mutates the underlying heap instance.
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--saffron-dark); margin-bottom: 8px;">String Pool & Immutability</h4>
+          <p style="font-size: 0.85rem; color: var(--gray-600); line-height: 1.6;">
+            Java <span class="inline-code">String</span> instances are immutable and cached in the JVM String Pool. Performing repeated concatenation (<span class="inline-code">s += ch</span>) inside a loop creates O(N²) quadratic allocations. For algorithm interviews, always utilize <span class="inline-code">StringBuilder</span> or mutable <span class="inline-code">char[]</span> arrays.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="h3-section" id="collections-deep">Collections Framework Decision Matrix & Internal Mechanics</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Interface / Class</th>
+              <th>Amortized / Worst Case</th>
+              <th>Internal Architecture</th>
+              <th>Interview Pitfalls & Best Practices</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong><span class="inline-code">ArrayList&lt;T&gt;</span></strong></td>
+              <td>Get: O(1)<br>Add: Amortized O(1), Worst O(N)</td>
+              <td>Contiguous array on the heap. Resizes by 1.5x (<span class="inline-code">oldCap + (oldCap &gt;&gt; 1)</span>). Cache friendly.</td>
+              <td>Pre-size via <span class="inline-code">new ArrayList&lt;&gt;(expectedSize)</span> to avoid resizing reallocations in tight loops.</td>
+            </tr>
+            <tr>
+              <td><strong><span class="inline-code">HashMap&lt;K, V&gt;</span></strong></td>
+              <td>Get / Put: O(1) avg<br>Worst: O(log N) treeified</td>
+              <td>Array of bucket nodes. Hash collisions resolved via linked list; converts to Red-Black Tree if bucket &gt; 8 and capacity &ge; 64.</td>
+              <td>Always override both <span class="inline-code">equals()</span> and <span class="inline-code">hashCode()</span> when using custom class keys. Default load factor is 0.75.</td>
+            </tr>
+            <tr>
+              <td><strong><span class="inline-code">ArrayDeque&lt;T&gt;</span></strong><br><em>(Recommended Stack)</em></td>
+              <td>Push / Pop: O(1)<br>Peek: O(1)</td>
+              <td>Resizable cyclic ring buffer on contiguous array. Zero lock overhead.</td>
+              <td><strong>NEVER use legacy <span class="inline-code">java.util.Stack</span></strong>. <span class="inline-code">ArrayDeque</span> provides lock-free, cache-friendly O(1) performance.</td>
+            </tr>
+            <tr>
+              <td><strong><span class="inline-code">ArrayDeque&lt;T&gt;</span></strong><br><em>(Recommended Queue)</em></td>
+              <td>Offer / Poll: O(1)<br>Peek: O(1)</td>
+              <td>Cyclic buffer with head and tail pointers wrapping on powers of two.</td>
+              <td>Far superior to <span class="inline-code">LinkedList</span> because it eliminates Node object allocation overhead and avoids pointer hopping.</td>
+            </tr>
+            <tr>
+              <td><strong><span class="inline-code">PriorityQueue&lt;T&gt;</span></strong></td>
+              <td>Insert / Poll: O(log K)<br>Peek: O(1)</td>
+              <td>Complete binary tree represented as a flat array. Min-heap by default.</td>
+              <td>To build a Max-Heap, use <span class="inline-code">Collections.reverseOrder()</span>. Avoid subtraction lambdas <span class="inline-code">(a, b) -&gt; b - a</span> due to integer overflow bugs.</td>
+            </tr>
+            <tr>
+              <td><strong><span class="inline-code">TreeSet&lt;T&gt;</span> / <span class="inline-code">TreeMap&lt;K, V&gt;</span></strong></td>
+              <td>Search / Add / Remove: O(log N)</td>
+              <td>Self-balancing Red-Black tree providing sorted key order.</td>
+              <td>Crucial for dynamic range queries using <span class="inline-code">floor()</span>, <span class="inline-code">ceiling()</span>, <span class="inline-code">lower()</span>, and <span class="inline-code">higher()</span>.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="warning-note" id="deque-priority">
+        <p>
+          <strong>Critical Java Trap &mdash; The Comparator Overflow Bug:</strong> Beginners frequently write <span class="inline-code">PriorityQueue&lt;Integer&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a);</span> to build a max-heap. If the array contains negative numbers (e.g. <span class="inline-code">a = Integer.MIN_VALUE</span>, <span class="inline-code">b = 1</span>), <span class="inline-code">b - a</span> results in negative integer overflow, completely breaking heap ordering. The correct implementation is always <span class="inline-code">Integer.compare(b, a)</span> or <span class="inline-code">Collections.reverseOrder()</span>.
+        </p>
+      </div>
+
+      <h3 class="h3-section" id="comparators-records">Modern Java 21 Algorithmic Idioms: Records & Comparators</h3>
+      <div class="code-block">
+<span class="comment">// 1. Expressing immutable multi-dimensional state using Java 17+ Records</span>
+<span class="keyword">public record</span> <span class="type">Cell</span>(<span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> cost) <span class="keyword">implements</span> <span class="type">Comparable</span>&lt;<span class="type">Cell</span>&gt; {
+    <span class="keyword">@Override</span>
+    <span class="keyword">public int</span> <span class="method">compareTo</span>(<span class="type">Cell</span> other) {
+        <span class="keyword">return</span> <span class="type">Integer</span>.<span class="method">compare</span>(<span class="keyword">this</span>.cost, other.cost);
+    }
+}
+
+<span class="comment">// 2. Multi-field sorting using modern Comparator chaining</span>
+<span class="type">List</span>&lt;<span class="type">Cell</span>&gt; list = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
+list.<span class="method">sort</span>(<span class="type">Comparator</span>.<span class="method">comparingInt</span>(<span class="type">Cell</span>::cost)
+                   .<span class="method">thenComparingInt</span>(<span class="type">Cell</span>::row)
+                   .<span class="method">reversed</span>());
+
+<span class="comment">// 3. Fast Idiomatic Stack formulation</span>
+<span class="type">Deque</span>&lt;<span class="type">Integer</span>&gt; stack = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+stack.<span class="method">push</span>(val);
+<span class="keyword">int</span> top = stack.<span class="method">pop</span>();
+
+<span class="comment">// 4. Fast Idiomatic BFS Queue formulation</span>
+<span class="type">Queue</span>&lt;<span class="type">Integer</span>&gt; queue = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+queue.<span class="method">offer</span>(val);
+<span class="keyword">int</span> front = queue.<span class="method">poll</span>();
+      </div>
+
+      <div class="industry-box">
+        <p>
+          <strong>Production Engineering Insight:</strong> In ultra-high-throughput systems (such as financial order books or event stream processors), garbage collection pauses are a primary source of tail latency. Choosing <span class="inline-code">ArrayDeque</span> instead of <span class="inline-code">LinkedList</span> eliminates millions of Node object allocations per second, keeping young-generation GC pauses under 2 milliseconds.
+        </p>
+      </div>
+    </section>

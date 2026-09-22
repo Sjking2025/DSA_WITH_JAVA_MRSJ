@@ -1,0 +1,216 @@
+    <!-- ================= SECTION 06: LABS, TRACKS & GAUNTLET ================= -->
+    <section class="doc-section" id="labs">
+      <div class="section-eyebrow">Section 06</div>
+      <h2>Interactive Labs, <em>Company Tracks</em> & Interview Gauntlet</h2>
+      <p class="section-intro">
+        Engineering intuition is built by debugging real edge cases, calculating complexity from live code snippets, and testing your problem-solving capabilities under authentic interview constraints.
+      </p>
+
+      <!-- INTERACTIVE COMPLEXITY LAB -->
+      <h3 class="h3-section" id="complexity-lab">The Interactive Complexity Lab: Derive, Don't Guess</h3>
+      <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--gray-600);">
+        Test your complexity derivation ability on these real Java snippets. Attempt to calculate the exact Big-O time and auxiliary space before clicking to reveal the mathematical derivation:
+      </p>
+
+      <!-- SNIPPET 1 -->
+      <div class="lab-box">
+        <h4 style="color: var(--gray-900); font-size: 0.95rem; margin-bottom: 8px;">Snippet 1: Non-Linear Nested Loops</h4>
+        <div class="code-block">
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt;= n; i++) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> j = 1; j &lt;= n; j += i) {
+        <span class="comment">// Constant time O(1) operation</span>
+        count++;
+    }
+}
+        </div>
+        <button class="lab-toggle-btn" onclick="toggleSolution('lab1')">Reveal Mathematical Derivation</button>
+        <div id="lab1" class="lab-solution">
+          <strong>Answer: Time Complexity = O(N log N) &bull; Space = O(1)</strong><br>
+          <em>Proof:</em> For outer loop <code>i = 1</code>, inner loop runs <code>N/1</code> times. For <code>i = 2</code>, it runs <code>N/2</code>. For <code>i = 3</code>, <code>N/3</code>. The total operations equal: <code>N &times; (1/1 + 1/2 + 1/3 + ... + 1/N)</code>. The harmonic series sum <code>&Sigma; (1/k)</code> evaluates asymptotically to <code>ln(N) + &gamma;</code>. Thus, total time is <code>N &times; ln(N) = O(N log N)</code>.
+        </div>
+      </div>
+
+      <!-- SNIPPET 2 -->
+      <div class="lab-box">
+        <h4 style="color: var(--gray-900); font-size: 0.95rem; margin-bottom: 8px;">Snippet 2: Logarithmic Stepping Loop</h4>
+        <div class="code-block">
+<span class="keyword">int</span> i = n;
+<span class="keyword">while</span> (i &gt; 1) {
+    <span class="keyword">for</span> (<span class="keyword">int</span> j = 0; j &lt; n; j++) {
+        total++;
+    }
+    i /= 2;
+}
+        </div>
+        <button class="lab-toggle-btn" onclick="toggleSolution('lab2')">Reveal Mathematical Derivation</button>
+        <div id="lab2" class="lab-solution">
+          <strong>Answer: Time Complexity = O(N log N) &bull; Space = O(1)</strong><br>
+          <em>Proof:</em> The outer while-loop divides <code>i</code> by 2 at each iteration. It executes exactly <code>log₂(N)</code> times. In each iteration, the inner for-loop performs exactly <code>N</code> steps. Total operations = <code>N &times; log₂(N) = O(N log N)</code>.
+        </div>
+      </div>
+
+      <!-- JAVA BUG LAB -->
+      <h3 class="h3-section" id="bug-lab">The Java Bug Lab: 5 Subtle Real-World Interview Bugs</h3>
+      <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--gray-600);">
+        Diagnose the subtle bugs in these Java implementations that cause candidate rejections in technical rounds:
+      </p>
+
+      <!-- BUG 1 -->
+      <div class="lab-box">
+        <h4 style="color: var(--red); font-size: 0.95rem; margin-bottom: 8px;">Bug 1: The Integer Overflow in Binary Search &amp; Comparators</h4>
+        <div class="code-block">
+<span class="comment">// Defective Binary Search:</span>
+<span class="keyword">int</span> mid = (left + right) / 2; <span class="comment">// BUG: Integer Overflow when left + right &gt; 2^31 - 1</span>
+
+<span class="comment">// Defective Comparator:</span>
+<span class="type">PriorityQueue</span>&lt;<span class="type">Integer</span>&gt; pq = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;((a, b) -&gt; b - a); <span class="comment">// BUG: Overflow with negative numbers</span>
+        </div>
+        <button class="lab-toggle-btn" onclick="toggleSolution('bug1')">View Fix &amp; Senior Engineer Explanation</button>
+        <div id="bug1" class="lab-solution">
+          <strong>Correction:</strong><br>
+          1. Use <code>int mid = left + (right - left) / 2;</code> or the unsigned bit-shift <code>(left + right) &gt;&gt;&gt; 1;</code>.<br>
+          2. Use <code>Integer.compare(b, a);</code> or <code>Collections.reverseOrder();</code>. Subtraction <code>b - a</code> when <code>b = 1</code> and <code>a = -2,147,483,648</code> yields <code>-2,147,483,647</code> due to 32-bit wrap-around, inverting the comparison!
+        </div>
+      </div>
+
+      <!-- BUG 2 -->
+      <div class="lab-box">
+        <h4 style="color: var(--red); font-size: 0.95rem; margin-bottom: 8px;">Bug 2: Modifying Collection While Iterating</h4>
+        <div class="code-block">
+<span class="type">List</span>&lt;<span class="type">String</span>&gt; list = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;(<span class="type">List</span>.<span class="method">of</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>));
+<span class="keyword">for</span> (<span class="type">String</span> s : list) {
+    <span class="keyword">if</span> (s.<span class="method">equals</span>(<span class="string">"B"</span>)) list.<span class="method">remove</span>(s); <span class="comment">// Throws ConcurrentModificationException!</span>
+}
+        </div>
+        <button class="lab-toggle-btn" onclick="toggleSolution('bug2')">View Fix &amp; Senior Engineer Explanation</button>
+        <div id="bug2" class="lab-solution">
+          <strong>Correction:</strong> The enhanced for-loop uses an implicit <code>Iterator</code>. Modifying the underlying collection mutates <code>modCount</code>, causing the iterator's next call to fail fail-fast. Use <code>list.removeIf(s -&gt; s.equals("B"));</code> or an explicit <code>Iterator.remove();</code>.
+        </div>
+      </div>
+
+      <!-- BUG 3 -->
+      <div class="lab-box">
+        <h4 style="color: var(--red); font-size: 0.95rem; margin-bottom: 8px;">Bug 3: Comparing Object Wrappers with <code>==</code></h4>
+        <div class="code-block">
+<span class="type">Integer</span> a = 1000, b = 1000;
+<span class="keyword">if</span> (a == b) { <span class="comment">// Evaluates to FALSE!</span>
+    <span class="comment">// Reference equality fails for values outside the IntegerCache [-128, 127]</span>
+}
+        </div>
+        <button class="lab-toggle-btn" onclick="toggleSolution('bug3')">View Fix &amp; Senior Engineer Explanation</button>
+        <div id="bug3" class="lab-solution">
+          <strong>Correction:</strong> Always use <code>a.equals(b)</code> or unbox to primitives <code>(int) a == (int) b</code>. The JVM caches Integer objects only between -128 and 127. Outside this range, <code>==</code> compares heap memory addresses, not mathematical values.
+        </div>
+      </div>
+
+      <!-- 5 COMPANY PREPARATION TRACKS -->
+      <h3 class="h3-section" id="company-tracks">5 Strategic Interview Preparation Tracks</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 18px 0 34px;">
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--teal); font-size: 0.95rem; margin-bottom: 6px;">Track A &mdash; General Placement</h4>
+          <p style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.55;">
+            Core 100 questions. Focus: Arrays, Strings, Two Pointers, Stacks, Binary Trees, and simple BFS/DFS. Designed for rapid baseline competence across standard hiring assessments.
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--blue); font-size: 0.95rem; margin-bottom: 6px;">Track B &mdash; Product Company</h4>
+          <p style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.55;">
+            Medium-heavy focus. Sliding windows, binary search on answer, Topological Sort, Disjoint Set Union (DSU), PriorityQueue Top-K streaming, and 1D/2D DP.
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--purple); font-size: 0.95rem; margin-bottom: 6px;">Track C &mdash; FAANG-Style</h4>
+          <p style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.55;">
+            Hard problem variations, multi-solution trade-off defense, ambiguous constraints, streaming data constraints, follow-up optimization, and communication precision.
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--saffron-dark); font-size: 0.95rem; margin-bottom: 6px;">Track D &mdash; Campus OA / Speed</h4>
+          <p style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.55;">
+            Online assessment speed engineering. Fast I/O, rapid edge-case detection, constraint-driven Big-O selection, bit manipulation, and math-adjacent algorithms.
+          </p>
+        </div>
+        <div style="background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 20px;">
+          <h4 style="color: var(--green); font-size: 0.95rem; margin-bottom: 6px;">Track E &mdash; Java Backend Engineer</h4>
+          <p style="font-size: 0.82rem; color: var(--gray-600); line-height: 1.55;">
+            DSA integrated with Java internals. Collections Framework architecture, concurrency primitives, thread safety, equals/hashCode contracts, and memory leak prevention.
+          </p>
+        </div>
+      </div>
+
+      <!-- INTERVIEW SIMULATOR -->
+      <h3 class="h3-section" id="interview-sim">The Interview Simulator &amp; Communication Rubric</h3>
+      <div class="table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>Simulation Mode</th>
+              <th>Time Limit</th>
+              <th>Format &amp; Environment</th>
+              <th>Evaluation Metric</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Campus OA</strong></td><td>60–90 min</td><td>2–3 problems on HackerRank/CodeSignal with hidden test cases</td><td>100% test cases passed within time limit</td></tr>
+            <tr><td><strong>Product Round</strong></td><td>45–60 min</td><td>1–2 medium problems + follow-up constraint variations</td><td>Structured inquiry, invariant defense, clean code</td></tr>
+            <tr><td><strong>FAANG Round</strong></td><td>45 min</td><td>Ambiguous real-world narrative; requires eliciting requirements</td><td>Requirements clarification, trade-off analysis</td></tr>
+            <tr><td><strong>Rapid Fire</strong></td><td>20 min</td><td>10 fast questions on Big-O, data structure choices, and edge cases</td><td>Immediate precision without hesitation</td></tr>
+            <tr><td><strong>Code Review</strong></td><td>30 min</td><td>Reviewing flawed candidate submission; identifying leaks &amp; bugs</td><td>Code smell detection, refactoring recommendations</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- READINESS GAUNTLET -->
+      <h3 class="h3-section" id="gauntlet">The 8-Round Interview Readiness Gauntlet</h3>
+      <p style="margin-bottom: 16px; font-size: 0.88rem; color: var(--gray-600);">
+        Before a candidate is declared placement-ready, they must clear all eight rounds of this rigorous capstone evaluation:
+      </p>
+      <div class="gauntlet-grid">
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 1 (12 Min)</div>
+          <h4>Easy Warm-Up Execution</h4>
+          <p>Solve 1 easy problem with 100% test accuracy, optimal complexity, and zero syntax errors.</p>
+        </div>
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 2 (25 Min)</div>
+          <h4>Pattern Recognition</h4>
+          <p>Given a Medium problem, identify the underlying pattern and state the invariant within 90 seconds.</p>
+        </div>
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 3 (30 Min)</div>
+          <h4>Unseen Problem Transfer</h4>
+          <p>Solve a completely novel problem with a disguised narrative independently without pattern cues.</p>
+        </div>
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 4 (10 Min)</div>
+          <h4>Optimization Follow-Up</h4>
+          <p>Interviewer alters a memory/time constraint. Adapt the solution to meet the tighter bound.</p>
+        </div>
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 5 (15 Min)</div>
+          <h4>Live Bug Lab</h4>
+          <p>Diagnose and fix 4 out of 5 broken Java programs containing subtle logic and memory bugs.</p>
+        </div>
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 6 (10 Min)</div>
+          <h4>Complexity Cross-Exam</h4>
+          <p>Defend mathematical Big-O and auxiliary space on 5 non-trivial recursive and iterative snippets.</p>
+        </div>
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 7 (45 Min)</div>
+          <h4>Full Live Mock Interview</h4>
+          <p>Live session with a Senior Engineering mentor evaluating thought process, code quality, and communication.</p>
+        </div>
+        <div class="gauntlet-card">
+          <div class="gauntlet-round-num">Round 8 (20 Min)</div>
+          <h4>Teach-Back Defense</h4>
+          <p>Verbally teach an advanced topic (e.g. DSU or 2D DP space reduction) back to the instructor with proof.</p>
+        </div>
+      </div>
+
+      <div class="mentor-note">
+        <p>
+          "A candidate who clears all 8 rounds of the Readiness Gauntlet does not enter the interview room hoping to see a familiar problem. They enter with an unshakeable engineering protocol to break down whatever appears on the screen, write production-grade Java, and communicate like a colleague rather than an examinee."
+        </p>
+      </div>
+    </section>
