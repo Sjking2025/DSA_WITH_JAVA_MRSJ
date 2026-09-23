@@ -85,6 +85,13 @@ nav.scrolled { box-shadow: var(--shadow-sm); }
   height: 64px;
   gap: 16px;
 }
+.nav-left-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  flex-shrink: 0;
+}
 .logo {
   display: flex;
   align-items: center;
@@ -94,6 +101,7 @@ nav.scrolled { box-shadow: var(--shadow-sm); }
   font-weight: 700;
   font-size: 1.28rem;
   color: var(--gray-800);
+  white-space: nowrap;
 }
 .logo-icon {
   width: 36px; height: 36px;
@@ -102,20 +110,48 @@ nav.scrolled { box-shadow: var(--shadow-sm); }
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-size: 19px; font-style: italic;
   font-family: var(--font-display); font-weight: 600;
+  flex-shrink: 0;
 }
 .logo span { color: var(--teal); }
 .nav-doc-badge {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--teal-dark);
   background: var(--teal-light);
   border: 1px solid var(--teal-muted);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 4px 10px;
   border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.nav-link {
+  color: var(--gray-600);
+  font-weight: 600;
+  font-size: 0.84rem;
+  text-decoration: none;
+  padding: 7px 12px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.nav-link:hover {
+  color: var(--teal-dark);
+  background: var(--teal-light);
+}
+@media (max-width: 1060px) {
+  .nav-doc-badge { display: none; }
+}
+@media (max-width: 780px) {
+  .nav-link { display: none; }
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -426,23 +462,108 @@ nav.scrolled { box-shadow: var(--shadow-sm); }
   border-radius: 4px;
   color: var(--teal-dark);
 }
-.code-block {
-  background: #0E131F;
-  border: 1px solid rgba(255,255,255,0.08);
+/* CODE WINDOW & DEVELOPER EDITOR STYLES */
+.code-window {
+  background: #0D1117;
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: var(--radius-md);
-  padding: 20px 24px;
   margin: 18px 0;
-  overflow-x: auto;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+.code-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #161B22;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  user-select: none;
+}
+.code-window-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.code-window-dots .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot.red { background: #FF5F56; }
+.dot.yellow { background: #FFBD2E; }
+.dot.green { background: #27C93F; }
+.code-window-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--gray-300);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.copy-btn:hover {
+  background: rgba(255,255,255,0.16);
+  color: #fff;
+  border-color: rgba(255,255,255,0.25);
+}
+.copy-btn.copied {
+  background: var(--green-light);
+  color: var(--green-dark);
+  border-color: var(--green);
+}
+.copy-btn svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+.code-block {
+  margin: 0;
+  padding: 18px 22px;
+  background: #0D1117;
+  color: #E6EDF3;
   font-family: var(--font-mono);
   font-size: 0.84rem;
-  color: #E2E8F0;
-  line-height: 1.6;
+  line-height: 1.68;
+  white-space: pre; /* PRESERVE FORMATTING AND NEWLINES */
+  overflow-x: auto;
+  tab-size: 4;
+  font-variant-ligatures: none; /* No diamond <> ligatures */
+  border: none;
+  -webkit-font-smoothing: antialiased;
 }
-.code-block .keyword { color: #F472B6; font-weight: 600; }
-.code-block .type { color: #38BDF8; }
-.code-block .method { color: #FBBF24; }
-.code-block .comment { color: #64748B; font-style: italic; }
-.code-block .string { color: #4ADE80; }
+.code-block code {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  padding: 0;
+}
+.code-block .keyword { color: #FF7B72; font-weight: 600; }
+.code-block .type { color: #79C0FF; }
+.code-block .method { color: #D2A8FF; }
+.code-block .comment { color: #8B949E; font-style: italic; }
+.code-block .string { color: #A5D6FF; }
+.code-block::-webkit-scrollbar { height: 7px; }
+.code-block::-webkit-scrollbar-track { background: #0D1117; }
+.code-block::-webkit-scrollbar-thumb { background: #30363D; border-radius: 4px; }
+.code-block::-webkit-scrollbar-thumb:hover { background: #484F58; }
+
 
 /* TABLES */
 .table-wrap {
@@ -954,17 +1075,17 @@ footer .footer-brand span { color: var(--teal); }
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="container nav-inner">
-    <a href="#top" class="logo">
-      <div class="logo-icon">P</div>
-      Paadhai<span>DSA</span>
-    </a>
-    <div class="nav-doc-badge">&#8377;30,000-Level Interview Engineering Program</div>
+    <div class="nav-left-group">
+      <a href="#top" class="logo">
+        <div class="logo-icon">P</div>
+        Paadhai<span>DSA</span>
+      </a>
+      <span class="nav-doc-badge">&#8377;30,000-Level Program</span>
+    </div>
     <div class="nav-right">
-      <a href="#philosophy" class="btn btn-outline">Philosophy</a>
-      <a href="#toolkit" class="btn btn-outline">Java Toolkit</a>
-      <a href="#curriculum" class="btn btn-outline">24-Week Curriculum</a>
-      <a href="#patterns" class="btn btn-outline">40 Patterns</a>
-      <a href="#labs" class="btn btn-outline">Labs & Simulator</a>
+      <a href="#curriculum" class="nav-link">Curriculum</a>
+      <a href="#patterns" class="nav-link">40 Patterns</a>
+      <a href="#labs" class="nav-link">Labs &amp; Simulator</a>
       <a href="#gauntlet" class="btn btn-primary">Readiness Gauntlet</a>
     </div>
   </div>
@@ -1251,8 +1372,20 @@ footer .footer-brand span { color: var(--teal); }
       </div>
 
       <h3 class="h3-section" id="comparators-records">Modern Java 21 Algorithmic Idioms: Records & Comparators</h3>
-      <div class="code-block">
-<span class="comment">// 1. Expressing immutable multi-dimensional state using Java 17+ Records</span>
+      <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="comment">// 1. Expressing immutable multi-dimensional state using Java 17+ Records</span>
 <span class="keyword">public record</span> <span class="type">Cell</span>(<span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> cost) <span class="keyword">implements</span> <span class="type">Comparable</span>&lt;<span class="type">Cell</span>&gt; {
     <span class="keyword">@Override</span>
     <span class="keyword">public int</span> <span class="method">compareTo</span>(<span class="type">Cell</span> other) {
@@ -1274,8 +1407,8 @@ stack.<span class="method">push</span>(val);
 <span class="comment">// 4. Fast Idiomatic BFS Queue formulation</span>
 <span class="type">Queue</span>&lt;<span class="type">Integer</span>&gt; queue = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 queue.<span class="method">offer</span>(val);
-<span class="keyword">int</span> front = queue.<span class="method">poll</span>();
-      </div>
+<span class="keyword">int</span> front = queue.<span class="method">poll</span>();</code></pre>
+</div>
 
       <div class="industry-box">
         <p>
@@ -2056,14 +2189,26 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Best Time to Buy and Sell Stock I, Running Sum of 1D Array, Maximum Subarray (Kadane).</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> minPrice = <span class="type">Integer</span>.MAX_VALUE, maxProfit = 0;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Linear Scan</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> minPrice = <span class="type">Integer</span>.MAX_VALUE, maxProfit = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> price : prices) {
     minPrice = <span class="type">Math</span>.<span class="method">min</span>(minPrice, price);
     maxProfit = <span class="type">Math</span>.<span class="method">max</span>(maxProfit, price - minPrice);
 }
-<span class="keyword">return</span> maxProfit;
-          </div>
+<span class="keyword">return</span> maxProfit;</code></pre>
+</div>
         </div>
 
         <!-- P02 -->
@@ -2093,14 +2238,26 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Valid Anagram, First Unique Character in a String, Ransom Note, Group Anagrams.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] freq = <span class="keyword">new int</span>[26];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Frequency Counting</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] freq = <span class="keyword">new int</span>[26];
 <span class="keyword">for</span> (<span class="keyword">char</span> c : s.<span class="method">toCharArray</span>()) freq[c - <span class="string">'a'</span>]++;
 <span class="keyword">for</span> (<span class="keyword">char</span> c : t.<span class="method">toCharArray</span>()) {
     <span class="keyword">if</span> (--freq[c - <span class="string">'a'</span>] &lt; 0) <span class="keyword">return false</span>;
 }
-<span class="keyword">return true</span>;
-          </div>
+<span class="keyword">return true</span>;</code></pre>
+</div>
         </div>
 
         <!-- P03 -->
@@ -2130,14 +2287,26 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Two Sum, 4Sum II, Longest Consecutive Sequence, Pairs with Given Difference.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Map</span>&lt;<span class="type">Integer</span>, <span class="type">Integer</span>&gt; seen = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Map</span>&lt;<span class="type">Integer</span>, <span class="type">Integer</span>&gt; seen = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; nums.length; i++) {
     <span class="keyword">int</span> complement = target - nums[i];
     <span class="keyword">if</span> (seen.<span class="method">containsKey</span>(complement)) <span class="keyword">return new int</span>[]{seen.<span class="method">get</span>(complement), i};
     seen.<span class="method">put</span>(nums[i], i);
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P04 -->
@@ -2167,12 +2336,24 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Range Sum Query Immutable, Find Pivot Index, Continuous Subarray Sum.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] prefix = <span class="keyword">new int</span>[n + 1];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Prefix Sum</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] prefix = <span class="keyword">new int</span>[n + 1];
 <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) prefix[i + 1] = prefix[i] + nums[i];
 <span class="comment">// Range sum [L, R] inclusive:</span>
-<span class="keyword">int</span> rangeSum = prefix[R + 1] - prefix[L];
-          </div>
+<span class="keyword">int</span> rangeSum = prefix[R + 1] - prefix[L];</code></pre>
+</div>
         </div>
 
         <!-- P05 -->
@@ -2202,15 +2383,27 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Two Sum II (Sorted), 3Sum, Container With Most Water, Trapping Rain Water.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> left = 0, right = nums.length - 1;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> left = 0, right = nums.length - 1;
 <span class="keyword">while</span> (left &lt; right) {
     <span class="keyword">int</span> sum = nums[left] + nums[right];
     <span class="keyword">if</span> (sum == target) <span class="keyword">return true</span>;
     <span class="keyword">else if</span> (sum &lt; target) left++;
     <span class="keyword">else</span> right--;
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P06 -->
@@ -2240,15 +2433,27 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Linked List Cycle I &amp; II, Middle of the Linked List, Happy Number, Find the Duplicate Number.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">ListNode</span> slow = head, fast = head;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Fast &amp; Slow Pointers</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">ListNode</span> slow = head, fast = head;
 <span class="keyword">while</span> (fast != <span class="keyword">null</span> &amp;&amp; fast.next != <span class="keyword">null</span>) {
     slow = slow.next;
     fast = fast.next.next;
     <span class="keyword">if</span> (slow == fast) <span class="keyword">return true</span>; <span class="comment">// Cycle confirmed</span>
 }
-<span class="keyword">return false</span>;
-          </div>
+<span class="keyword">return false</span>;</code></pre>
+</div>
         </div>
 
         <!-- P07 -->
@@ -2278,15 +2483,27 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Maximum Average Subarray I, First Negative in Every Window of Size K, Diet Plan Performance.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> windowSum = 0;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Fixed Sliding Window</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> windowSum = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; k; i++) windowSum += nums[i];
 <span class="keyword">int</span> maxSum = windowSum;
 <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; nums.length; i++) {
     windowSum += nums[i] - nums[i - k];
     maxSum = <span class="type">Math</span>.<span class="method">max</span>(maxSum, windowSum);
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P08 -->
@@ -2316,16 +2533,28 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Longest Substring Without Repeating Characters, Minimum Window Substring, Fruit Into Baskets.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> left = 0, maxLen = 0;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Dynamic Sliding Window</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> left = 0, maxLen = 0;
 <span class="type">Map</span>&lt;<span class="type">Character</span>, <span class="type">Integer</span>&gt; map = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">int</span> right = 0; right &lt; s.<span class="method">length</span>(); right++) {
     <span class="keyword">char</span> c = s.<span class="method">charAt</span>(right);
     <span class="keyword">if</span> (map.<span class="method">containsKey</span>(c)) left = <span class="type">Math</span>.<span class="method">max</span>(left, map.<span class="method">get</span>(c) + 1);
     map.<span class="method">put</span>(c, right);
     maxLen = <span class="type">Math</span>.<span class="method">max</span>(maxLen, right - left + 1);
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P09 -->
@@ -2355,8 +2584,20 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Search in Rotated Sorted Array, Find First and Last Position of Element, Find Minimum in Rotated Array.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> left = 0, right = nums.length - 1;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> left = 0, right = nums.length - 1;
 <span class="keyword">while</span> (left &lt;= right) {
     <span class="keyword">int</span> mid = left + (right - left) / 2;
     <span class="keyword">if</span> (nums[mid] == target) <span class="keyword">return</span> mid;
@@ -2367,8 +2608,8 @@ queue.<span class="method">offer</span>(val);
         <span class="keyword">if</span> (nums[mid] &lt; target &amp;&amp; target &lt;= nums[right]) left = mid + 1;
         <span class="keyword">else</span> right = mid - 1;
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P10 -->
@@ -2398,8 +2639,20 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Koko Eating Bananas, Capacity To Ship Packages, Split Array Largest Sum, Aggressive Cows.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> low = 1, high = maxPile, ans = high;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Binary Search on Answer</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> low = 1, high = maxPile, ans = high;
 <span class="keyword">while</span> (low &lt;= high) {
     <span class="keyword">int</span> mid = low + (high - low) / 2;
     <span class="keyword">if</span> (<span class="method">canFinish</span>(piles, mid, h)) {
@@ -2408,8 +2661,8 @@ queue.<span class="method">offer</span>(val);
     } <span class="keyword">else</span> {
         low = mid + 1;
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P11 -->
@@ -2439,16 +2692,28 @@ queue.<span class="method">offer</span>(val);
               <div class="pattern-field-value">Merge Intervals, Insert Interval, Non-overlapping Intervals, Meeting Rooms II.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Arrays</span>.<span class="method">sort</span>(intervals, <span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[0]));
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Merge Intervals</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Arrays</span>.<span class="method">sort</span>(intervals, <span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[0]));
 <span class="type">List</span>&lt;<span class="keyword">int</span>[]&gt; merged = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;();
 <span class="keyword">int</span>[] curr = intervals[0];
 merged.<span class="method">add</span>(curr);
 <span class="keyword">for</span> (<span class="keyword">int</span>[] next : intervals) {
     <span class="keyword">if</span> (next[0] &lt;= curr[1]) curr[1] = <span class="type">Math</span>.<span class="method">max</span>(curr[1], next[1]);
     <span class="keyword">else</span> { curr = next; merged.<span class="method">add</span>(curr); }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P12 -->
@@ -2478,8 +2743,20 @@ merged.<span class="method">add</span>(curr);
               <div class="pattern-field-value">Corporate Flight Bookings, Range Addition, Car Pooling, Shifting Letters II.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] diff = <span class="keyword">new int</span>[n + 1];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Difference Array Reconstruct</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] diff = <span class="keyword">new int</span>[n + 1];
 <span class="keyword">for</span> (<span class="keyword">int</span>[] booking : bookings) {
     <span class="keyword">int</span> l = booking[0] - 1, r = booking[1] - 1, seats = booking[2];
     diff[l] += seats;
@@ -2487,8 +2764,8 @@ merged.<span class="method">add</span>(curr);
 }
 <span class="keyword">int</span>[] ans = <span class="keyword">new int</span>[n];
 ans[0] = diff[0];
-<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt; n; i++) ans[i] = ans[i - 1] + diff[i];
-          </div>
+<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt; n; i++) ans[i] = ans[i - 1] + diff[i];</code></pre>
+</div>
         </div>
 
         <!-- P13 -->
@@ -2518,16 +2795,28 @@ ans[0] = diff[0];
               <div class="pattern-field-value">Valid Parentheses, Evaluate Reverse Polish Notation, Basic Calculator, Simplify Path.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Deque</span>&lt;<span class="type">Character</span>&gt; stack = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Deque</span>&lt;<span class="type">Character</span>&gt; stack = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">char</span> c : s.<span class="method">toCharArray</span>()) {
     <span class="keyword">if</span> (c == <span class="string">'('</span>) stack.<span class="method">push</span>(<span class="string">')'</span>);
     <span class="keyword">else if</span> (c == <span class="string">'{'</span>) stack.<span class="method">push</span>(<span class="string">'}'</span>);
     <span class="keyword">else if</span> (c == <span class="string">'['</span>) stack.<span class="method">push</span>(<span class="string">']'</span>);
     <span class="keyword">else if</span> (stack.<span class="method">isEmpty</span>() || stack.<span class="method">pop</span>() != c) <span class="keyword">return false</span>;
 }
-<span class="keyword">return</span> stack.<span class="method">isEmpty</span>();
-          </div>
+<span class="keyword">return</span> stack.<span class="method">isEmpty</span>();</code></pre>
+</div>
         </div>
 
         <!-- P14 -->
@@ -2557,8 +2846,20 @@ ans[0] = diff[0];
               <div class="pattern-field-value">Next Greater Element I &amp; II, Daily Temperatures, Largest Rectangle in Histogram, Online Stock Span.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] result = <span class="keyword">new int</span>[n];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Monotonic Stack Invariant</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] result = <span class="keyword">new int</span>[n];
 <span class="type">Deque</span>&lt;<span class="type">Integer</span>&gt; stack = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; n; i++) {
     <span class="keyword">while</span> (!stack.<span class="method">isEmpty</span>() &amp;&amp; temperatures[i] &gt; temperatures[stack.<span class="method">peek</span>()]) {
@@ -2566,8 +2867,8 @@ ans[0] = diff[0];
         result[prevIdx] = i - prevIdx;
     }
     stack.<span class="method">push</span>(i);
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P15 -->
@@ -2597,8 +2898,20 @@ ans[0] = diff[0];
               <div class="pattern-field-value">Binary Tree Level Order Traversal, Zigzag Level Order, Walls and Gates, Open the Lock.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Queue</span>&lt;<span class="type">TreeNode</span>&gt; queue = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Level-Order BFS</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Queue</span>&lt;<span class="type">TreeNode</span>&gt; queue = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 queue.<span class="method">offer</span>(root);
 <span class="keyword">while</span> (!queue.<span class="method">isEmpty</span>()) {
     <span class="keyword">int</span> levelSize = queue.<span class="method">size</span>();
@@ -2607,8 +2920,8 @@ queue.<span class="method">offer</span>(root);
         <span class="keyword">if</span> (curr.left != <span class="keyword">null</span>) queue.<span class="method">offer</span>(curr.left);
         <span class="keyword">if</span> (curr.right != <span class="keyword">null</span>) queue.<span class="method">offer</span>(curr.right);
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P16 -->
@@ -2638,15 +2951,27 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Sliding Window Maximum, Shortest Subarray with Sum at Least K, Jump Game VI.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Deque</span>&lt;<span class="type">Integer</span>&gt; deque = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Deque</span>&lt;<span class="type">Integer</span>&gt; deque = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; nums.length; i++) {
     <span class="keyword">if</span> (!deque.<span class="method">isEmpty</span>() &amp;&amp; deque.<span class="method">peekFirst</span>() &lt;= i - k) deque.<span class="method">pollFirst</span>();
     <span class="keyword">while</span> (!deque.<span class="method">isEmpty</span>() &amp;&amp; nums[deque.<span class="method">peekLast</span>()] &lt; nums[i]) deque.<span class="method">pollLast</span>();
     deque.<span class="method">offerLast</span>(i);
     <span class="keyword">if</span> (i &gt;= k - 1) result[i - k + 1] = nums[deque.<span class="method">peekFirst</span>()];
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P17 -->
@@ -2676,14 +3001,26 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Merge Sort, Pow(x, n), Kth Symbol in Grammar, Validate Binary Search Tree.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">public double</span> <span class="method">myPow</span>(<span class="keyword">double</span> x, <span class="keyword">long</span> n) {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Divide &amp; Conquer</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">public double</span> <span class="method">myPow</span>(<span class="keyword">double</span> x, <span class="keyword">long</span> n) {
     <span class="keyword">if</span> (n == 0) <span class="keyword">return</span> 1.0;
     <span class="keyword">if</span> (n &lt; 0) <span class="keyword">return</span> 1.0 / <span class="method">myPow</span>(x, -n);
     <span class="keyword">double</span> half = <span class="method">myPow</span>(x, n / 2);
     <span class="keyword">return</span> (n % 2 == 0) ? half * half : half * half * x;
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P18 -->
@@ -2713,16 +3050,28 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Subsets, Permutations, Combination Sum, Word Search, N-Queens, Sudoku Solver.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">void</span> <span class="method">backtrack</span>(<span class="keyword">int</span> start, <span class="type">List</span>&lt;<span class="type">Integer</span>&gt; path, <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">Integer</span>&gt;&gt; result) {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Backtracking Algorithm</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">void</span> <span class="method">backtrack</span>(<span class="keyword">int</span> start, <span class="type">List</span>&lt;<span class="type">Integer</span>&gt; path, <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">Integer</span>&gt;&gt; result) {
     result.<span class="method">add</span>(<span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;(path));
     <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt; nums.length; i++) {
         path.<span class="method">add</span>(nums[i]);            <span class="comment">// 1. Choose</span>
         <span class="method">backtrack</span>(i + 1, path, result); <span class="comment">// 2. Explore</span>
         path.<span class="method">remove</span>(path.<span class="method">size</span>() - 1);  <span class="comment">// 3. Undo / Restore State</span>
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P19 -->
@@ -2752,16 +3101,28 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Diameter of Binary Tree, Maximum Depth, Binary Tree Maximum Path Sum, Lowest Common Ancestor.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> maxDiameter = 0;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Tree DFS Invariant</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> maxDiameter = 0;
 <span class="keyword">int</span> <span class="method">maxDepth</span>(<span class="type">TreeNode</span> root) {
     <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> 0;
     <span class="keyword">int</span> left = <span class="method">maxDepth</span>(root.left);
     <span class="keyword">int</span> right = <span class="method">maxDepth</span>(root.right);
     maxDiameter = <span class="type">Math</span>.<span class="method">max</span>(maxDiameter, left + right);
     <span class="keyword">return</span> 1 + <span class="type">Math</span>.<span class="method">max</span>(left, right);
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P20 -->
@@ -2791,13 +3152,25 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Validate Binary Search Tree, Kth Smallest Element in BST, Inorder Successor, Delete Node in BST.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">boolean</span> <span class="method">isValidBST</span>(<span class="type">TreeNode</span> root, <span class="type">Long</span> min, <span class="type">Long</span> max) {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; BST Validation</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">boolean</span> <span class="method">isValidBST</span>(<span class="type">TreeNode</span> root, <span class="type">Long</span> min, <span class="type">Long</span> max) {
     <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return true</span>;
     <span class="keyword">if</span> ((min != <span class="keyword">null</span> &amp;&amp; root.val &lt;= min) || (max != <span class="keyword">null</span> &amp;&amp; root.val &gt;= max)) <span class="keyword">return false</span>;
     <span class="keyword">return</span> <span class="method">isValidBST</span>(root.left, min, (<span class="keyword">long</span>)root.val) &amp;&amp; <span class="method">isValidBST</span>(root.right, (<span class="keyword">long</span>)root.val, max);
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P21 -->
@@ -2827,14 +3200,26 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Kth Largest Element in an Array, Top K Frequent Elements, Merge k Sorted Lists, Find Median from Data Stream.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">PriorityQueue</span>&lt;<span class="type">Integer</span>&gt; minHeap = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">PriorityQueue</span>&lt;<span class="type">Integer</span>&gt; minHeap = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
     minHeap.<span class="method">offer</span>(num);
     <span class="keyword">if</span> (minHeap.<span class="method">size</span>() &gt; k) minHeap.<span class="method">poll</span>();
 }
-<span class="keyword">return</span> minHeap.<span class="method">peek</span>();
-          </div>
+<span class="keyword">return</span> minHeap.<span class="method">peek</span>();</code></pre>
+</div>
         </div>
 
         <!-- P22 -->
@@ -2864,8 +3249,20 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Implement Trie (Prefix Tree), Design Add and Search Words, Word Search II, Maximum XOR of Two Numbers.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">class</span> <span class="type">TrieNode</span> {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">class</span> <span class="type">TrieNode</span> {
     <span class="type">TrieNode</span>[] children = <span class="keyword">new</span> <span class="type">TrieNode</span>[26];
     <span class="keyword">boolean</span> isEndOfWord;
 }
@@ -2877,8 +3274,8 @@ queue.<span class="method">offer</span>(root);
         curr = curr.children[idx];
     }
     curr.isEndOfWord = <span class="keyword">true</span>;
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P23 -->
@@ -2908,8 +3305,20 @@ queue.<span class="method">offer</span>(root);
               <div class="pattern-field-value">Word Ladder, Shortest Path in Binary Matrix, Rotting Oranges, 01 Matrix.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Queue</span>&lt;<span class="keyword">int</span>[]&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Queue</span>&lt;<span class="keyword">int</span>[]&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 q.<span class="method">offer</span>(<span class="keyword">new int</span>[]{startRow, startCol, 0});
 visited[startRow][startCol] = <span class="keyword">true</span>;
 <span class="keyword">while</span> (!q.<span class="method">isEmpty</span>()) {
@@ -2922,8 +3331,8 @@ visited[startRow][startCol] = <span class="keyword">true</span>;
             q.<span class="method">offer</span>(<span class="keyword">new int</span>[]{nr, nc, curr[2] + 1});
         }
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P24 -->
@@ -2953,16 +3362,28 @@ visited[startRow][startCol] = <span class="keyword">true</span>;
               <div class="pattern-field-value">Number of Islands, Max Area of Island, Clone Graph, Surrounding Regions.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">void</span> <span class="method">dfs</span>(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c) {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; 2D Grid DP</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">void</span> <span class="method">dfs</span>(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> r, <span class="keyword">int</span> c) {
     <span class="keyword">if</span> (r &lt; 0 || r &gt;= grid.length || c &lt; 0 || c &gt;= grid[0].length || grid[r][c] != <span class="string">'1'</span>) <span class="keyword">return</span>;
     grid[r][c] = <span class="string">'0'</span>; <span class="comment">// Mark visited in-place</span>
     <span class="method">dfs</span>(grid, r + 1, c);
     <span class="method">dfs</span>(grid, r - 1, c);
     <span class="method">dfs</span>(grid, r, c + 1);
     <span class="method">dfs</span>(grid, r, c - 1);
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P25 -->
@@ -2992,8 +3413,20 @@ visited[startRow][startCol] = <span class="keyword">true</span>;
               <div class="pattern-field-value">Course Schedule I &amp; II, Alien Dictionary, Sequence Reconstruction, Minimum Height Trees.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] indegree = <span class="keyword">new int</span>[numCourses];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Kahn's Topological Sort</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] indegree = <span class="keyword">new int</span>[numCourses];
 <span class="keyword">for</span> (<span class="keyword">int</span>[] edge : prerequisites) indegree[edge[0]]++;
 <span class="type">Queue</span>&lt;<span class="type">Integer</span>&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt; numCourses; i++) <span class="keyword">if</span> (indegree[i] == 0) q.<span class="method">offer</span>(i);
@@ -3005,8 +3438,8 @@ visited[startRow][startCol] = <span class="keyword">true</span>;
         <span class="keyword">if</span> (--indegree[next] == 0) q.<span class="method">offer</span>(next);
     }
 }
-<span class="keyword">return</span> processed == numCourses;
-          </div>
+<span class="keyword">return</span> processed == numCourses;</code></pre>
+</div>
         </div>
 
         <!-- P26 -->
@@ -3036,8 +3469,20 @@ visited[startRow][startCol] = <span class="keyword">true</span>;
               <div class="pattern-field-value">Number of Provinces, Redundant Connection, Accounts Merge, Graph Valid Tree, Kruskal's MST.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">class</span> <span class="type">DSU</span> {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">class</span> <span class="type">DSU</span> {
     <span class="keyword">int</span>[] parent, rank;
     <span class="keyword">public</span> <span class="type">DSU</span>(<span class="keyword">int</span> n) {
         parent = <span class="keyword">new int</span>[n]; rank = <span class="keyword">new int</span>[n];
@@ -3055,8 +3500,8 @@ visited[startRow][startCol] = <span class="keyword">true</span>;
         <span class="keyword">else</span> { parent[rootY] = rootX; rank[rootX]++; }
         <span class="keyword">return true</span>;
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P27 -->
@@ -3086,8 +3531,20 @@ visited[startRow][startCol] = <span class="keyword">true</span>;
               <div class="pattern-field-value">Network Delay Time, Path with Minimum Effort, Cheapest Flights Within K Stops, Minimum Cost to Reach Destination.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">PriorityQueue</span>&lt;<span class="keyword">int</span>[]&gt; pq = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;(<span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[1]));
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Dijkstra's Algorithm</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">PriorityQueue</span>&lt;<span class="keyword">int</span>[]&gt; pq = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;(<span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[1]));
 <span class="keyword">int</span>[] dist = <span class="keyword">new int</span>[n + 1];
 <span class="type">Arrays</span>.<span class="method">fill</span>(dist, <span class="type">Integer</span>.MAX_VALUE);
 dist[k] = 0;
@@ -3103,8 +3560,8 @@ pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{k, 0
             pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{v, dist[v]});
         }
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P28 -->
@@ -3134,8 +3591,20 @@ pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{k, 0
               <div class="pattern-field-value">Min Cost to Connect All Points, Connecting Cities With Minimum Cost, Optimize Water Distribution.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Arrays</span>.<span class="method">sort</span>(edges, <span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[2]));
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Arrays</span>.<span class="method">sort</span>(edges, <span class="type">Comparator</span>.<span class="method">comparingInt</span>(a -&gt; a[2]));
 <span class="type">DSU</span> dsu = <span class="keyword">new</span> <span class="type">DSU</span>(n);
 <span class="keyword">int</span> totalCost = 0, edgesCount = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span>[] e : edges) {
@@ -3143,8 +3612,8 @@ pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{k, 0
         totalCost += e[2];
         <span class="keyword">if</span> (++edgesCount == n - 1) <span class="keyword">break</span>;
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P29 -->
@@ -3174,15 +3643,27 @@ pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{k, 0
               <div class="pattern-field-value">Climbing Stairs, House Robber I &amp; II, Decode Ways, Min Cost Climbing Stairs.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> prev2 = 0, prev1 = 0;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; 1D Dynamic Programming</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> prev2 = 0, prev1 = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
     <span class="keyword">int</span> curr = <span class="type">Math</span>.<span class="method">max</span>(prev1, prev2 + num);
     prev2 = prev1;
     prev1 = curr;
 }
-<span class="keyword">return</span> prev1;
-          </div>
+<span class="keyword">return</span> prev1;</code></pre>
+</div>
         </div>
 
         <!-- P30 -->
@@ -3212,8 +3693,20 @@ pq.<span class="method">offer</span>(<span class="keyword">new int</span>[]{k, 0
               <div class="pattern-field-value">Unique Paths I &amp; II, Minimum Path Sum, Dungeon Game, Cherry Pickup.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] dp = <span class="keyword">new int</span>[cols];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; 2D Grid DP</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] dp = <span class="keyword">new int</span>[cols];
 <span class="type">Arrays</span>.<span class="method">fill</span>(dp, <span class="type">Integer</span>.MAX_VALUE);
 dp[0] = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> r = 0; r &lt; rows; r++) {
@@ -3222,8 +3715,8 @@ dp[0] = 0;
         dp[c] = grid[r][c] + <span class="type">Math</span>.<span class="method">min</span>(dp[c], dp[c - 1]);
     }
 }
-<span class="keyword">return</span> dp[cols - 1];
-          </div>
+<span class="keyword">return</span> dp[cols - 1];</code></pre>
+</div>
         </div>
 
         <!-- P31 -->
@@ -3253,16 +3746,28 @@ dp[0] = 0;
               <div class="pattern-field-value">Partition Equal Subset Sum, Target Sum, Ones and Zeroes, Last Stone Weight II.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">boolean</span>[] dp = <span class="keyword">new boolean</span>[target + 1];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; 0/1 Knapsack</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">boolean</span>[] dp = <span class="keyword">new boolean</span>[target + 1];
 dp[0] = <span class="keyword">true</span>;
 <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
     <span class="keyword">for</span> (<span class="keyword">int</span> j = target; j &gt;= num; j--) {
         dp[j] = dp[j] || dp[j - num];
     }
 }
-<span class="keyword">return</span> dp[target];
-          </div>
+<span class="keyword">return</span> dp[target];</code></pre>
+</div>
         </div>
 
         <!-- P32 -->
@@ -3292,8 +3797,20 @@ dp[0] = <span class="keyword">true</span>;
               <div class="pattern-field-value">Coin Change I (Min Coins), Coin Change II (Total Combinations), Integer Break, Perfect Squares.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] dp = <span class="keyword">new int</span>[amount + 1];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] dp = <span class="keyword">new int</span>[amount + 1];
 <span class="type">Arrays</span>.<span class="method">fill</span>(dp, amount + 1);
 dp[0] = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> coin : coins) {
@@ -3301,8 +3818,8 @@ dp[0] = 0;
         dp[i] = <span class="type">Math</span>.<span class="method">min</span>(dp[i], dp[i - coin] + 1);
     }
 }
-<span class="keyword">return</span> dp[amount] &gt; amount ? -1 : dp[amount];
-          </div>
+<span class="keyword">return</span> dp[amount] &gt; amount ? -1 : dp[amount];</code></pre>
+</div>
         </div>
 
         <!-- P33 -->
@@ -3332,16 +3849,28 @@ dp[0] = 0;
               <div class="pattern-field-value">Longest Common Subsequence, Edit Distance, Delete Operation for Two Strings, Distinct Subsequences.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[][] dp = <span class="keyword">new int</span>[m + 1][n + 1];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[][] dp = <span class="keyword">new int</span>[m + 1][n + 1];
 <span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt;= m; i++) {
     <span class="keyword">for</span> (<span class="keyword">int</span> j = 1; j &lt;= n; j++) {
         <span class="keyword">if</span> (text1.<span class="method">charAt</span>(i - 1) == text2.<span class="method">charAt</span>(j - 1)) dp[i][j] = 1 + dp[i - 1][j - 1];
         <span class="keyword">else</span> dp[i][j] = <span class="type">Math</span>.<span class="method">max</span>(dp[i - 1][j], dp[i][j - 1]);
     }
 }
-<span class="keyword">return</span> dp[m][n];
-          </div>
+<span class="keyword">return</span> dp[m][n];</code></pre>
+</div>
         </div>
 
         <!-- P34 -->
@@ -3371,8 +3900,20 @@ dp[0] = 0;
               <div class="pattern-field-value">Longest Increasing Subsequence, Russian Doll Envelopes, Maximum Length of Pair Chain.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span>[] tails = <span class="keyword">new int</span>[nums.length];
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; LIS Patience Sorting</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span>[] tails = <span class="keyword">new int</span>[nums.length];
 <span class="keyword">int</span> size = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> x : nums) {
     <span class="keyword">int</span> i = 0, j = size;
@@ -3384,8 +3925,8 @@ dp[0] = 0;
     tails[i] = x;
     <span class="keyword">if</span> (i == size) size++;
 }
-<span class="keyword">return</span> size;
-          </div>
+<span class="keyword">return</span> size;</code></pre>
+</div>
         </div>
 
         <!-- P35 -->
@@ -3415,16 +3956,28 @@ dp[0] = 0;
               <div class="pattern-field-value">Burst Balloons, Minimum Cost to Cut a Stick, Matrix Chain Multiplication, Longest Palindromic Subsequence.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">for</span> (<span class="keyword">int</span> len = 2; len &lt;= n; len++) {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">for</span> (<span class="keyword">int</span> len = 2; len &lt;= n; len++) {
     <span class="keyword">for</span> (<span class="keyword">int</span> i = 0; i &lt;= n - len; i++) {
         <span class="keyword">int</span> j = i + len - 1;
         <span class="keyword">for</span> (<span class="keyword">int</span> k = i; k &lt; j; k++) {
             dp[i][j] = <span class="type">Math</span>.<span class="method">min</span>(dp[i][j], dp[i][k] + dp[k + 1][j] + cost(i, k, j));
         }
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P36 -->
@@ -3454,8 +4007,20 @@ dp[0] = 0;
               <div class="pattern-field-value">Subarray Sum Equals K, Contiguous Array (Equal 0s and 1s), Subarray Sums Divisible by K.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Map</span>&lt;<span class="type">Integer</span>, <span class="type">Integer</span>&gt; prefixCount = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Subarray Sum Equals K</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Map</span>&lt;<span class="type">Integer</span>, <span class="type">Integer</span>&gt; prefixCount = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
 prefixCount.<span class="method">put</span>(0, 1);
 <span class="keyword">int</span> sum = 0, count = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) {
@@ -3463,8 +4028,8 @@ prefixCount.<span class="method">put</span>(0, 1);
     count += prefixCount.<span class="method">getOrDefault</span>(sum - k, 0);
     prefixCount.<span class="method">put</span>(sum, prefixCount.<span class="method">getOrDefault</span>(sum, 0) + 1);
 }
-<span class="keyword">return</span> count;
-          </div>
+<span class="keyword">return</span> count;</code></pre>
+</div>
         </div>
 
         <!-- P37 -->
@@ -3494,11 +4059,23 @@ prefixCount.<span class="method">put</span>(0, 1);
               <div class="pattern-field-value">Single Number I &amp; II, Number of 1 Bits, Power of Two, Counting Bits, Reverse Bits.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> unique = 0;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; XOR Bit Manipulation</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> unique = 0;
 <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) unique ^= num;
-<span class="keyword">return</span> unique;
-          </div>
+<span class="keyword">return</span> unique;</code></pre>
+</div>
         </div>
 
         <!-- P38 -->
@@ -3528,12 +4105,24 @@ prefixCount.<span class="method">put</span>(0, 1);
               <div class="pattern-field-value">Shortest Path Visiting All Nodes, Smallest Sufficient Team, Matchsticks to Square, Travelling Salesperson.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">int</span> targetMask = (1 &lt;&lt; n) - 1;
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; State Compression Bitmask</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> targetMask = (1 &lt;&lt; n) - 1;
 <span class="keyword">int</span>[][] dp = <span class="keyword">new int</span>[1 &lt;&lt; n][n];
 <span class="comment">// Query if item i is in mask: ((mask &gt;&gt; i) &amp; 1) == 1</span>
-<span class="comment">// Add item i to mask: mask | (1 &lt;&lt; i)</span>
-          </div>
+<span class="comment">// Add item i to mask: mask | (1 &lt;&lt; i)</span></code></pre>
+</div>
         </div>
 
         <!-- P39 -->
@@ -3563,14 +4152,26 @@ prefixCount.<span class="method">put</span>(0, 1);
               <div class="pattern-field-value">Rotting Oranges, 01 Matrix, As Far from Land as Possible, Map of Highest Peak.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="type">Queue</span>&lt;<span class="keyword">int</span>[]&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; 2D Grid DP</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Queue</span>&lt;<span class="keyword">int</span>[]&gt; q = <span class="keyword">new</span> <span class="type">ArrayDeque</span>&lt;&gt;();
 <span class="keyword">for</span> (<span class="keyword">int</span> r = 0; r &lt; m; r++) {
     <span class="keyword">for</span> (<span class="keyword">int</span> c = 0; c &lt; n; c++) {
         <span class="keyword">if</span> (grid[r][c] == 2) q.<span class="method">offer</span>(<span class="keyword">new int</span>[]{r, c}); <span class="comment">// Enqueue all sources</span>
     }
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
         <!-- P40 -->
@@ -3600,15 +4201,27 @@ prefixCount.<span class="method">put</span>(0, 1);
               <div class="pattern-field-value">Range Sum Query Mutable, Count of Smaller Numbers After Self, Falling Squares.</div>
             </div>
           </div>
-          <div class="code-block">
-<span class="keyword">void</span> <span class="method">update</span>(<span class="keyword">int</span> node, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span> idx, <span class="keyword">int</span> val) {
+          <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Segment Tree Update</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">void</span> <span class="method">update</span>(<span class="keyword">int</span> node, <span class="keyword">int</span> start, <span class="keyword">int</span> end, <span class="keyword">int</span> idx, <span class="keyword">int</span> val) {
     <span class="keyword">if</span> (start == end) { tree[node] = val; <span class="keyword">return</span>; }
     <span class="keyword">int</span> mid = (start + end) / 2;
     <span class="keyword">if</span> (idx &lt;= mid) <span class="method">update</span>(2 * node, start, mid, idx, val);
     <span class="keyword">else</span> <span class="method">update</span>(2 * node + 1, mid + 1, end, idx, val);
     tree[node] = tree[2 * node] + tree[2 * node + 1];
-}
-          </div>
+}</code></pre>
+</div>
         </div>
 
       </div>
@@ -3737,8 +4350,20 @@ prefixCount.<span class="method">put</span>(0, 1);
 
       <!-- PROBLEM DATABASE SCHEMA -->
       <h3 class="h3-section">Problem Database Architecture: 250+ Curated Problem Schema</h3>
-      <div class="code-block">
-{
+      <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Idiomatic Pattern</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code>{
   <span class="string">"id"</span>: <span class="string">"LC-0076"</span>,
   <span class="string">"title"</span>: <span class="string">"Minimum Window Substring"</span>,
   <span class="string">"difficulty"</span>: <span class="string">"Hard"</span>,
@@ -3749,8 +4374,8 @@ prefixCount.<span class="method">put</span>(0, 1);
   <span class="string">"commonMistakes"</span>: [<span class="string">"String concatenation in loop"</span>, <span class="string">"Character object comparison via =="</span>],
   <span class="string">"complexityTarget"</span>: { <span class="string">"time"</span>: <span class="string">"O(S + T)"</span>, <span class="string">"space"</span>: <span class="string">"O(1) alphabet"</span> },
   <span class="string">"interviewFrequency"</span>: <span class="string">"High"</span>
-}
-      </div>
+}</code></pre>
+</div>
     </section>
 
     <!-- ================= SECTION 06: LABS, TRACKS & GAUNTLET ================= -->
@@ -3770,14 +4395,26 @@ prefixCount.<span class="method">put</span>(0, 1);
       <!-- SNIPPET 1 -->
       <div class="lab-box">
         <h4 style="color: var(--gray-900); font-size: 0.95rem; margin-bottom: 8px;">Snippet 1: Non-Linear Nested Loops</h4>
-        <div class="code-block">
-<span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt;= n; i++) {
+        <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Harmonic Series Loop</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">for</span> (<span class="keyword">int</span> i = 1; i &lt;= n; i++) {
     <span class="keyword">for</span> (<span class="keyword">int</span> j = 1; j &lt;= n; j += i) {
         <span class="comment">// Constant time O(1) operation</span>
         count++;
     }
-}
-        </div>
+}</code></pre>
+</div>
         <button class="lab-toggle-btn" onclick="toggleSolution('lab1')">Reveal Mathematical Derivation</button>
         <div id="lab1" class="lab-solution">
           <strong>Answer: Time Complexity = O(N log N) &bull; Space = O(1)</strong><br>
@@ -3788,15 +4425,27 @@ prefixCount.<span class="method">put</span>(0, 1);
       <!-- SNIPPET 2 -->
       <div class="lab-box">
         <h4 style="color: var(--gray-900); font-size: 0.95rem; margin-bottom: 8px;">Snippet 2: Logarithmic Stepping Loop</h4>
-        <div class="code-block">
-<span class="keyword">int</span> i = n;
+        <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Logarithmic Stepping Loop</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="keyword">int</span> i = n;
 <span class="keyword">while</span> (i &gt; 1) {
     <span class="keyword">for</span> (<span class="keyword">int</span> j = 0; j &lt; n; j++) {
         total++;
     }
     i /= 2;
-}
-        </div>
+}</code></pre>
+</div>
         <button class="lab-toggle-btn" onclick="toggleSolution('lab2')">Reveal Mathematical Derivation</button>
         <div id="lab2" class="lab-solution">
           <strong>Answer: Time Complexity = O(N log N) &bull; Space = O(1)</strong><br>
@@ -3813,13 +4462,25 @@ prefixCount.<span class="method">put</span>(0, 1);
       <!-- BUG 1 -->
       <div class="lab-box">
         <h4 style="color: var(--red); font-size: 0.95rem; margin-bottom: 8px;">Bug 1: The Integer Overflow in Binary Search &amp; Comparators</h4>
-        <div class="code-block">
-<span class="comment">// Defective Binary Search:</span>
+        <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Integer Overflow Diagnosis</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="comment">// Defective Binary Search:</span>
 <span class="keyword">int</span> mid = (left + right) / 2; <span class="comment">// BUG: Integer Overflow when left + right &gt; 2^31 - 1</span>
 
 <span class="comment">// Defective Comparator:</span>
-<span class="type">PriorityQueue</span>&lt;<span class="type">Integer</span>&gt; pq = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;((a, b) -&gt; b - a); <span class="comment">// BUG: Overflow with negative numbers</span>
-        </div>
+<span class="type">PriorityQueue</span>&lt;<span class="type">Integer</span>&gt; pq = <span class="keyword">new</span> <span class="type">PriorityQueue</span>&lt;&gt;((a, b) -&gt; b - a); <span class="comment">// BUG: Overflow with negative numbers</span></code></pre>
+</div>
         <button class="lab-toggle-btn" onclick="toggleSolution('bug1')">View Fix &amp; Senior Engineer Explanation</button>
         <div id="bug1" class="lab-solution">
           <strong>Correction:</strong><br>
@@ -3831,12 +4492,24 @@ prefixCount.<span class="method">put</span>(0, 1);
       <!-- BUG 2 -->
       <div class="lab-box">
         <h4 style="color: var(--red); font-size: 0.95rem; margin-bottom: 8px;">Bug 2: Modifying Collection While Iterating</h4>
-        <div class="code-block">
-<span class="type">List</span>&lt;<span class="type">String</span>&gt; list = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;(<span class="type">List</span>.<span class="method">of</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>));
+        <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; CME Diagnosis</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">List</span>&lt;<span class="type">String</span>&gt; list = <span class="keyword">new</span> <span class="type">ArrayList</span>&lt;&gt;(<span class="type">List</span>.<span class="method">of</span>(<span class="string">"A"</span>, <span class="string">"B"</span>, <span class="string">"C"</span>));
 <span class="keyword">for</span> (<span class="type">String</span> s : list) {
     <span class="keyword">if</span> (s.<span class="method">equals</span>(<span class="string">"B"</span>)) list.<span class="method">remove</span>(s); <span class="comment">// Throws ConcurrentModificationException!</span>
-}
-        </div>
+}</code></pre>
+</div>
         <button class="lab-toggle-btn" onclick="toggleSolution('bug2')">View Fix &amp; Senior Engineer Explanation</button>
         <div id="bug2" class="lab-solution">
           <strong>Correction:</strong> The enhanced for-loop uses an implicit <code>Iterator</code>. Modifying the underlying collection mutates <code>modCount</code>, causing the iterator's next call to fail fail-fast. Use <code>list.removeIf(s -&gt; s.equals("B"));</code> or an explicit <code>Iterator.remove();</code>.
@@ -3846,12 +4519,24 @@ prefixCount.<span class="method">put</span>(0, 1);
       <!-- BUG 3 -->
       <div class="lab-box">
         <h4 style="color: var(--red); font-size: 0.95rem; margin-bottom: 8px;">Bug 3: Comparing Object Wrappers with <code>==</code></h4>
-        <div class="code-block">
-<span class="type">Integer</span> a = 1000, b = 1000;
+        <div class="code-window">
+  <div class="code-window-header">
+    <div class="code-window-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="code-window-title">Java 21 &bull; Reference Equality Diagnosis</span>
+    <button class="copy-btn" onclick="copyCode(this)">
+      <svg viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>
+      <span>Copy</span>
+    </button>
+  </div>
+  <pre class="code-block"><code><span class="type">Integer</span> a = 1000, b = 1000;
 <span class="keyword">if</span> (a == b) { <span class="comment">// Evaluates to FALSE!</span>
     <span class="comment">// Reference equality fails for values outside the IntegerCache [-128, 127]</span>
-}
-        </div>
+}</code></pre>
+</div>
         <button class="lab-toggle-btn" onclick="toggleSolution('bug3')">View Fix &amp; Senior Engineer Explanation</button>
         <div id="bug3" class="lab-solution">
           <strong>Correction:</strong> Always use <code>a.equals(b)</code> or unbox to primitives <code>(int) a == (int) b</code>. The JVM caches Integer objects only between -128 and 127. Outside this range, <code>==</code> compares heap memory addresses, not mathematical values.
@@ -4058,6 +4743,28 @@ filterBtns.forEach(btn => {
     filterPatterns();
   });
 });
+// 5. COPY CODE TO CLIPBOARD FUNCTION
+function copyCode(btn) {
+  const codeWindow = btn.closest('.code-window');
+  if (!codeWindow) return;
+  const codeEl = codeWindow.querySelector('.code-block code');
+  if (!codeEl) return;
+  
+  const text = codeEl.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    const span = btn.querySelector('span');
+    const originalText = span.innerText;
+    span.innerText = 'Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      span.innerText = originalText;
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy code: ', err);
+  });
+}
+
 </script>
 </body>
 </html>
